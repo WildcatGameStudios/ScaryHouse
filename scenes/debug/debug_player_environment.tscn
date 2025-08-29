@@ -1,15 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://cefsh68ong0rg"]
+[gd_scene load_steps=5 format=3 uid="uid://cefsh68ong0rg"]
 
-[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player.tscn" id="1_3o6y4"]
+[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_3o6y4"]
 
-[sub_resource type="Environment" id="Environment_3o6y4"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3o6y4"]
+sky_top_color = Color(0.252202, 0.214962, 0.338636, 1)
+sky_horizon_color = Color(0.259216, 0.249677, 0.280381, 1)
+ground_bottom_color = Color(0.00338006, 0.0024662, 0.00160868, 1)
+ground_horizon_color = Color(0.259216, 0.249677, 0.280381, 1)
+
+[sub_resource type="Sky" id="Sky_fvu4u"]
+sky_material = SubResource("ProceduralSkyMaterial_3o6y4")
+
+[sub_resource type="Environment" id="Environment_b35ig"]
 background_mode = 2
-background_color = Color(0.471476, 0.640224, 0.997988, 1)
-ambient_light_source = 3
-ambient_light_color = Color(0.838897, 0.838897, 0.838897, 1)
-ambient_light_sky_contribution = 0.1
+sky = SubResource("Sky_fvu4u")
+tonemap_mode = 2
+glow_enabled = true
 
 [node name="DebugPlayerEnvironment" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_b35ig")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.990515, 0.733095, 0.593997, 1)
+light_energy = 0.5
+shadow_enabled = true
 
 [node name="greyboxing" type="Node" parent="."]
 
@@ -30,12 +47,6 @@ size = Vector3(17.8802, 1, 15.5682)
 
 [node name="player" parent="." instance=ExtResource("1_3o6y4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3868, 1)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_3o6y4")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.52416, 0)
-light_energy = 1.52
-light_angular_distance = 16.1
-shadow_enabled = true
+can_crouch = false
+can_dash = false
+can_double_jump = false
