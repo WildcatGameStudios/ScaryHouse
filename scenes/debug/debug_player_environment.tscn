@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://cefsh68ong0rg"]
+
+[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player.tscn" id="1_3o6y4"]
+
+[sub_resource type="Environment" id="Environment_3o6y4"]
+background_mode = 2
+background_color = Color(0.471476, 0.640224, 0.997988, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.838897, 0.838897, 0.838897, 1)
+ambient_light_sky_contribution = 0.1
+
+[node name="DebugPlayerEnvironment" type="Node3D"]
+
+[node name="greyboxing" type="Node" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="greyboxing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.29623, 0, -9.65027)
+use_collision = true
+size = Vector3(40.1958, 1, 59.2894)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="greyboxing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.565319, 1.60133, -8.84438)
+use_collision = true
+size = Vector3(17.8802, 1, 15.5682)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="greyboxing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.42686, 3.20266, -13.9931)
+use_collision = true
+size = Vector3(17.8802, 1, 15.5682)
+
+[node name="player" parent="." instance=ExtResource("1_3o6y4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3868, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_3o6y4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.52416, 0)
+light_energy = 1.52
+light_angular_distance = 16.1
+shadow_enabled = true

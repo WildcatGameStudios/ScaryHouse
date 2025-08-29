@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b81qx5c25q7p2"]
+
+[ext_resource type="Script" uid="uid://b01rtmi4lfuwh" path="res://scripts/general/hitbox.gd" id="1_eqmo2"]
+
+[node name="hitbox" type="Area3D"]
+script = ExtResource("1_eqmo2")
+metadata/_custom_type_script = "uid://b01rtmi4lfuwh"
+
+[node name="cooldown" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
+[connection signal="timeout" from="cooldown" to="." method="_on_cooldown_timeout"]
