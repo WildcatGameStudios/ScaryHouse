@@ -18,8 +18,6 @@ var old_gun_transform: Transform3D
 var dt: float
 @onready var parent: player = $'../'
 @onready var cam: Camera3D = $'../head/Camera3D'
-@onready var sniper_gun: Node3D = $'../sniper_gun'
-@onready var scope: Marker3D = $'../sniper_gun/scope_view'
 @onready var overhead_cam: Vector3 = cam.position
 const ANY_STATE: String = ""
 
@@ -42,11 +40,8 @@ func _ready() -> void:
 	set_transition("Jump", ANY_STATE, func(_dt: float): parent.reset_jump())
 	set_transition(ANY_STATE, "Aim", func(_dt: float): 
 		old_cam_basis = cam.transform.basis
-		cam.global_position = scope.global_position
-		old_gun_transform = sniper_gun.transform
 	)
 	set_transition("Aim", ANY_STATE, func(_dt: float):
-		sniper_gun.transform = old_gun_transform
 		cam.position = overhead_cam
 		cam.transform.basis = old_cam_basis
 	)
@@ -131,9 +126,6 @@ func idle(dt: float):
 		queue_transition("Jump")
 	if walk_trigger():
 		queue_transition("Walk")
-	
-	if Input.is_action_just_pressed("shoot_dart"):
-		queue_transition("Aim")
 
 func jump(dt: float):
 	handle_move(dt)
@@ -183,16 +175,16 @@ func run(dt: float):
 
 func aim(dt: float):
 	parent.move(dt)
-	var current_mouse_direction : Vector2 = Input.get_last_mouse_velocity()
-	var joystick_rotation : Vector2 = Input.get_vector("joystick_look_left", "joystick_look_right", "joystick_look_up", "joystick_look_down")
-	if current_mouse_direction : 
+	var current_mouse_direction: Vector2 = Input.get_last_mouse_velocity()
+	var joystick_rotation: Vector2 = Input.get_vector("joystick_look_left", "joystick_look_right", "joystick_look_up", "joystick_look_down")
+	if current_mouse_direction:
 		# to move up and down we rotate along x-axis 
 		parent.look_direction.x -= current_mouse_direction.y * parent.verticle_look_speed
 		#restric user camera angles for up/ down 
 		parent.look_direction.x = clamp(parent.look_direction.x, deg_to_rad(parent.min_look_degree), deg_to_rad(parent.max_look_degree))
 		# get rotation for side by side which is rotating against y axis 
 		parent.look_direction.y -= current_mouse_direction.x * parent.horizontal_look_speed
-	elif joystick_rotation : 
+	elif joystick_rotation:
 		# to move up and down we rotate along x-axis 
 		parent.look_direction.x -= joystick_rotation.y * parent.joystick_v_look_speed
 		#restric user camera angles for up/ down 
@@ -206,21 +198,6 @@ func aim(dt: float):
 	# do camera pitch rotation
 	cam.basis = Basis()
 	cam.rotate_x(parent.look_direction.x)
-	
-	# to get rotations about scope instead of gun origin, we translate first...
-	var old_scope_pos = scope.global_position
-	sniper_gun.global_position = scope.global_position
-	# rotate...
-	sniper_gun.transform.basis = Basis()
-	# HACK: sniper gun's rotation is backwards, so we patch that here
-	sniper_gun.rotate_x(-parent.look_direction.x)
-	sniper_gun.rotate_y(PI)
-	# then restore position
-	var pos_diff = old_scope_pos - scope.global_position
-	sniper_gun.global_position += pos_diff
-
-	if Input.is_action_just_pressed("shoot_dart"):
-		sniper_gun.shoot_dart()
 
 	if Input.is_action_just_pressed("run"):
 		queue_transition("Idle")
