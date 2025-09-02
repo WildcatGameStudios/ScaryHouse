@@ -17,7 +17,7 @@ sky = SubResource("Sky_fvu4u")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="DebugPlayerEnvironment" type="Node3D"]
+[node name="DebugPlayerEnvironment" type="Node3D" groups=["world"]]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_b35ig")

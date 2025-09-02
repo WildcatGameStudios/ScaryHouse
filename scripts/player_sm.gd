@@ -63,20 +63,20 @@ func update_state() -> void:
 	if queued_state == "":
 		return
 	if states.has(queued_state) == null:
-		print("inventor_sm: Attempt to switch to invalid state '%s'" % queued_state)
+		print("player_sm: Attempt to switch to invalid state '%s'" % queued_state)
 	elif !enabled[queued_state]:
-		print("inventor_sm: Attempt to switch to disabled state '%s'" % queued_state)
+		print("player_sm: Attempt to switch to disabled state '%s'" % queued_state)
 	else:
 		call_transition(current_state, ANY_STATE)
 		call_transition(current_state, queued_state)
 		call_transition(ANY_STATE, queued_state)
 		current_state = queued_state
-		# print("inventor_sm: switched to state '%s'" % current_state)
+		# print("player_sm: switched to state '%s'" % current_state)
 	queued_state = ""
 
 func set_transition(start: String, end: String, fn: Callable) -> void:
 	if start == end:
-		print("inventor_sm: Attempt to set transition from '%s' to itself" % end)
+		print("player_sm: Attempt to set transition from '%s' to itself" % end)
 		return
 	var key = "%d%s:%d%s" % [start.length(), start, end.length(), end]
 	transitions[key] = fn

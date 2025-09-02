@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcv40fcphjv3m"]
+[gd_scene load_steps=6 format=3 uid="uid://bcv40fcphjv3m"]
 
 [ext_resource type="Script" uid="uid://qu65ebbkmrhx" path="res://scripts/player.gd" id="1_qhqgy"]
 [ext_resource type="Script" uid="uid://dntg3ga86vnxk" path="res://scripts/player_sm.gd" id="2_gmlin"]
-[ext_resource type="Script" uid="uid://c7gmidlc1qkdn" path="res://scripts/general/pause_handler.gd" id="4_dqkch"]
 [ext_resource type="PackedScene" uid="uid://b81qx5c25q7p2" path="res://scenes/general/hitbox.tscn" id="4_gmlin"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8afob"]
@@ -44,9 +43,6 @@ script = null
 
 [node name="collider" type="CollisionShape3D" parent="hitbox"]
 shape = SubResource("CapsuleShape3D_lvxji")
-
-[node name="pause_handler" type="Node" parent="."]
-script = ExtResource("4_dqkch")
 
 [connection signal="timeout" from="timers/dash_timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="timers/dash_cooldown_timer" to="." method="_on_dash_cooldown_timer_timeout"]
