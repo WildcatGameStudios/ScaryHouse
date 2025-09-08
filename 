@@ -1,0 +1,30 @@
+[33mcommit 82b2f03f91c0afd298ab01a270479dd3922e3821[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: GarrettMcNeill2 <garrettmcneill04@gmail.com>
+Date:   Fri Aug 29 13:44:37 2025 -0400
+
+    added lights
+
+[33mcommit dbded5f778f26a1bdb08ea5f7f8d3f4a0cce5a37[m
+Author: Ben Carey <benjamin.james.carey3@gmail.com>
+Date:   Thu Aug 28 21:58:03 2025 -0400
+
+    player: center camera in first pov, add pausing
+    
+    This fixes the bug where the mouse, in not being captured, will go off
+    screen before the player can make a full rotation.
+
+[33mcommit 14a71baca9a67e6b9acef6a34850f67fcfa7530c[m
+Author: Ben Carey <benjamin.james.carey3@gmail.com>
+Date:   Thu Aug 28 21:45:16 2025 -0400
+
+    initial: debug: add player and {hit,hurt}box
+    
+    These are mainly cloned from our beta 3D game Blue Moose. It has more
+    features than will be needed for the game, while at the same time not
+    enough features for our needs.
+
+[33mcommit a2c3bd79b8e99a02f9c0a173f9b55b19737f6d8c[m
+Author: GarrettMcNeill2 <garrettmcneill04@gmail.com>
+Date:   Thu Aug 28 20:03:11 2025 -0400
+
+    initial commit
