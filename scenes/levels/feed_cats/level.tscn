@@ -1,0 +1,166 @@
+[gd_scene load_steps=11 format=3 uid="uid://bcge4b7a64s66"]
+
+[ext_resource type="Material" uid="uid://djd2faaq4ltra" path="res://art/materials/testing/pale.tres" id="1_2i0w0"]
+[ext_resource type="Material" uid="uid://myct60omgde3" path="res://art/materials/testing/purple.tres" id="1_4b0sh"]
+[ext_resource type="PackedScene" uid="uid://du0o8vgmmqba1" path="res://scenes/levels/feed_cats/feed_bowl.tscn" id="1_v07fi"]
+[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="2_1ygsb"]
+[ext_resource type="Material" uid="uid://dafejkibcr0t5" path="res://art/materials/testing/green.tres" id="2_mh3re"]
+[ext_resource type="PackedScene" uid="uid://pl41yoy454vv" path="res://scenes/levels/feed_cats/tiger.tscn" id="3_w832m"]
+[ext_resource type="PackedScene" uid="uid://hewq2vk1enyk" path="res://scenes/levels/feed_cats/feed_bag.tscn" id="7_tdrnw"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_1ygsb"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_w832m"]
+sky_material = SubResource("ProceduralSkyMaterial_1ygsb")
+
+[sub_resource type="Environment" id="Environment_4b0sh"]
+background_mode = 2
+sky = SubResource("Sky_w832m")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Level" type="Node3D" groups=["world"]]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4b0sh")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSG_Main" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="ground" type="CSGBox3D" parent="CSG_Main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008564, -0.313217, 50.0605)
+size = Vector3(40, 0.5, 100)
+material = ExtResource("1_2i0w0")
+
+[node name="ceiling" type="CSGBox3D" parent="CSG_Main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 40.25, 50)
+size = Vector3(40, 0.5, 100)
+
+[node name="wall" type="CSGBox3D" parent="CSG_Main"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 20.25, 20, 50)
+size = Vector3(40, 0.5, 100)
+
+[node name="wall2" type="CSGBox3D" parent="CSG_Main"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -20.25, 20, 50)
+size = Vector3(40, 0.5, 100)
+
+[node name="back_wall" type="CSGBox3D" parent="CSG_Main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 20, 0.25)
+size = Vector3(40, 40, 1)
+
+[node name="main_wall" type="CSGBox3D" parent="CSG_Main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 20, 100.25)
+size = Vector3(40, 40, 1)
+
+[node name="front_wall" type="CSGCombiner3D" parent="CSG_Main"]
+operation = 2
+
+[node name="door" type="CSGBox3D" parent="CSG_Main/front_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 100.45)
+size = Vector3(3, 3, 1.5)
+material = ExtResource("1_4b0sh")
+
+[node name="start" type="CSGBox3D" parent="CSG_Main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 102.2)
+size = Vector3(5, 1, 5)
+
+[node name="start5" type="CSGBox3D" parent="CSG_Main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 102.2)
+size = Vector3(5, 1, 5)
+
+[node name="start2" type="CSGBox3D" parent="CSG_Main"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 3, 1.5, 102.2)
+size = Vector3(5, 1, 5)
+
+[node name="start3" type="CSGBox3D" parent="CSG_Main"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -3, 1.5, 102.2)
+size = Vector3(5, 1, 5)
+
+[node name="start4" type="CSGBox3D" parent="CSG_Main"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, -3.27826e-07, 1.5, 105.2)
+size = Vector3(5, 1, 5.2)
+
+[node name="grass_areas" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0.000298696, -0.000408402, -0.000298691, 1, 1.31766e-05, 0.000408405, -1.30631e-05, 1, 0, 0, 0)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="grass_areas"]
+transform = Transform3D(3.92, -9.04343e-12, 0, -6.14744e-11, 1, 9.09495e-13, -1.16415e-10, 0, 1, 0.0436545, -0.58461, 91.3323)
+radius = 4.64111
+material = ExtResource("2_mh3re")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="grass_areas"]
+transform = Transform3D(-0.310959, -0.000991079, -0.735736, -0.00013029, 0.739999, -0.000993239, 2.88429, -7.34241e-05, -0.0793208, 1.55058, 0.2349, 63.3597)
+radius = 4.64111
+material = ExtResource("2_mh3re")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="grass_areas"]
+transform = Transform3D(-0.667137, -4.44267e-12, -0.596197, -1.81899e-12, 0.62, -9.09495e-13, 2.33767, 9.09495e-13, -0.170146, -13.2188, 0.2349, 59.1415)
+radius = 4.64111
+material = ExtResource("2_mh3re")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="grass_areas"]
+transform = Transform3D(-1.49018, -2.16227e-12, -0.12445, 6.13909e-11, 0.4, 4.54747e-13, 0.487843, 0, -0.380148, 12.3806, 0.2349, 71.6039)
+radius = 4.64111
+material = ExtResource("2_mh3re")
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="grass_areas"]
+transform = Transform3D(0.473761, -9.32054e-12, -0.567273, -1.09139e-11, 0.58, 9.54969e-12, 2.2241, 0, 0.120836, 15.5051, 0.2349, 61.1226)
+radius = 4.64111
+material = ExtResource("2_mh3re")
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="grass_areas"]
+transform = Transform3D(-0.204594, -5.20144e-06, -0.457032, -0.000173739, 0.46, -1.78189e-07, 1.79236, 4.39955e-05, -0.0521693, 14.2339, 0.234351, 36.4427)
+radius = 4.64111
+sides = 16
+material = ExtResource("2_mh3re")
+
+[node name="CSGCylinder3D8" type="CSGCylinder3D" parent="grass_areas"]
+transform = Transform3D(0.447993, -1.1138e-05, -0.411257, 7.26898e-05, 0.86, 1.00915e-05, 0.894037, -6.43413e-05, 0.206077, -15.1951, 0.225677, 27.6298)
+radius = 4.64111
+sides = 16
+material = ExtResource("2_mh3re")
+
+[node name="CSGCylinder3D9" type="CSGCylinder3D" parent="grass_areas"]
+transform = Transform3D(-0.50626, -5.96582e-05, -0.396695, -0.00021192, 0.86, 2.0225e-05, 0.862381, 0.000176312, -0.23288, -15.0872, 0.225619, 34.5644)
+radius = 4.64111
+sides = 16
+material = ExtResource("2_mh3re")
+
+[node name="CSGCylinder3D10" type="CSGCylinder3D" parent="grass_areas"]
+transform = Transform3D(-0.50626, -5.96581e-05, -0.396696, -0.00021192, 0.860001, 2.02251e-05, 0.862381, 0.000176312, -0.23288, 13.5295, 0.224685, 8.97219)
+radius = 4.64111
+sides = 16
+material = ExtResource("2_mh3re")
+
+[node name="CSGCylinder3D7" type="CSGCylinder3D" parent="grass_areas"]
+transform = Transform3D(2.03392, -7.38393e-05, -0.613451, 0.00047002, 0.77, 0.000134688, 1.33152, -0.000159015, 0.937058, -0.373459, 0.230474, 37.1837)
+radius = 4.64111
+sides = 16
+material = ExtResource("2_mh3re")
+
+[node name="feed_bowl" parent="." instance=ExtResource("1_v07fi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.125, 1.5)
+
+[node name="player" parent="." instance=ExtResource("2_1ygsb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 102.2)
+can_run = false
+can_jump = false
+can_crouch = false
+can_dash = false
+can_double_jump = false
+walk_speed = 4
+
+[node name="tiger_one" parent="." instance=ExtResource("3_w832m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 2.98023e-08, 7.1)
+
+[node name="tiger_two" parent="." instance=ExtResource("3_w832m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.7, -0.1, 7.1)
+
+[node name="FeedBag" parent="." instance=ExtResource("7_tdrnw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.39986, 0.355826, 98.1564)

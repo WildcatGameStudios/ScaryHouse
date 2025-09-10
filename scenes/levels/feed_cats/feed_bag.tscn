@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://hewq2vk1enyk"]
+
+[ext_resource type="Material" uid="uid://myct60omgde3" path="res://art/materials/testing/purple.tres" id="1_xd75b"]
+
+[node name="FeedBag" type="Node3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1.64, 0, 0, 0, 0.6, 0, 0, 0, 1.75, 0, 0, 0)
+sides = 16
+material = ExtResource("1_xd75b")

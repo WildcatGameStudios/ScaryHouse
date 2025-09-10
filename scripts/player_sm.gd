@@ -119,10 +119,11 @@ func idle(dt: float):
 	parent.move(dt)
 	parent.handle_rotation()
 	if Input.is_action_just_pressed("jump"):
-		parent.jump()
 		queue_transition("Jump")
 		return
 	elif !parent.is_on_floor():
+		if enabled.find_key("Jump"):
+			parent.jump()
 		queue_transition("Jump")
 	if walk_trigger():
 		queue_transition("Walk")

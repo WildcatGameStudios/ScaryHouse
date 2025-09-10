@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://pl41yoy454vv"]
+
+[ext_resource type="Material" uid="uid://caeihk71ptlm3" path="res://art/materials/testing/orange.tres" id="1_tkte7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_wcpyt"]
+radius = 0.75
+height = 3.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aj3k5"]
+radius = 0.75
+height = 3.0
+
+[node name="Tiger" type="CharacterBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.75, 0)
+material_override = ExtResource("1_tkte7")
+mesh = SubResource("CapsuleMesh_wcpyt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_aj3k5")
