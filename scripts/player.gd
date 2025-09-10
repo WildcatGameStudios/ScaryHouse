@@ -22,6 +22,8 @@ class_name player
 @export var joystick_v_look_speed: float = 0.06
 @export var min_look_degree: float = -40
 @export var max_look_degree: float = 45
+@export var enable_bobbing: bool = true
+@export var bob_time: float = PI / 8.0
 
 @export_category("Movement")
 
@@ -63,13 +65,16 @@ class_name player
 var gravity: float 
 var jump_strength: float
 var temp_grav_power: float
-var double_jump_ready: bool = true
+var double_jump_ready: bool = false
 var look_direction: Vector2
 
 # coyote variables 
 var coyote_valid: bool = false
 var coyote_input: String = "void"
 
+# walk variables
+@onready var head_base_y = head.position.y
+var bob_speed_mod = 1.0
 
 # stats 
 var current_health: int:
@@ -101,7 +106,7 @@ func _ready() -> void:
 	
 	# set enabled / disabled states
 	psm.toggle_state("Walk", can_walk)
-	psm.toggle_state("Run", can_crouch)
+	psm.toggle_state("Run", can_run)
 	psm.toggle_state("Jump", can_jump)
 	psm.toggle_state("Crouch", can_crouch)
 	psm.toggle_state("Dash", can_dash)
@@ -112,6 +117,8 @@ func _ready() -> void:
 	
 	# set health
 	current_health = max_health
+	
+	look_direction = Vector2(0.0, rotation.y)
 
 # Movement functions 
 #region
@@ -130,6 +137,23 @@ func move(delta):
 func apply_gravity(delta) -> void: 
 	velocity.y -= (gravity + temp_grav_power) * delta
 
+func bob(delta: float) -> void:
+	if enable_bobbing:
+		# only reset bobbing if we are moving
+		var horiz_vel = velocity
+		horiz_vel.y = 0
+		if bob_time > PI / (8.0 * bob_speed_mod) and horiz_vel.length_squared() > 0.0:
+			bob_time = 0.0
+	
+	# whether or not we should bob, we should finish a previously-started bob animation
+	var camera_y_mod = (abs(cos(min(PI / 8.0, bob_time) * 8.0 * bob_speed_mod)) - 1.0) / 3.0
+	head.position.y = head_base_y + camera_y_mod
+	bob_time += delta
+
+func unbob(delta: float) -> void:
+	head.position.y = head_base_y
+	bob_time = PI / 8.0
+
 # function to handle the walk logic 
 func walk(delta) -> void: 
 	# first get walk direction 
@@ -145,7 +169,6 @@ func walk(delta) -> void:
 	else: 
 		velocity.x = move_toward(velocity.x, 0, walk_speed)
 		velocity.z = move_toward(velocity.z, 0, walk_speed)
-		
 
 # function for player run 
 func run(delta): 
@@ -163,6 +186,8 @@ func run(delta):
 	else: 
 		velocity.x = move_toward(velocity.x, 0, run_speed)
 		velocity.z = move_toward(velocity.z, 0, run_speed)
+	bob_speed_mod = 1.5
+	bob(delta)
 
 # function for crouch walking
 func crouch_walk(delta) -> void: 
@@ -214,6 +239,7 @@ func reset_dash():
 func jump():
 	# add jump strength
 	velocity.y = jump_strength
+	unbob(0.0)
 
 # function for double jumping
 func double_jump():
@@ -229,7 +255,7 @@ func fall() -> void:
 # to reset temp variables that are used to mainpulate falling / jumping
 func reset_jump() -> void:
 	temp_grav_power = 0
-	if can_double_jump: 
+	if can_double_jump:
 		double_jump_ready = true
 
 

@@ -1,5 +1,8 @@
 extends Node
 
+# TODO: make this state machine match SM64's state machine: 'transition' functions should statically
+# modify player properties, not call into a player routine continuously
+
 ## NOTE: the empty string "" is an INVALID state name; it is a sentinel value in
 ## the state machine logic and should not be used in application code.
 ## Also NOTE: please use `add_state` instead of directly setting this value.
@@ -31,15 +34,13 @@ func _ready() -> void:
 	#add_state("Die", die)
 	
 	toggle_state("Idle", true)
-	toggle_state("Walk", true)
-	toggle_state("Run", true)
-	toggle_state("Jump", true)
-	toggle_state("Aim", true)
 	
-	# set_transition("Idle", "Jump", func(_dt: float): parent.jump())
 	set_transition("Jump", ANY_STATE, func(_dt: float): parent.reset_jump())
 	set_transition(ANY_STATE, "Aim", func(_dt: float): 
 		old_cam_basis = cam.transform.basis
+	)
+	set_transition("Run", ANY_STATE, func(_dt: float):
+		running = false
 	)
 	set_transition("Aim", ANY_STATE, func(_dt: float):
 		cam.position = overhead_cam
@@ -49,7 +50,6 @@ func _ready() -> void:
 # use this for state-agnostic code
 func _process(delta: float) -> void:
 	update_state()
-	running = Input.is_action_pressed("run")
 	dt = delta
 	states[current_state].call(dt)
 
@@ -62,16 +62,11 @@ func add_state(state: String, update: Callable) -> void:
 func update_state() -> void:
 	if queued_state == "":
 		return
-	if states.has(queued_state) == null:
-		print("player_sm: Attempt to switch to invalid state '%s'" % queued_state)
-	elif !enabled[queued_state]:
-		print("player_sm: Attempt to switch to disabled state '%s'" % queued_state)
 	else:
 		call_transition(current_state, ANY_STATE)
 		call_transition(current_state, queued_state)
 		call_transition(ANY_STATE, queued_state)
 		current_state = queued_state
-		# print("player_sm: switched to state '%s'" % current_state)
 	queued_state = ""
 
 func set_transition(start: String, end: String, fn: Callable) -> void:
@@ -87,15 +82,29 @@ func call_transition(start: String, end: String) -> void:
 	if trans != null:
 		trans.call(dt)
 
-func queue_transition(state: String) -> void:
-	if queued_state == "":
+## Returns if state was successfully queued or not.
+func queue_transition(state: String) -> bool:
+	if states.has(state) == null:
+		print("player_sm: Attempt to switch to invalid state '%s'" % state)
+	elif !enabled[state]:
+		print("player_sm: Attempt to switch to disabled state '%s'" % state)
+	elif queued_state != "":
+		print("player_sm: State switch already queued for '%s'" % queued_state)
+	else:
 		queued_state = state
+		return true
+	return false
 
 func will_transition() -> bool:
 	return queued_state != ""
 
 func toggle_state(state: String, is_on: bool) -> void:
 	enabled[state] = is_on
+
+func is_state_enabled(state: String) -> bool:
+	if enabled.has(state):
+		return enabled[state]
+	return false
 #endregion
 
 # specific state update function callbacks and helpers
@@ -119,8 +128,9 @@ func idle(dt: float):
 	parent.move(dt)
 	parent.handle_rotation()
 	if Input.is_action_just_pressed("jump"):
-		queue_transition("Jump")
-		return
+		if queue_transition("Jump"):
+			parent.jump()
+			return
 	elif !parent.is_on_floor():
 		if enabled.find_key("Jump"):
 			parent.jump()
@@ -132,6 +142,9 @@ func jump(dt: float):
 	handle_move(dt)
 	parent.move(dt)
 	parent.handle_rotation()
+	
+	parent.unbob(dt)
+	
 	if parent.is_on_floor():
 		queue_transition("Idle")
 		return
@@ -142,24 +155,33 @@ func walk(dt: float):
 	handle_move(dt)
 	parent.move(dt)
 	parent.handle_rotation()
+	
+	parent.bob_speed_mod = 1.0
+	parent.bob(dt)
+	
 	if !walk_trigger():
 		queue_transition("Idle")
 		return
 	if Input.is_action_just_pressed("jump"):
-		parent.jump()
-		queue_transition("Jump")
-		return
+		if queue_transition("Jump"):
+			parent.jump()
+			return
 	if !parent.is_on_floor():
 		queue_transition("Jump")
 		return
 	if Input.is_action_pressed("run"):
-		queue_transition("Run")
+		if queue_transition("Run"):
+			running = true
 		return
 
 func run(dt: float):
 	handle_move(dt)
 	parent.move(dt)
 	parent.handle_rotation()
+	
+	parent.bob_speed_mod = 1.3
+	parent.bob(dt)
+	
 	if !walk_trigger():
 		queue_transition("Idle")
 		return
@@ -167,9 +189,9 @@ func run(dt: float):
 		queue_transition("Walk")
 		return
 	if Input.is_action_just_pressed("jump"):
-		parent.jump()
-		queue_transition("Jump")
-		return
+		if queue_transition("Jump"):
+			parent.jump()
+			return
 	if !parent.is_on_floor():
 		queue_transition("Jump")
 		return
@@ -204,7 +226,8 @@ func aim(dt: float):
 		queue_transition("Idle")
 		return
 	if !parent.is_on_floor():
-		queue_transition("Jump")
-		return
+		if queue_transition("Jump"):
+			parent.jump()
+			return
 
 #endregion
