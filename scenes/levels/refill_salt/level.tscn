@@ -4,8 +4,13 @@
 
 [node name="RefillSalt" type="Node3D" groups=["world"]]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 operation = 2
+use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 25)
@@ -20,6 +25,7 @@ height = 1.0
 sides = 50
 
 [node name="CSGCombiner3D2" type="CSGCombiner3D" parent="."]
+use_collision = true
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 80.5, 50)

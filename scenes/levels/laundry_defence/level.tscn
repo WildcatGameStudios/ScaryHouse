@@ -1,0 +1,312 @@
+[gd_scene load_steps=13 format=3 uid="uid://cfguktl7rmvvh"]
+
+[ext_resource type="Material" uid="uid://djd2faaq4ltra" path="res://art/materials/testing/pale.tres" id="1_23iv0"]
+[ext_resource type="Material" uid="uid://dafejkibcr0t5" path="res://art/materials/testing/green.tres" id="1_mw3bf"]
+[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="2_hlgtl"]
+[ext_resource type="Material" uid="uid://bpxiy7koaf8n8" path="res://art/materials/testing/brown.tres" id="2_mw3bf"]
+[ext_resource type="Material" uid="uid://bhfo6utyyml6o" path="res://art/materials/testing/grey.tres" id="4_fgt5k"]
+[ext_resource type="Material" uid="uid://y7a2l32bbdfj" path="res://art/materials/testing/red.tres" id="5_58fdj"]
+[ext_resource type="PackedScene" uid="uid://cx0ucxg7k8k0m" path="res://scenes/levels/laundry_defence/drone.tscn" id="5_r678j"]
+[ext_resource type="PackedScene" uid="uid://dcew3ouivmecn" path="res://scenes/levels/laundry_defence/evil_bird.tscn" id="8_am13q"]
+[ext_resource type="PackedScene" uid="uid://mavh0ippwgh0" path="res://scenes/levels/laundry_defence/cloth.tscn" id="9_mw7pp"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mw3bf"]
+sky_top_color = Color(0.00117583, 0, 0.226936, 1)
+sky_horizon_color = Color(0.347691, 0.414178, 0.71209, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_r678j"]
+sky_material = SubResource("ProceduralSkyMaterial_mw3bf")
+
+[sub_resource type="Environment" id="Environment_fgt5k"]
+background_mode = 2
+sky = SubResource("Sky_r678j")
+tonemap_mode = 2
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.495175, 0.530165, 0.585152, 1)
+fog_light_energy = 0.1
+fog_density = 0.0
+fog_sky_affect = 0.109
+fog_height_density = -0.014
+
+[node name="Level" type="Node3D" groups=["world"]]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_fgt5k")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.382711, 0.547985, 0.818252, 1)
+shadow_enabled = true
+
+[node name="main" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="ground" type="CSGBox3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.9856, 0, -0.0124531)
+size = Vector3(30, 1, 20)
+material = ExtResource("1_mw3bf")
+
+[node name="back_boundry" type="CSGBox3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 10, 10.5, -10.5)
+size = Vector3(30, 1, 20)
+material = ExtResource("1_23iv0")
+
+[node name="front_boundry" type="CSGBox3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 10, 10.5, 10.5)
+size = Vector3(30, 1, 20)
+material = ExtResource("1_23iv0")
+
+[node name="fence" type="CSGBox3D" parent="main"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 25.5, 10.5, 0)
+size = Vector3(20, 1, 20)
+material = ExtResource("2_mw3bf")
+
+[node name="house_pillar" type="CSGCylinder3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.446, 14.7447, 0)
+radius = 15.0
+height = 30.0
+sides = 32
+material = ExtResource("4_fgt5k")
+
+[node name="cloth_lines" type="CSGCombiner3D" parent="."]
+
+[node name="line_one" type="CSGBox3D" parent="cloth_lines"]
+transform = Transform3D(0.99425, -0.0321239, 0, 0.10708, 0.298275, 0, 0, 0, 0.3, 11.8651, 7.25942, 4.7601)
+size = Vector3(27.4629, 1, 1)
+material = ExtResource("5_58fdj")
+
+[node name="line_two" type="CSGBox3D" parent="cloth_lines"]
+transform = Transform3D(0.967278, 0.0455342, -0.0609934, -0.143812, 0.296447, 0.0160503, 0.209024, -0.0067535, 0.293295, 11.8886, 7.25593, -1.88872)
+size = Vector3(28.0808, 1, 1)
+material = ExtResource("5_58fdj")
+
+[node name="line_three" type="CSGBox3D" parent="cloth_lines"]
+transform = Transform3D(0.912459, -0.0388048, 0.116456, 0.143656, 0.296879, -0.00237822, -0.383121, 0.0188996, 0.276464, 12.0057, 15.4087, -1.93788)
+size = Vector3(29.1008, 1, 1)
+material = ExtResource("5_58fdj")
+
+[node name="line_three2" type="CSGBox3D" parent="cloth_lines"]
+transform = Transform3D(0.931111, 0.0439718, -0.100197, -0.206669, 0.28996, -0.0455982, 0.300534, 0.0631646, 0.279072, 11.6318, 17.4819, -2.05856)
+size = Vector3(29.9039, 1, 1)
+material = ExtResource("5_58fdj")
+
+[node name="player" parent="." instance=ExtResource("2_hlgtl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.02541, 2.80188, 0)
+
+[node name="Drone" parent="." instance=ExtResource("5_r678j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.5687, 0.778574, 6.92818)
+
+[node name="birds" type="Node3D" parent="."]
+
+[node name="EvilBird" parent="birds" instance=ExtResource("8_am13q")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.4378, 21.4974, 4.73005)
+
+[node name="EvilBird2" parent="birds" instance=ExtResource("8_am13q")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.4378, 21.4974, -0.62912)
+
+[node name="EvilBird3" parent="birds" instance=ExtResource("8_am13q")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 25.4378, 21.4974, -5.65922)
+
+[node name="EvilBird4" parent="birds" instance=ExtResource("8_am13q")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.17702, 30.7333, 4.73005)
+
+[node name="EvilBird5" parent="birds" instance=ExtResource("8_am13q")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.17702, 30.7333, -0.62912)
+
+[node name="EvilBird6" parent="birds" instance=ExtResource("8_am13q")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.17702, 30.7333, -5.65922)
+
+[node name="clothes" type="Node3D" parent="."]
+
+[node name="line_1" type="Node3D" parent="clothes"]
+
+[node name="Cloth" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 0, 5.53468, 4.74561)
+
+[node name="Cloth2" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 1.73797, 5.69065, 4.74561)
+
+[node name="Cloth3" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 3.15285, 5.77978, 4.74561)
+
+[node name="Cloth4" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 4.90196, 6.06944, 4.74561)
+
+[node name="Cloth5" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 6.63993, 6.22541, 4.74561)
+
+[node name="Cloth6" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 8.05482, 6.31454, 4.74561)
+
+[node name="Cloth7" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 9.87345, 6.5634, 4.74561)
+
+[node name="Cloth8" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 11.6114, 6.71937, 4.74561)
+
+[node name="Cloth9" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 13.0263, 6.8085, 4.74561)
+
+[node name="Cloth10" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 14.829, 7.08923, 4.74561)
+
+[node name="Cloth11" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 16.567, 7.2452, 4.74561)
+
+[node name="Cloth12" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 17.9819, 7.33433, 4.74561)
+
+[node name="Cloth13" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 19.6468, 7.59729, 4.74561)
+
+[node name="Cloth14" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 21.3848, 7.75326, 4.74561)
+
+[node name="Cloth15" parent="clothes/line_1" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 22.7997, 7.84239, 4.74561)
+
+[node name="line_2" type="Node3D" parent="clothes"]
+transform = Transform3D(0.923259, -0.0415283, 0.381926, 0.0474354, 0.998856, -0.00605978, -0.381237, 0.0237115, 0.924173, 0.434579, 7.80221, -2.36416)
+
+[node name="Cloth" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 0, 5.53468, 4.74561)
+
+[node name="Cloth2" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 1.73797, 5.69065, 4.74561)
+
+[node name="Cloth3" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 3.15285, 5.77978, 4.74561)
+
+[node name="Cloth4" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 4.90196, 6.06944, 4.74561)
+
+[node name="Cloth5" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 6.63993, 6.22541, 4.74561)
+
+[node name="Cloth6" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 8.05482, 6.31454, 4.74561)
+
+[node name="Cloth7" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 9.87345, 6.5634, 4.74561)
+
+[node name="Cloth8" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 11.6114, 6.71937, 4.74561)
+
+[node name="Cloth9" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 13.0263, 6.8085, 4.74561)
+
+[node name="Cloth10" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 14.829, 7.08923, 4.74561)
+
+[node name="Cloth11" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 16.567, 7.2452, 4.74561)
+
+[node name="Cloth12" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 17.9819, 7.33433, 4.74561)
+
+[node name="Cloth13" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 19.6468, 7.59729, 4.74561)
+
+[node name="Cloth14" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 21.3848, 7.75326, 4.74561)
+
+[node name="Cloth15" parent="clothes/line_2" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 22.7997, 7.84239, 4.74561)
+
+[node name="line_3" type="Node3D" parent="clothes"]
+transform = Transform3D(0.945537, 0.245607, -0.213627, -0.251411, 0.967881, -1.6935e-08, 0.206766, 0.0537081, 0.976915, 0, 3.02792, -9.33809)
+
+[node name="Cloth" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 0, 5.53468, 4.74561)
+
+[node name="Cloth2" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 1.73797, 5.69065, 4.74561)
+
+[node name="Cloth3" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 3.15285, 5.77978, 4.74561)
+
+[node name="Cloth4" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 4.90196, 6.06944, 4.74561)
+
+[node name="Cloth5" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 6.63993, 6.22541, 4.74561)
+
+[node name="Cloth6" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 8.05482, 6.31454, 4.74561)
+
+[node name="Cloth7" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 9.87345, 6.5634, 4.74561)
+
+[node name="Cloth8" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 11.6114, 6.71937, 4.74561)
+
+[node name="Cloth9" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 13.0263, 6.8085, 4.74561)
+
+[node name="Cloth10" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 14.829, 7.08923, 4.74561)
+
+[node name="Cloth11" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 16.567, 7.2452, 4.74561)
+
+[node name="Cloth12" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 17.9819, 7.33433, 4.74561)
+
+[node name="Cloth13" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 19.6468, 7.59729, 4.74561)
+
+[node name="Cloth14" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 21.3848, 7.75326, 4.74561)
+
+[node name="Cloth15" parent="clothes/line_3" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 22.7997, 7.84239, 4.74561)
+
+[node name="line_4" type="Node3D" parent="clothes"]
+transform = Transform3D(0.899838, 0.302217, -0.314572, -0.31838, 0.947963, 0, 0.298203, 0.100154, 0.949233, 1.70115, 13.9144, -10.3341)
+
+[node name="Cloth" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 0, 5.53468, 4.74561)
+
+[node name="Cloth2" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 1.73797, 5.69065, 4.74561)
+
+[node name="Cloth3" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 3.15285, 5.77978, 4.74561)
+
+[node name="Cloth4" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 4.90196, 6.06944, 4.74561)
+
+[node name="Cloth5" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 6.63993, 6.22541, 4.74561)
+
+[node name="Cloth6" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 8.05482, 6.31454, 4.74561)
+
+[node name="Cloth7" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 9.87345, 6.5634, 4.74561)
+
+[node name="Cloth8" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 11.6114, 6.71937, 4.74561)
+
+[node name="Cloth9" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 13.0263, 6.8085, 4.74561)
+
+[node name="Cloth10" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 14.829, 7.08923, 4.74561)
+
+[node name="Cloth11" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 16.567, 7.2452, 4.74561)
+
+[node name="Cloth12" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 17.9819, 7.33433, 4.74561)
+
+[node name="Cloth13" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 19.6468, 7.59729, 4.74561)
+
+[node name="Cloth14" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 21.3848, 7.75326, 4.74561)
+
+[node name="Cloth15" parent="clothes/line_4" instance=ExtResource("9_mw7pp")]
+transform = Transform3D(0.99529, -0.0969402, 0, 0.0969402, 0.99529, 0, 0, 0, 1, 22.7997, 7.84239, 4.74561)

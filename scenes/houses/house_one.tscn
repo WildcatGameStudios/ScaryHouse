@@ -1,3 +1,68 @@
-[gd_scene format=3 uid="uid://3gnq5cg785y8"]
+[gd_scene load_steps=3 format=3 uid="uid://3gnq5cg785y8"]
 
-[node name="HouseOne" type="Node3D"]
+[ext_resource type="Material" uid="uid://dafejkibcr0t5" path="res://art/materials/testing/green.tres" id="1_6biqf"]
+[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="2_imx2d"]
+
+[node name="HouseOne" type="Node3D" groups=["world"]]
+
+[node name="main" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="ground" type="CSGBox3D" parent="main"]
+size = Vector3(150, 1, 150)
+material = ExtResource("1_6biqf")
+
+[node name="pillar" type="CSGCombiner3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0.17, 43)
+
+[node name="back_left_outer" type="CSGCylinder3D" parent="main/pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+radius = 15.0
+height = 30.0
+sides = 16
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="main/pillar"]
+operation = 2
+
+[node name="back_left_inner" type="CSGCylinder3D" parent="main/pillar/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+radius = 13.0
+height = 30.0
+sides = 16
+
+[node name="pillar2" type="CSGCombiner3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0.17, -43)
+
+[node name="back_left_outer" type="CSGCylinder3D" parent="main/pillar2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+radius = 15.0
+height = 30.0
+sides = 16
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="main/pillar2"]
+operation = 2
+
+[node name="back_left_inner" type="CSGCylinder3D" parent="main/pillar2/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+radius = 13.0
+height = 30.0
+sides = 16
+
+[node name="back_wall" type="CSGBox3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 15, 0)
+size = Vector3(3, 30, 60)
+
+[node name="side_wall_L" type="CSGBox3D" parent="main"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.0852, 15, 43.0963)
+size = Vector3(3, 30, 50)
+
+[node name="side_wall_R" type="CSGBox3D" parent="main"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 14.801, -43)
+size = Vector3(3, 30, 50)
+
+[node name="side_wall_L2" type="CSGBox3D" parent="main"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 15, 73.252)
+size = Vector3(3, 30, 30)
+
+[node name="player" parent="." instance=ExtResource("2_imx2d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.56552, 0)

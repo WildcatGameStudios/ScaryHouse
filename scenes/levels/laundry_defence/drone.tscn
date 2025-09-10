@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx0ucxg7k8k0m"]
+
+[ext_resource type="Material" uid="uid://duqsxewc3wmum" path="res://art/materials/testing/blue.tres" id="1_nwyvg"]
+
+[node name="Drone" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(0.75, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 0, 0)
+material = ExtResource("1_nwyvg")
