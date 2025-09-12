@@ -30,16 +30,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1350, 0)
 use_collision = true
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 80.5, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1250, 50)
 radius = 20.0
-height = 140.0
+height = 2800.0
 sides = 50
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGCombiner3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 80.5, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1250, 50)
 operation = 2
 radius = 17.0
-height = 140.0
+height = 2800.0
 sides = 50
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
