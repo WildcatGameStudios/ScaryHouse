@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx4nuatk1e6fm"]
+
+[ext_resource type="Material" uid="uid://duqsxewc3wmum" path="res://art/materials/testing/blue.tres" id="1_yw2s8"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_dn2fv"]
+material = ExtResource("1_yw2s8")
+
+[node name="WaterBomb" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_dn2fv")

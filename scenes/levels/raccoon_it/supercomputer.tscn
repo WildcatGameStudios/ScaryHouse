@@ -1,0 +1,165 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3j0h8s72bs4p"]
+
+[ext_resource type="Material" uid="uid://bgwwd0flxk7qy" path="res://art/materials/testing/black.tres" id="1_ilvy5"]
+[ext_resource type="Material" uid="uid://bhfo6utyyml6o" path="res://art/materials/testing/grey.tres" id="2_msj6f"]
+
+[node name="Supercomputer" type="Node3D"]
+
+[node name="main_combiner" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="computer_base" type="CSGBox3D" parent="main_combiner"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.00244462, 0.00332993, -0.0119197)
+material = ExtResource("1_ilvy5")
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="main_combiner"]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main_combiner/subtraction_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.312547, 0, 0.00493979)
+size = Vector3(1.48032, 1.33, 1.51)
+material = ExtResource("2_msj6f")
+
+[node name="component" type="CSGCombiner3D" parent="main_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0500261, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main_combiner/component"]
+transform = Transform3D(0.22, 0, 0, 0, 0.1, 0, 0, 0, 0.22, 0.849703, -0.616191, 0.476823)
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="main_combiner/component"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="main_combiner/component/subtraction_combiner"]
+transform = Transform3D(0.18, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0.849703, -0.607809, 0.476823)
+
+[node name="component2" type="CSGCombiner3D" parent="main_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0500261, 0, -0.476525)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main_combiner/component2"]
+transform = Transform3D(0.22, 0, 0, 0, 0.1, 0, 0, 0, 0.22, 0.849703, -0.616191, 0.476823)
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="main_combiner/component2"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="main_combiner/component2/subtraction_combiner"]
+transform = Transform3D(0.18, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0.849703, -0.607809, 0.476823)
+
+[node name="component3" type="CSGCombiner3D" parent="main_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0500261, 0, -0.979341)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main_combiner/component3"]
+transform = Transform3D(0.22, 0, 0, 0, 0.1, 0, 0, 0, 0.22, 0.849703, -0.616191, 0.476823)
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="main_combiner/component3"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="main_combiner/component3/subtraction_combiner"]
+transform = Transform3D(0.18, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0.849703, -0.607809, 0.476823)
+
+[node name="component4" type="CSGCombiner3D" parent="main_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.383026, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main_combiner/component4"]
+transform = Transform3D(0.22, 0, 0, 0, 0.1, 0, 0, 0, 0.22, 0.849703, -0.616191, 0.476823)
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="main_combiner/component4"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="main_combiner/component4/subtraction_combiner"]
+transform = Transform3D(0.18, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0.849703, -0.607809, 0.476823)
+
+[node name="component5" type="CSGCombiner3D" parent="main_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.383026, 0, -0.476525)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main_combiner/component5"]
+transform = Transform3D(0.22, 0, 0, 0, 0.1, 0, 0, 0, 0.22, 0.849703, -0.616191, 0.476823)
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="main_combiner/component5"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="main_combiner/component5/subtraction_combiner"]
+transform = Transform3D(0.18, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0.849703, -0.607809, 0.476823)
+
+[node name="component6" type="CSGCombiner3D" parent="main_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.383026, 0, -0.979341)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main_combiner/component6"]
+transform = Transform3D(0.22, 0, 0, 0, 0.1, 0, 0, 0, 0.22, 0.849703, -0.616191, 0.476823)
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="main_combiner/component6"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="main_combiner/component6/subtraction_combiner"]
+transform = Transform3D(0.18, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0.849703, -0.607809, 0.476823)
+
+[node name="component7" type="CSGCombiner3D" parent="main_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.717193, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main_combiner/component7"]
+transform = Transform3D(0.22, 0, 0, 0, 0.1, 0, 0, 0, 0.22, 0.849703, -0.616191, 0.476823)
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="main_combiner/component7"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="main_combiner/component7/subtraction_combiner"]
+transform = Transform3D(0.18, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0.849703, -0.607809, 0.476823)
+
+[node name="component8" type="CSGCombiner3D" parent="main_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.717193, 0, -0.476525)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main_combiner/component8"]
+transform = Transform3D(0.22, 0, 0, 0, 0.1, 0, 0, 0, 0.22, 0.849703, -0.616191, 0.476823)
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="main_combiner/component8"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="main_combiner/component8/subtraction_combiner"]
+transform = Transform3D(0.18, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0.849703, -0.607809, 0.476823)
+
+[node name="component9" type="CSGCombiner3D" parent="main_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.717193, 0, -0.979341)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main_combiner/component9"]
+transform = Transform3D(0.22, 0, 0, 0, 0.1, 0, 0, 0, 0.22, 0.849703, -0.616191, 0.476823)
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="main_combiner/component9"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="main_combiner/component9/subtraction_combiner"]
+transform = Transform3D(0.18, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0.849703, -0.607809, 0.476823)
+
+[node name="component10" type="CSGCombiner3D" parent="main_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04979, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main_combiner/component10"]
+transform = Transform3D(0.22, 0, 0, 0, 0.1, 0, 0, 0, 0.22, 0.849703, -0.616191, 0.476823)
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="main_combiner/component10"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="main_combiner/component10/subtraction_combiner"]
+transform = Transform3D(0.18, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0.849703, -0.607809, 0.476823)
+
+[node name="component11" type="CSGCombiner3D" parent="main_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04979, 0, -0.476525)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main_combiner/component11"]
+transform = Transform3D(0.22, 0, 0, 0, 0.1, 0, 0, 0, 0.22, 0.849703, -0.616191, 0.476823)
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="main_combiner/component11"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="main_combiner/component11/subtraction_combiner"]
+transform = Transform3D(0.18, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0.849703, -0.607809, 0.476823)
+
+[node name="component12" type="CSGCombiner3D" parent="main_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.04979, 0, -0.979341)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main_combiner/component12"]
+transform = Transform3D(0.22, 0, 0, 0, 0.1, 0, 0, 0, 0.22, 0.849703, -0.616191, 0.476823)
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="main_combiner/component12"]
+operation = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="main_combiner/component12/subtraction_combiner"]
+transform = Transform3D(0.18, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0.849703, -0.607809, 0.476823)

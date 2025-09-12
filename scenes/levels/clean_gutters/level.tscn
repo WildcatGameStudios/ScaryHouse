@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://botaxwrihyo82"]
+
+[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_iair6"]
+[ext_resource type="PackedScene" uid="uid://jv5yhdpsma3i" path="res://scenes/levels/clean_gutters/leaf_pile.tscn" id="2_hnxtj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_iair6"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_hnxtj"]
+sky_material = SubResource("ProceduralSkyMaterial_iair6")
+
+[sub_resource type="Environment" id="Environment_2f72g"]
+background_mode = 2
+sky = SubResource("Sky_hnxtj")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Level" type="Node3D" groups=["world"]]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0.254559, -0.402276, 0.0306129)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_2f72g")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="base" type="CSGCylinder3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+radius = 5.0
+height = 82.0
+sides = 32
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="CSGCombiner3D"]
+operation = 2
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/subtraction_combiner"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1.47462, 0)
+radius = 4.0
+height = 80.0
+sides = 32
+
+[node name="player" parent="." instance=ExtResource("1_iair6")]
+transform = Transform3D(-0.459301, 0, 0.888281, 0, 1, 0, -0.888281, 0, -0.459301, 37.2069, 0, 0)
+
+[node name="leafs" type="Node3D" parent="."]
+
+[node name="LeafPile" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, -2.499, -0.412623)
+
+[node name="LeafPile2" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, -2.499, -0.412623)
+
+[node name="LeafPile3" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, -2.499, -0.412623)
+
+[node name="LeafPile4" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, -2.499, -0.412623)
+
+[node name="LeafPile5" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, -2.499, -0.412623)
+
+[node name="LeafPile6" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4465, -2.499, -0.412623)
+
+[node name="LeafPile7" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4465, -2.499, -0.412623)
+
+[node name="LeafPile8" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.44655, -2.499, -0.412623)
+
+[node name="LeafPile9" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.44655, -2.499, -0.412623)
+
+[node name="LeafPile10" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.446548, -2.499, -0.412623)
+
+[node name="LeafPile11" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.94582, -2.499, -0.412623)
+
+[node name="LeafPile12" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.94582, -2.499, -0.412623)
+
+[node name="LeafPile13" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.9458, -2.499, -0.412623)
+
+[node name="LeafPile14" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.9458, -2.499, -0.412623)
+
+[node name="LeafPile15" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.9458, -2.499, -0.412623)
+
+[node name="LeafPile16" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.4993, -2.499, -0.412623)
+
+[node name="LeafPile17" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.4993, -2.499, -0.412623)
+
+[node name="LeafPile18" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.4993, -2.499, -0.412623)
+
+[node name="LeafPile19" parent="leafs" instance=ExtResource("2_hnxtj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.4993, -2.499, -0.412623)

@@ -1,0 +1,113 @@
+[gd_scene load_steps=9 format=3 uid="uid://bj408x4rcs4ts"]
+
+[ext_resource type="Material" uid="uid://bhfo6utyyml6o" path="res://art/materials/testing/grey.tres" id="1_w3wji"]
+[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="2_oo6y2"]
+[ext_resource type="PackedScene" uid="uid://dif5ylxiajf7r" path="res://scenes/levels/raccoon_it/raccoon.tscn" id="3_oo6y2"]
+[ext_resource type="PackedScene" uid="uid://d3j0h8s72bs4p" path="res://scenes/levels/raccoon_it/supercomputer.tscn" id="4_jouyy"]
+[ext_resource type="PackedScene" uid="uid://2r3mlxd6wpaa" path="res://scenes/levels/raccoon_it/component.tscn" id="5_qeuuf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jouyy"]
+sky_top_color = Color(0.409391, 0.480045, 0.578356, 1)
+sky_horizon_color = Color(0.803231, 0.797971, 0.817838, 1)
+ground_bottom_color = Color(0.34044, 0.248746, 0.229904, 1)
+ground_horizon_color = Color(0.803231, 0.797971, 0.817838, 1)
+
+[sub_resource type="Sky" id="Sky_qeuuf"]
+sky_material = SubResource("ProceduralSkyMaterial_jouyy")
+
+[sub_resource type="Environment" id="Environment_mwhuj"]
+background_mode = 2
+sky = SubResource("Sky_qeuuf")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Level" type="Node3D" groups=["world"]]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mwhuj")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="floor" type="CSGCylinder3D" parent="CSGCombiner3D"]
+use_collision = true
+radius = 13.0
+height = 1.0
+sides = 16
+material = ExtResource("1_w3wji")
+
+[node name="pillar" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0030241, 4.50944, -0.00954211)
+
+[node name="back_left_outer" type="CSGCylinder3D" parent="CSGCombiner3D/pillar"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.02672, 0.559235, -0.0182571)
+radius = 15.0
+height = 10.0
+sides = 16
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="CSGCombiner3D/pillar"]
+operation = 2
+
+[node name="back_left_inner" type="CSGCylinder3D" parent="CSGCombiner3D/pillar/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+radius = 13.0
+height = 30.0
+sides = 16
+
+[node name="table" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.30837, 1, 0)
+size = Vector3(1, 0.76, 3)
+
+[node name="player" parent="." instance=ExtResource("2_oo6y2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.690435, 3.15952)
+
+[node name="Raccoon" parent="." instance=ExtResource("3_oo6y2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.924768, -8.83495)
+
+[node name="Supercomputer" parent="." instance=ExtResource("4_jouyy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93119e-05, 1.47245, 0.0116909)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.382711, 0.547985, 0.818252, 1)
+light_energy = 2.814
+shadow_enabled = true
+
+[node name="components" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, 0)
+
+[node name="Component" parent="components" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.0106644)
+
+[node name="Component2" parent="components" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.200994)
+
+[node name="Component3" parent="components" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.444743)
+
+[node name="Component4" parent="components" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.635072)
+
+[node name="Component5" parent="components" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.0106644)
+
+[node name="Component6" parent="components" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.200994)
+
+[node name="Component7" parent="components" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.444743)
+
+[node name="Component8" parent="components" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.635072)
+
+[node name="Component9" parent="components" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05145, 1.55206, 0.0106644)
+
+[node name="Component10" parent="components" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05145, 1.55206, 0.200994)
+
+[node name="Component11" parent="components" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05145, 1.55206, 0.444743)
+
+[node name="Component12" parent="components" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05145, 1.55206, 0.635072)

@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://jv5yhdpsma3i"]
+
+[ext_resource type="Material" uid="uid://dafejkibcr0t5" path="res://art/materials/testing/green.tres" id="1_vtqsj"]
+
+[node name="LeafPile" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D"]
+transform = Transform3D(3.02, 0, 0, 0, 1.79, 0, 0, 0, 3.16, 0, 0, 0)
+rings = 12
+material = ExtResource("1_vtqsj")
+
+[node name="subtraction_combiner" type="CSGCombiner3D" parent="CSGCombiner3D"]
+operation = 2
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCombiner3D/subtraction_combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.504395, 0)
+radius = 1.6875
+height = 0.991211

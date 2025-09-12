@@ -9,60 +9,110 @@
 use_collision = true
 
 [node name="ground" type="CSGBox3D" parent="main"]
-size = Vector3(150, 1, 150)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 0)
+size = Vector3(300, 1, 200)
 material = ExtResource("1_6biqf")
 
-[node name="pillar" type="CSGCombiner3D" parent="main"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0.17, 43)
+[node name="pillar_L" type="CSGCombiner3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 0.5, 29)
 
-[node name="back_left_outer" type="CSGCylinder3D" parent="main/pillar"]
+[node name="back_left_outer" type="CSGCylinder3D" parent="main/pillar_L"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
 radius = 15.0
 height = 30.0
 sides = 16
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="main/pillar"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="main/pillar_L"]
 operation = 2
 
-[node name="back_left_inner" type="CSGCylinder3D" parent="main/pillar/CSGCombiner3D"]
+[node name="back_left_inner" type="CSGCylinder3D" parent="main/pillar_L/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
 radius = 13.0
 height = 30.0
 sides = 16
 
-[node name="pillar2" type="CSGCombiner3D" parent="main"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0.17, -43)
+[node name="pillar_R" type="CSGCombiner3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 0.5, -29)
 
-[node name="back_left_outer" type="CSGCylinder3D" parent="main/pillar2"]
+[node name="back_left_outer" type="CSGCylinder3D" parent="main/pillar_R"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
 radius = 15.0
 height = 30.0
 sides = 16
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="main/pillar2"]
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="main/pillar_R"]
 operation = 2
 
-[node name="back_left_inner" type="CSGCylinder3D" parent="main/pillar2/CSGCombiner3D"]
+[node name="back_left_inner" type="CSGCylinder3D" parent="main/pillar_R/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
 radius = 13.0
 height = 30.0
+sides = 16
+
+[node name="pillar_ceiling_L" type="CSGCylinder3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 15.5, 29)
+radius = 15.0
+sides = 16
+
+[node name="pillar_ceiling_R" type="CSGCylinder3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 15.5, -29)
+radius = 15.0
+sides = 16
+
+[node name="pillar_ceiling_L2" type="CSGCylinder3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 31.5, 29)
+radius = 15.0
+sides = 16
+
+[node name="pillar_ceiling_R2" type="CSGCylinder3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 31.5, -29)
+radius = 15.0
 sides = 16
 
 [node name="back_wall" type="CSGBox3D" parent="main"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 15, 0)
-size = Vector3(3, 30, 60)
-
-[node name="side_wall_L" type="CSGBox3D" parent="main"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.0852, 15, 43.0963)
-size = Vector3(3, 30, 50)
-
-[node name="side_wall_R" type="CSGBox3D" parent="main"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 14.801, -43)
-size = Vector3(3, 30, 50)
-
-[node name="side_wall_L2" type="CSGBox3D" parent="main"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 15, 73.252)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -63, 15.5, 0)
 size = Vector3(3, 30, 30)
 
+[node name="front_ceiling" type="CSGBox3D" parent="main"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -16, 29.5, 0)
+size = Vector3(2, 30, 105)
+
+[node name="back_wall_L" type="CSGBox3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 15.5, 41.25)
+size = Vector3(2, 30, 22.5)
+
+[node name="back_wall_R" type="CSGBox3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, 15.5, -41.25)
+size = Vector3(2, 30, 22.5)
+
+[node name="side_wall_L" type="CSGBox3D" parent="main"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 15.5, 53.5)
+size = Vector3(2, 30, 30)
+
+[node name="side_wall_R" type="CSGBox3D" parent="main"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -16, 15.5, -53.5)
+size = Vector3(2, 30, 30)
+
+[node name="side_wall_L2" type="CSGBox3D" parent="main"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -40.5, 15.5, 29)
+size = Vector3(2, 30, 15)
+
+[node name="side_wall_R2" type="CSGBox3D" parent="main"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -40.5, 15.5, -29)
+size = Vector3(2, 30, 15)
+
+[node name="front_wall" type="CSGCombiner3D" parent="main"]
+
+[node name="front_wall" type="CSGBox3D" parent="main/front_wall"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.5, 0)
+size = Vector3(2, 30, 105)
+
+[node name="subtractor" type="CSGCombiner3D" parent="main/front_wall"]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="main/front_wall/subtractor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+size = Vector3(2, 4, 3)
+
 [node name="player" parent="." instance=ExtResource("2_imx2d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.56552, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.0684, 3.56552, 0)
