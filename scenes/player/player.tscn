@@ -11,6 +11,12 @@
 [node name="player" type="CharacterBody3D"]
 collision_layer = 2
 script = ExtResource("1_qhqgy")
+can_run = false
+can_jump = false
+can_crouch = false
+can_dash = false
+can_double_jump = false
+walk_speed = 3
 metadata/_custom_type_script = "uid://qu65ebbkmrhx"
 
 [node name="collider" type="CollisionShape3D" parent="."]
