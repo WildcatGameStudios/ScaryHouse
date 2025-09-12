@@ -1,0 +1,96 @@
+[gd_scene load_steps=11 format=3 uid="uid://soovd255o0o4"]
+
+[ext_resource type="Material" uid="uid://dafejkibcr0t5" path="res://art/materials/testing/green.tres" id="1_u2gu7"]
+[ext_resource type="PackedScene" uid="uid://crqjb0thg3vfq" path="res://scenes/levels/take_out_trash/catapult.tscn" id="2_hnof0"]
+[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="3_x0s02"]
+[ext_resource type="Material" uid="uid://dcr0qj8g1uybh" path="res://art/materials/testing/dark_green.tres" id="4_x0s02"]
+[ext_resource type="Material" uid="uid://bhfo6utyyml6o" path="res://art/materials/testing/grey.tres" id="5_cg73a"]
+[ext_resource type="PackedScene" uid="uid://dgexebg2oqvk2" path="res://scenes/levels/take_out_trash/trash_bin.tscn" id="6_k5bie"]
+[ext_resource type="PackedScene" uid="uid://dm01dgg1yc4r0" path="res://scenes/levels/take_out_trash/recycle_bin.tscn" id="7_n8jg4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x0s02"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_cg73a"]
+sky_material = SubResource("ProceduralSkyMaterial_x0s02")
+
+[sub_resource type="Environment" id="Environment_pk70s"]
+background_mode = 2
+sky = SubResource("Sky_cg73a")
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="Level" type="Node3D" groups=["world"]]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pk70s")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="main" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="ground" type="CSGBox3D" parent="main"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -5)
+size = Vector3(10, 1, 30)
+material = ExtResource("1_u2gu7")
+
+[node name="boundry_L" type="CSGBox3D" parent="main"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.5, 2.5, -5)
+size = Vector3(5, 1, 30)
+material = ExtResource("1_u2gu7")
+
+[node name="boundry_R" type="CSGBox3D" parent="main"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5.5, 2.5, -5)
+size = Vector3(5, 1, 30)
+material = ExtResource("1_u2gu7")
+
+[node name="boundry_back" type="CSGBox3D" parent="main"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 2.5, -12)
+size = Vector3(5, 1, 10)
+material = ExtResource("1_u2gu7")
+
+[node name="boundry_front" type="CSGBox3D" parent="main"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0.5, 3)
+size = Vector3(1.5, 1, 10)
+material = ExtResource("1_u2gu7")
+
+[node name="Catapult" parent="." instance=ExtResource("2_hnof0")]
+
+[node name="player" parent="." instance=ExtResource("3_x0s02")]
+transform = Transform3D(-0.985894, 0, 0.167371, 0, 1, 0, -0.167371, 0, -0.985894, 0, 0, -6.36175)
+
+[node name="far_away" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="ground" type="CSGBox3D" parent="far_away"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.240284, -50, 150.002)
+size = Vector3(150, 1, 200)
+material = ExtResource("4_x0s02")
+
+[node name="boundry_R" type="CSGBox3D" parent="far_away"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -75, 25, 150.002)
+size = Vector3(150, 1, 300)
+material = ExtResource("4_x0s02")
+
+[node name="boundry_L" type="CSGBox3D" parent="far_away"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 75.438, 25.4356, 150.068)
+size = Vector3(150, 1, 300)
+material = ExtResource("4_x0s02")
+
+[node name="boundry_back" type="CSGBox3D" parent="far_away"]
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 25, 250.5)
+size = Vector3(150, 1, 200)
+material = ExtResource("5_cg73a")
+
+[node name="TrashBin" parent="." instance=ExtResource("6_k5bie")]
+transform = Transform3D(1, 0, 0, 0, 0.835673, 0.549227, 0, -0.549227, 0.835673, 30, -59.5578, 200.381)
+
+[node name="RecycleBin" parent="." instance=ExtResource("7_n8jg4")]
+transform = Transform3D(1, 0, 0, 0, 0.835673, 0.549227, 0, -0.549227, 0.835673, -30, -59.5579, 200.381)
+
+[node name="viewpoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.23861, -3.2053)

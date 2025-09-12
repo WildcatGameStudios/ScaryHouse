@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://d4hwm7tatfdy4"]
+
+[ext_resource type="Material" uid="uid://duqsxewc3wmum" path="res://art/materials/testing/blue.tres" id="1_cwo4q"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_1bqpi"]
+material = ExtResource("1_cwo4q")
+
+[node name="RecycleBag" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.62, 0, 0, 0, 1.23, 0, 0, 0, 0.75, 0, 0, 0)
+mesh = SubResource("SphereMesh_1bqpi")

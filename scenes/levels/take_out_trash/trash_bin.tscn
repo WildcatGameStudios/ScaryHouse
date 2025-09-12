@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgexebg2oqvk2"]
+
+[ext_resource type="Material" uid="uid://bhfo6utyyml6o" path="res://art/materials/testing/grey.tres" id="1_ii162"]
+
+[node name="TrashBin" type="Node3D"]
+
+[node name="pillar_L" type="CSGCombiner3D" parent="."]
+
+[node name="back_left_outer" type="CSGCylinder3D" parent="pillar_L"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15, 0)
+radius = 15.0
+height = 30.0
+sides = 16
+material = ExtResource("1_ii162")
+
+[node name="back_left_outer2" type="CSGCylinder3D" parent="pillar_L"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 27.5062, 0)
+radius = 20.0
+height = 5.0
+sides = 16
+material = ExtResource("1_ii162")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="pillar_L"]
+operation = 2
+
+[node name="back_left_inner" type="CSGCylinder3D" parent="pillar_L/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 18.3137, 0)
+radius = 13.0
+height = 36.6274
+sides = 16
+material = ExtResource("1_ii162")

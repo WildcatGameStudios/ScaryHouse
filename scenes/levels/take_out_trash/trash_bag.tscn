@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://nf70kf04ixm2"]
+
+[ext_resource type="Material" uid="uid://bhfo6utyyml6o" path="res://art/materials/testing/grey.tres" id="1_pgho8"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_75afs"]
+material = ExtResource("1_pgho8")
+
+[node name="TrashBag" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.62, 0, 0, 0, 1.23, 0, 0, 0, 0.75, 0, 0, 0)
+mesh = SubResource("SphereMesh_75afs")

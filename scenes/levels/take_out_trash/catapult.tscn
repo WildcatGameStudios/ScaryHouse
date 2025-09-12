@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://crqjb0thg3vfq"]
+
+[ext_resource type="Material" uid="uid://bpxiy7koaf8n8" path="res://art/materials/testing/brown.tres" id="1_14stt"]
+
+[node name="Catapult" type="Node3D"]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+
+[node name="base" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+size = Vector3(2, 0.75, 3)
+material = ExtResource("1_14stt")
+
+[node name="load" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+size = Vector3(1, 0.5, 2)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(0.996019, -0.0399247, -0.0796965, -0.00837621, 0.848206, -0.5296, 0.0887432, 0.528159, 0.844495, -0.0271038, 1.72433, -1.05102)
+size = Vector3(0.25, 0.25, 2.31982)
+
+[node name="shot_thing" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00594711)
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D/shot_thing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81799, -2.81325)
+radius = 1.0
+rings = 12
+
+[node name="subtractor" type="CSGCombiner3D" parent="CSGCombiner3D/shot_thing"]
+operation = 2
+
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGCombiner3D/shot_thing/subtractor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.82393, -2.81325)
+radius = 1.0
+rings = 12
