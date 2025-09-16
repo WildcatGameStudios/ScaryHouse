@@ -1,0 +1,120 @@
+[gd_scene load_steps=9 format=3 uid="uid://bng0r4evqg80f"]
+
+[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_4mcrw"]
+[ext_resource type="PackedScene" uid="uid://st4bba80mfej" path="res://scenes/levels/power_outtage/lilypad.tscn" id="2_7d60q"]
+[ext_resource type="PackedScene" uid="uid://c0rttcvwrv18e" path="res://scenes/levels/power_outtage/breaker.tscn" id="3_cehnq"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4mcrw"]
+sky_top_color = Color(0.252202, 0.214962, 0.338636, 1)
+sky_horizon_color = Color(0.259216, 0.249677, 0.280381, 1)
+ground_bottom_color = Color(0.00338006, 0.0024662, 0.00160868, 1)
+ground_horizon_color = Color(0.259216, 0.249677, 0.280381, 1)
+
+[sub_resource type="Sky" id="Sky_3o6y4"]
+sky_material = SubResource("ProceduralSkyMaterial_4mcrw")
+
+[sub_resource type="Environment" id="Environment_7d60q"]
+background_mode = 2
+sky = SubResource("Sky_3o6y4")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4mcrw"]
+albedo_color = Color(0.685614, 0.265279, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7d60q"]
+material = SubResource("StandardMaterial3D_4mcrw")
+size = Vector3(25, 1.1, 50)
+
+[node name="level" type="Node3D" groups=["world"]]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7d60q")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_color = Color(0.990515, 0.733095, 0.593997, 1)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="player" parent="." instance=ExtResource("1_4mcrw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, 0)
+can_run = true
+
+[node name="entrance" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="entrance"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 1, 0, -14, 19.5)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="entrance"]
+radius = 20.0
+height = 30.0
+sides = 16
+
+[node name="cutout" type="CSGCombiner3D" parent="entrance"]
+operation = 2
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="entrance/cutout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+radius = 18.0
+height = 29.0
+sides = 16
+
+[node name="doorway" type="CSGCombiner3D" parent="entrance"]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="entrance/doorway"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, -12, 19)
+
+[node name="cave" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="cave"]
+transform = Transform3D(25, 0, 0, 0, 1, 0, 0, 0, 50, 0, -0.5, 45)
+
+[node name="ceiling" type="CSGCombiner3D" parent="cave"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="cave/ceiling"]
+transform = Transform3D(25, 0, 0, 0, -1.09278e-06, -25, 0, 25, -1.09278e-06, 0, 0, 45)
+sides = 16
+
+[node name="cutout" type="CSGCombiner3D" parent="cave/ceiling"]
+operation = 2
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="cave/ceiling/cutout"]
+transform = Transform3D(24, 0, 0, 0, -1.09278e-06, -24, 0, 25, -1.04907e-06, 0, 0, 45)
+sides = 16
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cave"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 45)
+mesh = SubResource("BoxMesh_7d60q")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="cave"]
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 1, 0, 0, 70)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="cave"]
+transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 4, 0, -0.0127983, 69.555)
+size = Vector3(1, 0.603027, 1)
+
+[node name="lilypad" parent="." instance=ExtResource("2_7d60q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23931, -0.101804, 35.6833)
+
+[node name="lilypad2" parent="." instance=ExtResource("2_7d60q")]
+transform = Transform3D(0.414693, 0, 0.909961, 0, 1, 0, -0.909961, 0, 0.414693, -5.11846, -0.068675, 25.5915)
+
+[node name="lilypad3" parent="." instance=ExtResource("2_7d60q")]
+transform = Transform3D(-0.439939, 0, -0.898028, 0, 1, 0, 0.898028, 0, -0.439939, 6.99893, -0.163918, 31.3033)
+
+[node name="lilypad4" parent="." instance=ExtResource("2_7d60q")]
+transform = Transform3D(-0.759271, 0, 0.650774, 0, 1, 0, -0.650774, 0, -0.759271, -6.57336, -0.0478331, 46.3254)
+
+[node name="lilypad5" parent="." instance=ExtResource("2_7d60q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.13677, -0.0966963, 46.2371)
+
+[node name="lilypad6" parent="." instance=ExtResource("2_7d60q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6605, -0.193393, 62.1718)
+
+[node name="breaker" parent="." instance=ExtResource("3_cehnq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10059, 1.57534, 69.3124)
