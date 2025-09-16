@@ -47,6 +47,3 @@ size = Vector3(17.8802, 1, 15.5682)
 
 [node name="player" parent="." instance=ExtResource("1_3o6y4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3868, 1)
-can_crouch = false
-can_dash = false
-can_double_jump = false
