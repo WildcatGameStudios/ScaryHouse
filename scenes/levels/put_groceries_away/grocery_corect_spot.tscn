@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwqnxvjjp3fio"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fc5j0"]
+albedo_color = Color(0.255667, 0.23, 1, 1)
+
+[node name="Grocery_corect_spot" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+material = SubResource("StandardMaterial3D_fc5j0")

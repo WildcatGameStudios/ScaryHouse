@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1hp25hiol51q"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7ho2"]
+albedo_color = Color(0.75, 0.58225, 0.2925, 1)
+
+[node name="Scarecrow" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401306, 0)
+size = Vector3(1, 1.8, 1)
+material = SubResource("StandardMaterial3D_v7ho2")

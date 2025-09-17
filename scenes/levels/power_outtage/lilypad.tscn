@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://st4bba80mfej"]
+
+[node name="lilypad" type="Node3D"]
+
+[node name="lilypad" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="lilypad"]
+radius = 2.0
+height = 0.8
+sides = 16
+
+[node name="cutout" type="CSGCombiner3D" parent="lilypad"]
+operation = 2
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="lilypad/cutout"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0.5, 0)
+polygon = PackedVector2Array(0, 0, 0, 3, 1.231, 3)

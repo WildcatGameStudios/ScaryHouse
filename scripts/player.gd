@@ -20,7 +20,7 @@ class_name player
 @export var verticle_look_speed: float = 0.00002
 @export var joystick_h_look_speed: float = 0.06
 @export var joystick_v_look_speed: float = 0.06
-@export var min_look_degree: float = -40
+@export var min_look_degree: float = -90
 @export var max_look_degree: float = 45
 @export var enable_bobbing: bool = true
 @export var bob_time: float = PI / 8.0

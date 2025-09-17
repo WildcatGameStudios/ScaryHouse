@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://dv60w23cyqifu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vk85p"]
+albedo_color = Color(0.769, 1, 0.58, 1)
+
+[node name="Trollies" type="Node3D"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -0.126953, 0.402344)
+use_collision = true
+size = Vector3(1.5, 0.75, 0.299)
+material = SubResource("StandardMaterial3D_vk85p")
