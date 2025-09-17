@@ -1,0 +1,175 @@
+[gd_scene load_steps=11 format=3 uid="uid://dblypefstp6ro"]
+
+[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_yeexk"]
+[ext_resource type="PackedScene" uid="uid://dv60w23cyqifu" path="res://scenes/levels/put_groceries_away/trollies.tscn" id="2_0york"]
+[ext_resource type="PackedScene" uid="uid://dwqnxvjjp3fio" path="res://scenes/levels/put_groceries_away/grocery_corect_spot.tscn" id="3_4q047"]
+[ext_resource type="PackedScene" uid="uid://lf6ofaeu5o63" path="res://scenes/levels/put_groceries_away/icicle.tscn" id="4_0york"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3akae"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_yeexk"]
+sky_material = SubResource("ProceduralSkyMaterial_3akae")
+
+[sub_resource type="Environment" id="Environment_myx6j"]
+background_mode = 2
+sky = SubResource("Sky_yeexk")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0york"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipup3"]
+albedo_color = Color(0.446777, 0.446777, 0.446777, 1)
+albedo_texture = SubResource("CanvasTexture_0york")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3akae"]
+albedo_color = Color(0.642218, 0.50237, 0.199446, 1)
+
+[node name="level" type="Node3D" groups=["world"]]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 7.81721, 78.725, 0)
+light_color = Color(0.746951, 0.910511, 0.918292, 1)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_myx6j")
+
+[node name="player" parent="." instance=ExtResource("1_yeexk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4938, 5.77955, -42.0305)
+walk_speed = 3
+run_speed = 8
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.4, 0, 0, 0, 0.6, 0, 0, 0)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 2, 8.22966, 9.03415, -22.1185)
+use_collision = true
+size = Vector3(19.149, 0.228516, 55.1416)
+material = SubResource("StandardMaterial3D_ipup3")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 2, 8.22966, 53.9408, -17.0135)
+visible = false
+use_collision = true
+size = Vector3(19.149, 0.228516, 50.0366)
+material = SubResource("StandardMaterial3D_ipup3")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 2, -11.0744, 31.5905, -16.9722)
+use_collision = true
+size = Vector3(0.182617, 4.7323, 49.9457)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 2, 27.4858, 31.519, -16.903)
+use_collision = true
+size = Vector3(0.182617, 4.7323, 49.9457)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 2, 8.14288, 32.7576, 33.0882)
+use_collision = true
+size = Vector3(19.5353, 4.56446, 0.433716)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 0.8, 0, 0, 0, 1, 15, 16.9245, -71.7558)
+size = Vector3(1, 19, 9.44031)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 0.8, 0, 0, 0, 1, 2.71295, 16.9245, -71.7726)
+size = Vector3(1, 19, 9.40674)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 0.8, 0, 1, 0, -4.37114e-08, 8.56321, 16.9245, -76.6061)
+size = Vector3(1, 19, 12.794)
+
+[node name="Wall with door" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(2, 0, 0, 0, 10, 0, 0, 0, 2, 8.18124, 32.4478, -66.871)
+use_collision = true
+size = Vector3(19.695, 4.564, 0.321)
+
+[node name="Door" type="CSGCombiner3D" parent="CSGCombiner3D/Wall with door"]
+transform = Transform3D(1, 0, 0, 0, 0.8, 0, 0, 0, 1, 0, 0, 0)
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/Wall with door/Door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.333333, -1.93958, 0)
+size = Vector3(5, 1.75513, 1)
+
+[node name="Crates" type="CSGCombiner3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.5624, 0, -54.084)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D/Crates"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.034, 12.5, -2)
+size = Vector3(5, 5, 5)
+material = SubResource("StandardMaterial3D_3akae")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D/Crates"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.616, 12.5, 8)
+size = Vector3(5, 5, 5)
+material = SubResource("StandardMaterial3D_3akae")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="CSGCombiner3D/Crates"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.555, 12.5, 18)
+size = Vector3(5, 5, 5)
+material = SubResource("StandardMaterial3D_3akae")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="CSGCombiner3D/Crates"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.034, 12.5, 28)
+size = Vector3(5, 5, 5)
+material = SubResource("StandardMaterial3D_3akae")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="CSGCombiner3D/Crates"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.0825, 12.5, 38)
+size = Vector3(5, 5, 5)
+material = SubResource("StandardMaterial3D_3akae")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="CSGCombiner3D/Crates"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.49362, 12.5, 48)
+size = Vector3(5, 5, 5)
+material = SubResource("StandardMaterial3D_3akae")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="CSGCombiner3D/Crates"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28.9644, 12.5, 58)
+size = Vector3(5, 5, 5)
+material = SubResource("StandardMaterial3D_3akae")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="CSGCombiner3D/Crates"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5035, 12.5, 68)
+size = Vector3(5, 5, 5)
+material = SubResource("StandardMaterial3D_3akae")
+
+[node name="Eventually Moving Trollies" type="Node3D" parent="CSGCombiner3D"]
+transform = Transform3D(1.66667, 0, 0, 0, 2.5, 0, 0, 0, 1.66667, 0.0546614, -0.603173, 0.00341097)
+
+[node name="Trollies" parent="CSGCombiner3D/Eventually Moving Trollies" instance=ExtResource("2_0york")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.305, 5.571, -1)
+
+[node name="Trollies2" parent="CSGCombiner3D/Eventually Moving Trollies" instance=ExtResource("2_0york")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.1976, 5.571, -7)
+
+[node name="Trollies3" parent="CSGCombiner3D/Eventually Moving Trollies" instance=ExtResource("2_0york")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1126, 5.571, -13)
+
+[node name="Trollies4" parent="CSGCombiner3D/Eventually Moving Trollies" instance=ExtResource("2_0york")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.563, 5.571, -19)
+
+[node name="Trollies5" parent="CSGCombiner3D/Eventually Moving Trollies" instance=ExtResource("2_0york")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.59505, 5.571, -25)
+
+[node name="Trollies6" parent="CSGCombiner3D/Eventually Moving Trollies" instance=ExtResource("2_0york")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.721391, 5.571, -31)
+
+[node name="Trollies7" parent="CSGCombiner3D/Eventually Moving Trollies" instance=ExtResource("2_0york")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.571, 5)
+
+[node name="Grocery_corect_spot" parent="CSGCombiner3D" instance=ExtResource("3_4q047")]
+transform = Transform3D(1.66667, 0, 0, 0, 2.5, 0, 0, 0, 1.66667, 7.16337, 11.4267, 28.171)
+
+[node name="Icicles" type="Node3D" parent="."]
+
+[node name="Icicle" parent="Icicles" instance=ExtResource("4_0york")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 26.8011, 0)
