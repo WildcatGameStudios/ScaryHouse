@@ -194,5 +194,5 @@ material = SubResource("StandardMaterial3D_q34jd")
 operation = 2
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D6/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.99, 0)
 size = Vector3(3, 3, 1)
