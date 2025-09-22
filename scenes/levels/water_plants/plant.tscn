@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://di10je160ywtn" path="res://scripts/plant_sm.gd" id="2_iw701"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iw701"]
+resource_local_to_scene = true
 albedo_color = Color(0, 1, 0, 1)
 
 [node name="Plant" type="Node3D" groups=["world"]]

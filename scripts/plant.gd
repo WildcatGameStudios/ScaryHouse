@@ -29,7 +29,6 @@ func enter_dying() -> void:
 	pass
 
 func dying(delta: float) -> void:
-	print(self.name)
 	death_timer -= delta
 	if death_timer > time_to_die / 2:
 		csg_box_3d.material.albedo_color = Color(2 * (1 - death_timer / time_to_die),1,0)
