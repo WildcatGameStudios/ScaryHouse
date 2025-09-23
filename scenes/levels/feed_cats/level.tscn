@@ -149,12 +149,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.125, 1.5)
 
 [node name="player" parent="." instance=ExtResource("2_1ygsb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 102.2)
-can_run = false
-can_jump = false
-can_crouch = false
-can_dash = false
-can_double_jump = false
-walk_speed = 3
 
 [node name="tiger_one" parent="." instance=ExtResource("3_w832m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 2.98023e-08, 7.1)

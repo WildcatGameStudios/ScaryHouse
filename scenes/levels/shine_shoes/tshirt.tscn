@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://ut8rcdpa5674"]
+
+[ext_resource type="Material" uid="uid://dafejkibcr0t5" path="res://art/materials/testing/green.tres" id="1_cpq0m"]
+
+[node name="shirt" type="CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1.3, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.33333, 36.6666, 0)
+polygon = PackedVector2Array(0, -1, 0, 3, 3, 3, 3, -1)
+depth = 0.16
+material = ExtResource("1_cpq0m")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 1, 0, 0, 0, 1, 6.3, 36.667, 0)
+polygon = PackedVector2Array(0, 2, 0, 3, 0, 3, 1, 2, 1, 1, 0, 1)
+depth = 0.16
+smooth_faces = true
+material = ExtResource("1_cpq0m")
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="."]
+transform = Transform3D(-0.7, 0, 1.50996e-07, 0, 1, 0, -1.05697e-07, 0, -1, 3.4, 36.667, -0.16)
+polygon = PackedVector2Array(0, 2, 0, 3, 0, 3, 1, 2, 1, 1, 0, 1)
+depth = 0.16
+smooth_faces = true
+material = ExtResource("1_cpq0m")
