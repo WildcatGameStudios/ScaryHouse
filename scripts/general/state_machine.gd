@@ -1,5 +1,4 @@
 extends Node
-class_name StateMachine
 
 # Create variables to keep track of states
 var state  = null 

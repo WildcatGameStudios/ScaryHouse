@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxwjh7b7eftlh"]
+
+[ext_resource type="Script" uid="uid://2u8l00x3i7ur" path="res://scripts/plant.gd" id="1_c1dw4"]
+[ext_resource type="Script" uid="uid://di10je160ywtn" path="res://scripts/plant_sm.gd" id="2_iw701"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iw701"]
+resource_local_to_scene = true
+albedo_color = Color(0, 1, 0, 1)
+
+[node name="Plant" type="Node3D" groups=["world"]]
+script = ExtResource("1_c1dw4")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+use_collision = true
+size = Vector3(1, 1.5, 1)
+material = SubResource("StandardMaterial3D_iw701")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_iw701")
+metadata/_custom_type_script = "uid://di10je160ywtn"
