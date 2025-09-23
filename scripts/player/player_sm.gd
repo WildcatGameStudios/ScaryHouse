@@ -46,9 +46,16 @@ func _ready() -> void:
 		cam.position = overhead_cam
 		cam.transform.basis = old_cam_basis
 	)
+	set_transition(ANY_STATE, "Idle", parent.stop_walking)
 
 # use this for state-agnostic code
 func _process(delta: float) -> void:
+	toggle_state("Walk", parent.can_walk)
+	toggle_state("Run", parent.can_run)
+	toggle_state("Jump", parent.can_jump)
+	toggle_state("Crouch", parent.can_crouch)
+	toggle_state("dash", parent.can_dash)
+	
 	update_state()
 	dt = delta
 	states[current_state].call(dt)
@@ -60,13 +67,14 @@ func add_state(state: String, update: Callable) -> void:
 	enabled[state] = false
 
 func update_state() -> void:
+	if !enabled[current_state]:
+		queued_state = "Idle"
 	if queued_state == "":
 		return
-	else:
-		call_transition(current_state, ANY_STATE)
-		call_transition(current_state, queued_state)
-		call_transition(ANY_STATE, queued_state)
-		current_state = queued_state
+	call_transition(current_state, ANY_STATE)
+	call_transition(current_state, queued_state)
+	call_transition(ANY_STATE, queued_state)
+	current_state = queued_state
 	queued_state = ""
 
 func set_transition(start: String, end: String, fn: Callable) -> void:
@@ -124,7 +132,6 @@ func handle_move(dt: float) -> void:
 
 func idle(dt: float):
 	# ironically, we still walk while idle; walk sets velocity
-	parent.walk(dt)
 	parent.move(dt)
 	parent.handle_rotation()
 	if Input.is_action_just_pressed("jump"):
@@ -157,6 +164,7 @@ func walk(dt: float):
 	parent.handle_rotation()
 	
 	parent.bob_speed_mod = 1.0
+	parent.bob_magnitude = 10.0
 	parent.bob(dt)
 	
 	if !walk_trigger():
@@ -180,6 +188,7 @@ func run(dt: float):
 	parent.handle_rotation()
 	
 	parent.bob_speed_mod = 1.3
+	parent.bob_magnitude = 5.0
 	parent.bob(dt)
 	
 	if !walk_trigger():

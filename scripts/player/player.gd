@@ -7,10 +7,11 @@ class_name player
 @export_group("Movement Toggles")
 @export var can_walk: bool = true
 @export var can_run: bool = true
-@export var can_jump: bool = true 
+@export var can_jump: bool = true
 @export var can_crouch: bool = true
 @export var can_dash: bool = true
 @export var can_double_jump: bool = true
+	# set(v): can_double_jump = v; psm.toggle_state("Walk", v);
 
 @export_group("Player Stats")
 @export var max_health: int = 100
@@ -73,8 +74,9 @@ var coyote_valid: bool = false
 var coyote_input: String = "void"
 
 # walk variables
-@onready var head_base_y = head.position.y
+@onready var head_base_y: float = head.position.y
 var bob_speed_mod = 1.0
+var bob_magnitude: float = 10.0
 
 # stats 
 var current_health: int:
@@ -146,7 +148,7 @@ func bob(delta: float) -> void:
 			bob_time = 0.0
 	
 	# whether or not we should bob, we should finish a previously-started bob animation
-	var camera_y_mod = (abs(cos(min(PI / 8.0, bob_time) * 8.0 * bob_speed_mod)) - 1.0) / 3.0
+	var camera_y_mod = (abs(cos(min(PI / 8.0, bob_time) * 8.0 * bob_speed_mod)) - 1.0) / bob_magnitude
 	head.position.y = head_base_y + camera_y_mod
 	bob_time += delta
 
@@ -169,6 +171,10 @@ func walk(delta) -> void:
 	else: 
 		velocity.x = move_toward(velocity.x, 0, walk_speed)
 		velocity.z = move_toward(velocity.z, 0, walk_speed)
+
+func stop_walking(delta) -> void:
+	velocity.x = 0
+	velocity.z = 0
 
 # function for player run 
 func run(delta): 
