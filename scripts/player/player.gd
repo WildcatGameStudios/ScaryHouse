@@ -21,7 +21,7 @@ class_name player
 @export var verticle_look_speed: float = 0.00002
 @export var joystick_h_look_speed: float = 0.06
 @export var joystick_v_look_speed: float = 0.06
-@export var min_look_degree: float = -90
+@export var min_look_degree: float = -40
 @export var max_look_degree: float = 45
 @export var enable_bobbing: bool = true
 @export var bob_time: float = PI / 8.0
@@ -55,7 +55,9 @@ class_name player
 # scene refrences 
 @onready var head: Node3D = $head
 @onready var psm: Node = $PSM
-
+@onready var right_hand: Marker3D = $right_hand
+@onready var left_hand: Marker3D = $left_hand
+@onready var camera_3d: Camera3D = $head/Camera3D
 
 # timers 
 @onready var dash_timer: Timer = $timers/dash_timer
@@ -95,6 +97,10 @@ var temp_dash: Vector3 # variable for keeping track of dash so we can take it wa
 var is_hit: bool = false
 var is_dead: bool = false
 
+# reset variables 
+var camera_init_pos : Vector3
+var camera_inti_rot : Vector3
+
 func _ready() -> void: 
 	# set jump variables
 	gravity = (2 * max_jump_height) / (time_to_peak * time_to_peak) 
@@ -119,8 +125,28 @@ func _ready() -> void:
 	
 	# set health
 	current_health = max_health
-	
 	look_direction = Vector2(0.0, rotation.y)
+	
+	# set resets 
+	camera_init_pos = camera_3d.position
+	camera_inti_rot = camera_3d.rotation
+	
+
+# getter / setter functions 
+#region
+# get hand positions as vec3, left hand = index 0 right hand = index 1
+func get_hand_positions () -> Array[Vector3] :
+	var hands : Array[Vector3] = [right_hand.global_position, left_hand.global_position]
+	return hands
+
+func reset_camera () -> void : 
+	camera_3d.position = camera_init_pos
+	camera_3d.rotation = camera_inti_rot
+
+func toggle_camera (toggle : bool) -> void : 
+	camera_3d.current = toggle
+#endregion
+
 
 # Movement functions 
 #region
@@ -293,7 +319,6 @@ func handle_rotation():
 	head.transform.basis = Basis()
 	head.rotate_x(look_direction.x)
 
-#endregion
 
 # to handle the current coyote time variables / state 
 # set the action ( coyote time only holds one action at a time ) 
@@ -305,13 +330,15 @@ func set_coyote_state(grace_time: float, action: String = "void") -> void:
 	coyote_timer.start()
 	coyote_valid = true
 
+#endregion
+
 
 func die() -> void:
 	pass
 
+
 func _on_dash_timer_timeout() -> void:
 	in_dash = false
-
 
 func _on_dash_cooldown_timer_timeout() -> void:
 	dash_ready = true
