@@ -1,8 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://crqjb0thg3vfq"]
+[gd_scene load_steps=4 format=3 uid="uid://cmbnkhwicr04o"]
 
 [ext_resource type="Material" uid="uid://bpxiy7koaf8n8" path="res://art/materials/testing/brown.tres" id="1_14stt"]
+[ext_resource type="Script" uid="uid://bkq6wevxpb8mm" path="res://scripts/levels/take_out_trash/catapult.gd" id="1_pn6mw"]
 
-[node name="Catapult" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_pn6mw"]
+
+[node name="Catapult" type="Node3D" node_paths=PackedStringArray("catapult_arm", "catapult_bowl")]
+script = ExtResource("1_pn6mw")
+catapult_arm = NodePath("CSGCombiner3D/CSGBox3D")
+catapult_bowl = NodePath("CSGCombiner3D/CSGBox3D/shot_thing/CSGSphere3D")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 
@@ -19,18 +25,31 @@ size = Vector3(1, 0.5, 2)
 transform = Transform3D(0.996019, -0.0399247, -0.0796965, -0.00837621, 0.848206, -0.5296, 0.0887432, 0.528159, 0.844495, -0.0271038, 1.72433, -1.05102)
 size = Vector3(0.25, 0.25, 2.31982)
 
-[node name="shot_thing" type="CSGCombiner3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00594711)
+[node name="shot_thing" type="CSGCombiner3D" parent="CSGCombiner3D/CSGBox3D"]
+transform = Transform3D(0.99602, -0.00837622, 0.0887432, -0.0399248, 0.848206, 0.52816, -0.0796966, -0.5296, 0.844496, 0.135238, -0.905422, 1.80365)
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D/shot_thing"]
+[node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D/CSGBox3D/shot_thing"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81799, -2.81325)
 radius = 1.0
 rings = 12
 
-[node name="subtractor" type="CSGCombiner3D" parent="CSGCombiner3D/shot_thing"]
+[node name="subtractor" type="CSGCombiner3D" parent="CSGCombiner3D/CSGBox3D/shot_thing"]
 operation = 2
 
-[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGCombiner3D/shot_thing/subtractor"]
+[node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGCombiner3D/CSGBox3D/shot_thing/subtractor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.82393, -2.81325)
 radius = 1.0
 rings = 12
+
+[node name="PlayerDetection" type="Area3D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerDetection"]
+transform = Transform3D(4.6064, 0, 0, 0, 4.6064, 0, 0, 0, 4.6064, 0, 0, 0)
+shape = SubResource("BoxShape3D_pn6mw")
+
+[node name="InteractionCamera" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.5337, -14.4435)
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]

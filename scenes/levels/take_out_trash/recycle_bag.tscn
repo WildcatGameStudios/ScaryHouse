@@ -1,12 +1,31 @@
-[gd_scene load_steps=3 format=3 uid="uid://d4hwm7tatfdy4"]
+[gd_scene load_steps=5 format=3 uid="uid://0eekxcndxw8o"]
 
+[ext_resource type="Script" uid="uid://bn2x5shlvbi63" path="res://scripts/levels/take_out_trash/trash.gd" id="1_1bqpi"]
 [ext_resource type="Material" uid="uid://duqsxewc3wmum" path="res://art/materials/testing/blue.tres" id="1_cwo4q"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_1bqpi"]
 material = ExtResource("1_cwo4q")
 
-[node name="RecycleBag" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_1bqpi"]
+size = Vector3(0.45, 1, 0.45)
+
+[node name="RecycleBag" type="CharacterBody3D"]
+script = ExtResource("1_1bqpi")
+trash_type = 1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.62, 0, 0, 0, 1.23, 0, 0, 0, 0.75, 0, 0, 0)
 mesh = SubResource("SphereMesh_1bqpi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_1bqpi")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_1bqpi")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 20.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

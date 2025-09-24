@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://soovd255o0o4"]
+[gd_scene load_steps=12 format=3 uid="uid://soovd255o0o4"]
 
+[ext_resource type="Script" uid="uid://bge8282bsn4qe" path="res://scripts/levels/take_out_trash/level.gd" id="1_n8jg4"]
 [ext_resource type="Material" uid="uid://dafejkibcr0t5" path="res://art/materials/testing/green.tres" id="1_u2gu7"]
-[ext_resource type="PackedScene" uid="uid://crqjb0thg3vfq" path="res://scenes/levels/take_out_trash/catapult.tscn" id="2_hnof0"]
+[ext_resource type="PackedScene" uid="uid://cmbnkhwicr04o" path="res://scenes/levels/take_out_trash/catapult.tscn" id="2_hnof0"]
 [ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="3_x0s02"]
 [ext_resource type="Material" uid="uid://dcr0qj8g1uybh" path="res://art/materials/testing/dark_green.tres" id="4_x0s02"]
 [ext_resource type="Material" uid="uid://bhfo6utyyml6o" path="res://art/materials/testing/grey.tres" id="5_cg73a"]
-[ext_resource type="PackedScene" uid="uid://dgexebg2oqvk2" path="res://scenes/levels/take_out_trash/trash_bin.tscn" id="6_k5bie"]
-[ext_resource type="PackedScene" uid="uid://dm01dgg1yc4r0" path="res://scenes/levels/take_out_trash/recycle_bin.tscn" id="7_n8jg4"]
+[ext_resource type="PackedScene" uid="uid://ylo6xc5r4ple" path="res://scenes/levels/take_out_trash/trash_bin.tscn" id="6_k5bie"]
+[ext_resource type="PackedScene" uid="uid://lxdjr7oel4jk" path="res://scenes/levels/take_out_trash/recycle_bin.tscn" id="7_n8jg4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x0s02"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -21,7 +22,9 @@ sky = SubResource("Sky_cg73a")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="Level" type="Node3D" groups=["world"]]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("catapult") groups=["world"]]
+script = ExtResource("1_n8jg4")
+catapult = NodePath("Catapult")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pk70s")
@@ -58,7 +61,8 @@ transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114
 size = Vector3(1.5, 1, 10)
 material = ExtResource("1_u2gu7")
 
-[node name="Catapult" parent="." instance=ExtResource("2_hnof0")]
+[node name="Catapult" parent="." node_paths=PackedStringArray("player_instance") instance=ExtResource("2_hnof0")]
+player_instance = NodePath("../player")
 
 [node name="player" parent="." instance=ExtResource("3_x0s02")]
 transform = Transform3D(-0.985894, 0, 0.167371, 0, 1, 0, -0.167371, 0, -0.985894, 0, 0, -6.36175)
@@ -94,3 +98,14 @@ transform = Transform3D(1, 0, 0, 0, 0.835673, 0.549227, 0, -0.549227, 0.835673, 
 
 [node name="viewpoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.23861, -3.2053)
+
+[node name="TrashCooldown" type="Timer" parent="."]
+autostart = true
+
+[node name="RecycleBin2" parent="." instance=ExtResource("7_n8jg4")]
+transform = Transform3D(0.884443, 0.464857, -0.0408578, -1.76927e-09, 0.0875557, 0.99616, 0.466649, -0.881046, 0.0774379, -38.601, 3.10162, 64.5811)
+
+[node name="TrashBin2" parent="." instance=ExtResource("6_k5bie")]
+transform = Transform3D(0.897382, -0.440825, 0.0194704, 1.51107e-09, 0.044125, 0.999026, -0.441255, -0.896508, 0.039597, 38.8227, 1.68605, 67.3313)
+
+[connection signal="timeout" from="TrashCooldown" to="." method="_on_trash_cooldown_timeout"]

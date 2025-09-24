@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://dgexebg2oqvk2"]
+[gd_scene load_steps=4 format=3 uid="uid://ylo6xc5r4ple"]
 
+[ext_resource type="Script" path="res://scripts/levels/take_out_trash/trash_bin.gd" id="1_agcvn"]
 [ext_resource type="Material" uid="uid://bhfo6utyyml6o" path="res://art/materials/testing/grey.tres" id="1_ii162"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_agcvn"]
+size = Vector3(25, 26.4542, 25)
+
 [node name="TrashBin" type="Node3D"]
+script = ExtResource("1_agcvn")
 
 [node name="pillar_L" type="CSGCombiner3D" parent="."]
 
@@ -29,3 +34,9 @@ radius = 13.0
 height = 36.6274
 sides = 16
 material = ExtResource("1_ii162")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.3329, 0)
+shape = SubResource("BoxShape3D_agcvn")
