@@ -8,6 +8,9 @@ extends Node3D
 @export var player_instance: player
 @export var catapult_arm: Node3D
 @export var catapult_bowl: Node3D
+@export var max_arm_y_rotation: float = PI/4
+@export var max_throw_strength: float = 1.6
+@export var rotate_speed: float = 1
 
 var player_in_area: bool = false
 var interaction_mode: bool = false
@@ -26,29 +29,31 @@ func handle_inputs(delta: float):
 		if interaction_mode:
 			interaction_mode = false
 			player_head.position = saved_head_position
-			player_instance.can_walk = false
+			player_instance.can_walk = true
 		elif player_in_area:
 			interaction_mode = true
 			saved_head_position = player_head.position
 			player_head.global_position = $InteractionCamera.position
-			player_instance.can_walk = true
+			player_instance.can_walk = false
 	
 	#stop reading inputs if not in interaction mode
 	if !interaction_mode:
 		return
 	
 	#left and right turn the catapult. locked at quarter pi rotation
-	if Input.is_action_pressed("move_left") && catapult_arm.rotation.y > -(PI/4):
-		catapult_arm.rotate(Vector3(0,1,0),-3 * delta)
-	if Input.is_action_pressed("move_right") && catapult_arm.rotation.y < (PI/4):
-		catapult_arm.rotate(Vector3(0,1,0),3 * delta)
+	if Input.is_action_pressed("move_left") && catapult_arm.rotation.y > -(max_arm_y_rotation):
+		catapult_arm.rotate(Vector3(0,1,0),-rotate_speed * delta)
+	if Input.is_action_pressed("move_right") && catapult_arm.rotation.y < (max_arm_y_rotation):
+		catapult_arm.rotate(Vector3(0,1,0),rotate_speed * delta)
 	
 	#increase throw strength and send signal to level to throw trash
-	if Input.is_action_pressed("jump"):
+	if Input.is_action_pressed("jump") && throw_strength <= max_throw_strength:
 		throw_strength += delta
 	if Input.is_action_just_released("jump"):
 		throw_trash.emit(throw_strength)
 		throw_strength = 0
+	#rotate based on charge time
+	catapult_arm.rotation.x = 0.55 - throw_strength / 4
 
 func _ready() -> void:
 	player_head = $"../player/head"

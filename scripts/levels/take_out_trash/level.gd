@@ -2,16 +2,19 @@ extends Node3D
 
 #assign catapult for the level so we can use this reference
 @export var catapult: Node3D
+@export var base_trash_launch_strength: Vector2 = Vector2(30,5)
 
 #holds the trash that is in the catapult
 var current_trash: Node3D
+#number of bags binned
+var binned_counter: int
 
 func launch_trash(throw_strength: float):
 	#exit if no trash to launch
 	if current_trash == null:
 		return
 	#add velocity rotated to catapult arm rotation
-	current_trash.velocity = throw_strength * Vector3(10,5,0).rotated(Vector3(0,1,0),catapult.catapult_arm.rotation.y-PI/2)
+	current_trash.velocity = throw_strength * Vector3(base_trash_launch_strength.x,base_trash_launch_strength.y,0).rotated(Vector3(0,1,0),catapult.catapult_arm.rotation.y-PI/2)
 	#empty current trash because it's not longer in the catapult
 	current_trash = null
 	$TrashCooldown.start()
@@ -25,19 +28,23 @@ func load_trash():
 	var trash_type = randi() % 2
 	var trash: Node3D
 	if trash_type == 0:
-		#trash
+		#trash scene
 		trash = load("uid://dyrpy368isbe3").instantiate()
 	if trash_type == 1:
-		#recycle
+		#recycle scene
 		trash = load("uid://0eekxcndxw8o").instantiate()
 	
 	add_child(trash)
 	current_trash = trash
 	trash.despawn.connect(trash_despawn)
 
+#do stuff when trash despawns (hit a bin or a wall)
 func trash_despawn(hit_bin: bool):
 	if hit_bin:
 		print("hit")
+		binned_counter += 1
+		if binned_counter >= 4:
+			$AnimationPlayer.play("slide_bins")
 	else:
 		print("no hit")
 

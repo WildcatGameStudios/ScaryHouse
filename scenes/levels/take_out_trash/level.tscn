@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://soovd255o0o4"]
+[gd_scene load_steps=15 format=3 uid="uid://soovd255o0o4"]
 
 [ext_resource type="Script" uid="uid://bge8282bsn4qe" path="res://scripts/levels/take_out_trash/level.gd" id="1_n8jg4"]
 [ext_resource type="Material" uid="uid://dafejkibcr0t5" path="res://art/materials/testing/green.tres" id="1_u2gu7"]
@@ -21,6 +21,152 @@ background_mode = 2
 sky = SubResource("Sky_cg73a")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="Animation" id="Animation_n8jg4"]
+resource_name = "slide_bins"
+length = 10.0
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TrashBin:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(30, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TrashBin:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-59.5578, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TrashBin:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(100, -0.25, 0, 1, 0, 200, -1, 0, 1, 0, 100, -1, 0, 1, 0, 200, -1, 0, 1, 0),
+"times": PackedFloat32Array(-2.5, 2.5, 7.5, 12.5)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RecycleBin:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-30, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RecycleBin:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-59.5579, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RecycleBin:position:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0),
+"points": PackedFloat32Array(200, -0.25, 0, 1, 0, 100, -1, 0, 1, 0, 200, -1, 0, 1, 0, 100, -1, 0, 1, 0),
+"times": PackedFloat32Array(-2.5, 2.5, 7.5, 12.5)
+}
+
+[sub_resource type="Animation" id="Animation_bqaue"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TrashBin:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(30, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TrashBin:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-59.5578, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TrashBin:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(150, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RecycleBin:position:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-30, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("RecycleBin:position:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-59.5579, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RecycleBin:position:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(150, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bqaue"]
+_data = {
+&"RESET": SubResource("Animation_bqaue"),
+&"slide_bins": SubResource("Animation_n8jg4")
+}
 
 [node name="Level" type="Node3D" node_paths=PackedStringArray("catapult") groups=["world"]]
 script = ExtResource("1_n8jg4")
@@ -91,21 +237,20 @@ size = Vector3(150, 1, 200)
 material = ExtResource("5_cg73a")
 
 [node name="TrashBin" parent="." instance=ExtResource("6_k5bie")]
-transform = Transform3D(1, 0, 0, 0, 0.835673, 0.549227, 0, -0.549227, 0.835673, 30, -59.5578, 200.381)
+transform = Transform3D(1, 0, 0, 0, 0.835673, 0.549227, 0, -0.549227, 0.835673, 30, -59.5578, 150)
 
 [node name="RecycleBin" parent="." instance=ExtResource("7_n8jg4")]
-transform = Transform3D(1, 0, 0, 0, 0.835673, 0.549227, 0, -0.549227, 0.835673, -30, -59.5579, 200.381)
+transform = Transform3D(1, 0, 0, 0, 0.835673, 0.549227, 0, -0.549227, 0.835673, -30, -59.5579, 150)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bqaue")
+}
 
 [node name="viewpoint" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.23861, -3.2053)
 
 [node name="TrashCooldown" type="Timer" parent="."]
 autostart = true
-
-[node name="RecycleBin2" parent="." instance=ExtResource("7_n8jg4")]
-transform = Transform3D(0.884443, 0.464857, -0.0408578, -1.76927e-09, 0.0875557, 0.99616, 0.466649, -0.881046, 0.0774379, -38.601, 3.10162, 64.5811)
-
-[node name="TrashBin2" parent="." instance=ExtResource("6_k5bie")]
-transform = Transform3D(0.897382, -0.440825, 0.0194704, 1.51107e-09, 0.044125, 0.999026, -0.441255, -0.896508, 0.039597, 38.8227, 1.68605, 67.3313)
 
 [connection signal="timeout" from="TrashCooldown" to="." method="_on_trash_cooldown_timeout"]

@@ -6,9 +6,9 @@ class_name Trash
 signal despawn(in_bin: bool)
 
 @export_enum("TRASH","RECYCLE") var trash_type: int
-#@export var timer: Timer
+@export var gravity_strength: float = 9
 
-var gravity: Vector3 = Vector3(0,-3,0)
+var gravity: Vector3 = Vector3(0,-gravity_strength,0)
 
 #do stuff when it goes in the trash
 func in_trash(area: Area3D):

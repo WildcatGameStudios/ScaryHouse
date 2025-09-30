@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 PauseHandler="*res://scripts/general/pause_handler.gd"
 
+[dotnet]
+
+project/assembly_name="Scary House"
+
 [global_group]
 
 world="Used to do global actions like pausing, UI bringup, etc."
