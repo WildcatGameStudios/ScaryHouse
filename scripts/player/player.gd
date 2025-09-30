@@ -55,9 +55,10 @@ class_name player
 # scene refrences 
 @onready var head: Node3D = $head
 @onready var psm: Node = $PSM
-@onready var right_hand: Marker3D = $right_hand
-@onready var left_hand: Marker3D = $left_hand
+@onready var right_hand: Marker3D = $head/right_hand
+@onready var left_hand: Marker3D = $head/eft_hand
 @onready var camera_3d: Camera3D = $head/Camera3D
+
 
 # timers 
 @onready var dash_timer: Timer = $timers/dash_timer
@@ -145,6 +146,42 @@ func reset_camera () -> void :
 
 func toggle_camera (toggle : bool) -> void : 
 	camera_3d.current = toggle
+
+# Add object to hand / remove object 
+# Parameters
+# object = object to be added / removed, hand 0 means left hand, 1 means right hand
+func add_hand_object(object : Node3D, hand : int = 1, obj_scale : Vector3 = Vector3(1.0,1.0,1.0)) :
+	# add object as child of hand 
+	var obj
+	if hand == 0 : # left hand
+		left_hand.add_child(object) 
+		obj = left_hand.get_child(0)
+		
+	elif hand == 1 : # right hand
+		right_hand.add_child(object) 
+		obj = right_hand.get_child(0)
+		
+	obj.scale = obj_scale # set scale
+
+func remove_hand_object(hand : int = 1) -> Node3D :
+	var obj : Node3D 
+	if hand == 1 : 
+		obj = right_hand.get_child(0)
+		right_hand.remove_child(obj)
+		
+	elif hand == 0: 
+		obj = left_hand.get_child(0)
+		left_hand.remove_child(obj)
+		
+	# return what was in the hand 
+	return obj
+
+func get_hand_object(hand : int = 1) : 
+	if hand == 0 : 
+		return left_hand.get_child(0)
+	elif hand == 1 : 
+		return right_hand.get_child(0)
+	
 #endregion
 
 

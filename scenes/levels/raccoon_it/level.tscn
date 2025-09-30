@@ -71,7 +71,7 @@ size = Vector3(1, 0.76, 3)
 [node name="Raccoon" parent="." instance=ExtResource("3_oo6y2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.924768, -8.83495)
 
-[node name="Supercomputer" parent="." instance=ExtResource("4_jouyy")]
+[node name="supercomputer" parent="." instance=ExtResource("4_jouyy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93119e-05, 1.47245, 0.0116909)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -83,9 +83,8 @@ shadow_enabled = true
 [node name="component_container" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, 0)
 
-<<<<<<< Updated upstream
-[node name="Component1" parent="component_container" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.0106644)
+[node name="Component" parent="component_container" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.465, 1.552, 0.011)
 type = 1
 
 [node name="Component2" parent="component_container" instance=ExtResource("5_qeuuf")]
@@ -131,57 +130,6 @@ type = 4
 [node name="Component12" parent="component_container" instance=ExtResource("5_qeuuf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05145, 1.55206, 0.635072)
 type = 4
-=======
-[node name="Component_1" parent="component_container" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.0106644)
-type = 1
-
-[node name="Component_2" parent="component_container" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.0106644)
-type = 1
-
-[node name="Component_3" parent="component_container" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05145, 1.55206, 0.0106644)
-type = 1
-
-[node name="Component_4" parent="component_container" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.200994)
-type = 2
-
-[node name="Component_5" parent="component_container" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.200994)
-type = 2
-
-[node name="Component_6" parent="component_container" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05145, 1.55206, 0.200994)
-type = 2
-
-[node name="Component_7" parent="component_container" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.444743)
-type = 3
-
-[node name="Component_8" parent="component_container" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.444743)
-type = 3
-
-[node name="Component_9" parent="component_container" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05145, 1.55206, 0.444743)
-type = 3
-
-[node name="Component_10" parent="component_container" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.635072)
-type = 4
-
-[node name="Component_11" parent="component_container" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.635072)
-type = 4
-
-[node name="Component_12" parent="component_container" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05145, 1.55206, 0.635072)
-type = 4
-
-[node name="inspect_point" type="Marker3D" parent="."]
-transform = Transform3D(0.482212, 0.876054, 0, -0.876054, 0.482212, 0, 0, 0, 1, 1.49731, 1.7727, 0)
 
 [node name="player" parent="." instance=ExtResource("2_oo6y2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.39479, 0, 0)
@@ -209,4 +157,3 @@ transform = Transform3D(-4.37114e-08, 0.707107, -0.707107, 0, 0.707107, 0.707107
 [connection signal="body_exited" from="comp_interact_area" to="." method="_on_comp_interact_area_body_exited"]
 [connection signal="body_entered" from="table_interact_area" to="." method="_on_table_interact_area_body_entered"]
 [connection signal="body_exited" from="table_interact_area" to="." method="_on_table_interact_area_body_exited"]
->>>>>>> Stashed changes

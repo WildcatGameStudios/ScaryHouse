@@ -34,6 +34,12 @@ current = true
 [node name="CameraBack" type="Camera3D" parent="head"]
 transform = Transform3D(1, 0, 0, 0, 0.98289, 0.184192, 0, -0.184192, 0.98289, 0, 1.98252, 2.20682)
 
+[node name="right_hand" type="Marker3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, -0.816, -2.077)
+
+[node name="left_hand_object" type="Marker3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.607, -0.815477, -2.07702)
+
 [node name="PSM" type="Node" parent="."]
 script = ExtResource("2_gmlin")
 
@@ -53,12 +59,6 @@ script = null
 
 [node name="collider" type="CollisionShape3D" parent="hitbox"]
 shape = SubResource("CapsuleShape3D_lvxji")
-
-[node name="right_hand" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.30369, -1.71012)
-
-[node name="left_hand" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.304, -1.70976)
 
 [node name="body_mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)

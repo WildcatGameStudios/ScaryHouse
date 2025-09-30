@@ -14,6 +14,8 @@ enum Piece {
 
 @export var type : Piece = Piece.EMPTY
 
+var hidden = false
+
 func _ready() -> void : 
 	pass
 
@@ -42,7 +44,9 @@ func set_piece () -> void :
 	
 
 func hide_component() -> void : 
+	hidden = true
 	csg_cylinder_3d.visible = false
 
 func unhide_component() -> void : 
+	hidden = false
 	csg_cylinder_3d.visible = true
