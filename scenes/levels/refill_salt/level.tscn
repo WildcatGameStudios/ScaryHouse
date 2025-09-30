@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgtn0kfufrrnq"]
+[gd_scene load_steps=4 format=3 uid="uid://bgtn0kfufrrnq"]
 
 [ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_5xq8l"]
+[ext_resource type="PackedScene" uid="uid://c6u8cxeiwavfs" path="res://scenes/levels/refill_salt/blade_rotate.tscn" id="2_8rc5k"]
+[ext_resource type="PackedScene" uid="uid://d38ac2onmvr6k" path="res://scenes/levels/refill_salt/blade_random.tscn" id="3_8y7tl"]
 
 [node name="RefillSalt" type="Node3D" groups=["world"]]
 
@@ -523,3 +525,9 @@ sides = 50
 
 [node name="player" parent="." instance=ExtResource("1_5xq8l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1501, 0)
+
+[node name="Blade" parent="." instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1470.4, 50)
+
+[node name="Blade2" parent="." instance=ExtResource("3_8y7tl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1485.71, 50)

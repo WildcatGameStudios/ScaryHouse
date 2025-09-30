@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6u8cxeiwavfs"]
+
+[ext_resource type="Script" uid="uid://c1qran0ruhep5" path="res://scripts/levels/refill_salt/blade_rotate.gd" id="1_42tna"]
+
+[node name="Blade" type="Node3D"]
+script = ExtResource("1_42tna")
+
+[node name="obstacle1" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+operation = 2
+use_collision = true
+radius = 4.0
+height = 100.0
+sides = 50
