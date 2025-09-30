@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://bj408x4rcs4ts"]
+[gd_scene load_steps=12 format=3 uid="uid://bj408x4rcs4ts"]
 
+[ext_resource type="Script" uid="uid://kn22wuxnegai" path="res://scripts/levels/raccoon_it/level.gd" id="1_mwhuj"]
 [ext_resource type="Material" uid="uid://bhfo6utyyml6o" path="res://art/materials/testing/grey.tres" id="1_w3wji"]
 [ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="2_oo6y2"]
 [ext_resource type="PackedScene" uid="uid://dif5ylxiajf7r" path="res://scenes/levels/raccoon_it/raccoon.tscn" id="3_oo6y2"]
@@ -21,7 +22,16 @@ sky = SubResource("Sky_qeuuf")
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_mwhuj"]
+height = 5.0
+radius = 2.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yopfw"]
+height = 5.0
+radius = 2.5
+
 [node name="Level" type="Node3D" groups=["world"]]
+script = ExtResource("1_mwhuj")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_mwhuj")
@@ -58,13 +68,10 @@ sides = 16
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.30837, 1, 0)
 size = Vector3(1, 0.76, 3)
 
-[node name="player" parent="." instance=ExtResource("2_oo6y2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.690435, 3.15952)
-
 [node name="Raccoon" parent="." instance=ExtResource("3_oo6y2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.924768, -8.83495)
 
-[node name="Supercomputer" parent="." instance=ExtResource("4_jouyy")]
+[node name="supercomputer" parent="." instance=ExtResource("4_jouyy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.93119e-05, 1.47245, 0.0116909)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -73,41 +80,80 @@ light_color = Color(0.382711, 0.547985, 0.818252, 1)
 light_energy = 2.814
 shadow_enabled = true
 
-[node name="components" type="Node3D" parent="."]
+[node name="component_container" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.13, 0)
 
-[node name="Component" parent="components" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.0106644)
+[node name="Component" parent="component_container" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.465, 1.552, 0.011)
+type = 1
 
-[node name="Component2" parent="components" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.200994)
-
-[node name="Component3" parent="components" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.444743)
-
-[node name="Component4" parent="components" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.635072)
-
-[node name="Component5" parent="components" instance=ExtResource("5_qeuuf")]
+[node name="Component2" parent="component_container" instance=ExtResource("5_qeuuf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.0106644)
+type = 1
 
-[node name="Component6" parent="components" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.200994)
-
-[node name="Component7" parent="components" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.444743)
-
-[node name="Component8" parent="components" instance=ExtResource("5_qeuuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.635072)
-
-[node name="Component9" parent="components" instance=ExtResource("5_qeuuf")]
+[node name="Component3" parent="component_container" instance=ExtResource("5_qeuuf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05145, 1.55206, 0.0106644)
+type = 1
 
-[node name="Component10" parent="components" instance=ExtResource("5_qeuuf")]
+[node name="Component4" parent="component_container" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.200994)
+type = 2
+
+[node name="Component5" parent="component_container" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.200994)
+type = 2
+
+[node name="Component6" parent="component_container" instance=ExtResource("5_qeuuf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05145, 1.55206, 0.200994)
+type = 2
 
-[node name="Component11" parent="components" instance=ExtResource("5_qeuuf")]
+[node name="Component7" parent="component_container" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.444743)
+type = 3
+
+[node name="Component8" parent="component_container" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.444743)
+type = 3
+
+[node name="Component9" parent="component_container" instance=ExtResource("5_qeuuf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05145, 1.55206, 0.444743)
+type = 3
 
-[node name="Component12" parent="components" instance=ExtResource("5_qeuuf")]
+[node name="Component10" parent="component_container" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.46501, 1.55206, 0.635072)
+type = 4
+
+[node name="Component11" parent="component_container" instance=ExtResource("5_qeuuf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.25193, 1.55206, 0.635072)
+type = 4
+
+[node name="Component12" parent="component_container" instance=ExtResource("5_qeuuf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.05145, 1.55206, 0.635072)
+type = 4
+
+[node name="player" parent="." instance=ExtResource("2_oo6y2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.39479, 0, 0)
+
+[node name="comp_interact_area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.01687, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="comp_interact_area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+shape = SubResource("CylinderShape3D_mwhuj")
+
+[node name="table_interact_area" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.44504, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="table_interact_area"]
+shape = SubResource("CylinderShape3D_yopfw")
+
+[node name="comp_camera" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.34202, 0.939693, 0, 0.939693, 0.34202, -1, 1.49502e-08, -4.10753e-08, 1.49731, 1.7727, 0)
+
+[node name="table_camera" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0.707107, -0.707107, 0, 0.707107, 0.707107, 1, 3.09086e-08, -3.09086e-08, 8.70887, 2.03633, 0.303523)
+
+[connection signal="body_entered" from="comp_interact_area" to="." method="_on_comp_interact_area_body_entered"]
+[connection signal="body_exited" from="comp_interact_area" to="." method="_on_comp_interact_area_body_exited"]
+[connection signal="body_entered" from="table_interact_area" to="." method="_on_table_interact_area_body_entered"]
+[connection signal="body_exited" from="table_interact_area" to="." method="_on_table_interact_area_body_exited"]

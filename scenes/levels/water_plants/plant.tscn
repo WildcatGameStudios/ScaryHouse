@@ -10,11 +10,15 @@ albedo_color = Color(0, 1, 0, 1)
 [node name="Plant" type="Node3D" groups=["world"]]
 script = ExtResource("1_c1dw4")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="Plant" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 use_collision = true
 size = Vector3(1, 1.5, 1)
 material = SubResource("StandardMaterial3D_iw701")
+
+[node name="NeedsList" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.05, 0)
+size = Vector3(0.5, 0.1, 0.05)
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2_iw701")
