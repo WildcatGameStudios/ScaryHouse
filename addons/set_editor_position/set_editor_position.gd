@@ -44,7 +44,7 @@ func _on_go_pressed():
 	var x = x_input.text.to_float() # convert inputs to numbers, .to_float() deals with string to float conversion very well
 	var y = y_input.text.to_float()
 	var z = z_input.text.to_float()
-	var pos = Vector3(x, y, z) # create vector from inputs
+	var pos = Vector3(x,y,z) # create vector from inputs
 	var cam = EditorInterface.get_editor_viewport_3d().get_camera_3d() # get reference to editor camera
 	
 	cam.global_position = pos # set position to pos, however this sets a central pivot only applied after some time
