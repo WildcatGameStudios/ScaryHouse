@@ -19,15 +19,9 @@ config/icon="res://icon.svg"
 
 PauseHandler="*res://scripts/general/pause_handler.gd"
 
-<<<<<<< Updated upstream
 [dotnet]
 
 project/assembly_name="Scary House"
-=======
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/set_editor_camera/plugin.cfg")
->>>>>>> Stashed changes
 
 [global_group]
 
