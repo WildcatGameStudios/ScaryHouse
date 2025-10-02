@@ -23,6 +23,10 @@ PauseHandler="*res://scripts/general/pause_handler.gd"
 
 project/assembly_name="Scary House"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/set_editor_position/plugin.cfg")
+
 [global_group]
 
 world="Used to do global actions like pausing, UI bringup, etc."
