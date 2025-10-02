@@ -1,10 +1,18 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=4 format=3 uid="uid://bgtn0kfufrrnq"]
 
 [ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_5xq8l"]
 [ext_resource type="PackedScene" uid="uid://c6u8cxeiwavfs" path="res://scenes/levels/refill_salt/blade_rotate.tscn" id="2_8rc5k"]
 [ext_resource type="PackedScene" uid="uid://d38ac2onmvr6k" path="res://scenes/levels/refill_salt/blade_random.tscn" id="3_8y7tl"]
+=======
+[gd_scene load_steps=3 format=3 uid="uid://bgtn0kfufrrnq"]
+
+[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_5xq8l"]
+[ext_resource type="Script" uid="uid://bjqkn8cotqrsg" path="res://scripts/levels/refill_salt.gd" id="1_8rc5k"]
+>>>>>>> Stashed changes
 
 [node name="RefillSalt" type="Node3D" groups=["world"]]
+script = ExtResource("1_8rc5k")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -48,6 +56,11 @@ sides = 50
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1500, 53.774)
 use_collision = true
 size = Vector3(150, 1, 150)
+
+[node name="player" parent="." instance=ExtResource("1_5xq8l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1501, 0)
+min_look_degree = -90.0
+walk_speed = 10
 
 [node name="obstacles" type="Node" parent="."]
 
@@ -522,6 +535,7 @@ use_collision = true
 radius = 4.0
 height = 100.0
 sides = 50
+<<<<<<< Updated upstream
 
 [node name="player" parent="." instance=ExtResource("1_5xq8l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1501, 0)
@@ -531,3 +545,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1470.4, 50)
 
 [node name="Blade2" parent="." instance=ExtResource("3_8y7tl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1485.71, 50)
+=======
+>>>>>>> Stashed changes
