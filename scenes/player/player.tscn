@@ -25,20 +25,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_8afob")
 
 [node name="head" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 1.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0)
 
 [node name="Camera3D" type="Camera3D" parent="head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.633, -1.6)
 current = true
 
-[node name="CameraBack" type="Camera3D" parent="head"]
-transform = Transform3D(1, 0, 0, 0, 0.98289, 0.184192, 0, -0.184192, 0.98289, 0, 1.98252, 2.20682)
-
 [node name="right_hand" type="Marker3D" parent="head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, -0.816, -2.077)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, -0.577593, -0.822483)
 
 [node name="left_hand_object" type="Marker3D" parent="head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.607, -0.815477, -2.07702)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.607, -0.57707, -0.822503)
 
 [node name="PSM" type="Node" parent="."]
 script = ExtResource("2_gmlin")
