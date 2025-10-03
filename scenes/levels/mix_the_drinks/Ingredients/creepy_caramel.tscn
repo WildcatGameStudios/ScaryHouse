@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdwhepvmx2h7e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nappx"]
+albedo_color = Color(0.946816, 0.85496, 0.515371, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s5ej7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uui5x"]
+
+[node name="Creepy Caramel" type="MeshInstance3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_nappx")
+mesh = SubResource("BoxMesh_s5ej7")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_uui5x")
