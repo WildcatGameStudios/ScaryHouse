@@ -36,10 +36,10 @@ func load_trash():
 	
 	add_child(trash)
 	current_trash = trash
-	trash.despawn.connect(trash_despawn)
+	trash.collided.connect(trash_collided)
 
-#do stuff when trash despawns (hit a bin or a wall)
-func trash_despawn(hit_bin: bool):
+#do stuff when trash collides (hit a bin or a wall)
+func trash_collided(hit_bin: bool):
 	if hit_bin:
 		print("hit")
 		binned_counter += 1

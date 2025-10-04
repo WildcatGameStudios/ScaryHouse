@@ -1,9 +1,9 @@
 extends CharacterBody3D
 class_name Trash
 
-#emitted when enters right bin or despawns
+#emitted when enters right bin or collideds
 #connected in level script for penalties / score increment
-signal despawn(in_bin: bool)
+signal collided(in_bin: bool)
 
 @export_enum("TRASH","RECYCLE") var trash_type: int
 @export var gravity_strength: float = 9
@@ -21,7 +21,11 @@ func in_trash(area: Area3D):
 	
 	#check if it's the right bin and do stuff if so
 	if area.get_parent().trash_type == trash_type:
-		despawn.emit(true)
+		collided.emit(true)
+		gravity = Vector3.ZERO
+		velocity = Vector3(0,30,0)
+		$HitBinParticles.emitting = true
+		await get_tree().create_timer(1.5).timeout
 		self.queue_free()
 
 func _ready() -> void:
@@ -29,6 +33,8 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if move_and_slide():
-		despawn.emit(false)
+		collided.emit(false)
+		$HitWallParticles.emitting = true
+		await get_tree().create_timer(0.5).timeout
 		self.queue_free()
 	velocity += gravity * delta

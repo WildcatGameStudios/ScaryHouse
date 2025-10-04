@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://0eekxcndxw8o"]
+[gd_scene load_steps=11 format=3 uid="uid://0eekxcndxw8o"]
 
 [ext_resource type="Script" uid="uid://bn2x5shlvbi63" path="res://scripts/levels/take_out_trash/trash.gd" id="1_1bqpi"]
 [ext_resource type="Material" uid="uid://duqsxewc3wmum" path="res://art/materials/testing/blue.tres" id="1_cwo4q"]
@@ -8,6 +8,30 @@ material = ExtResource("1_cwo4q")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1bqpi"]
 size = Vector3(0.45, 1, 0.45)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1bqpi"]
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 15.5
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ihay"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_87h2n"]
+material = SubResource("StandardMaterial3D_2ihay")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_87h2n"]
+spread = 180.0
+initial_velocity_min = 25.0
+initial_velocity_max = 30.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75afs"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tah56"]
+material = SubResource("StandardMaterial3D_75afs")
 
 [node name="RecycleBag" type="CharacterBody3D"]
 script = ExtResource("1_1bqpi")
@@ -25,7 +49,16 @@ shape = SubResource("BoxShape3D_1bqpi")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_1bqpi")
 
-[node name="Timer" type="Timer" parent="."]
-wait_time = 20.0
+[node name="HitBinParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_1bqpi")
+draw_pass_1 = SubResource("BoxMesh_87h2n")
 
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="HitWallParticles" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 0.9
+process_material = SubResource("ParticleProcessMaterial_87h2n")
+draw_pass_1 = SubResource("BoxMesh_tah56")
