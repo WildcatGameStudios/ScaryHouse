@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxkomju581h02"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_blumj"]
+resource_local_to_scene = true
+albedo_color = Color(0.588235, 0.294118, 0, 1)
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D"]
+radius = 0.05
+height = 0.1
+sides = 16
+material = SubResource("StandardMaterial3D_blumj")

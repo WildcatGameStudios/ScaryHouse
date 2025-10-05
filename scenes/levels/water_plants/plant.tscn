@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cxwjh7b7eftlh"]
 
-[ext_resource type="Script" uid="uid://2u8l00x3i7ur" path="res://scripts/plant.gd" id="1_c1dw4"]
-[ext_resource type="Script" uid="uid://di10je160ywtn" path="res://scripts/plant_sm.gd" id="2_iw701"]
+[ext_resource type="Script" uid="uid://2u8l00x3i7ur" path="res://scripts/levels/water_plants/plant.gd" id="1_c1dw4"]
+[ext_resource type="Script" uid="uid://di10je160ywtn" path="res://scripts/levels/water_plants/plant_sm.gd" id="2_iw701"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iw701"]
 resource_local_to_scene = true

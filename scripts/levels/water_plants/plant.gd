@@ -35,7 +35,6 @@ func enter_dying() -> void:
 	needs.append(randi_range(0,3))
 	while randf() < stop_adding_needs_chance and needs.size() < max_needs:
 		needs.append(randi_range(0,3))
-	print(needs)
 	needs_list.size.y = needs.size() * .2 + .1
 	needs_list.position.y = needs_list.size.y / 2 + 1
 	

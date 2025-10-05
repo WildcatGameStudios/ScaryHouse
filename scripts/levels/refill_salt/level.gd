@@ -7,7 +7,7 @@ extends Node3D
 var player_orig_min_look: float
 
 func _ready() -> void:
-	player.walk_speed = player.run_speed
+	player.walk_speed = player.run_speed # will be removed
 	seed(randi_range(0,3)) # use onlt a few versions so it's easy to test for impossibility
 	for i in obstacles.get_children():
 		i.position.x = randf_range(-15,15) # set the x to a number between -15 and 15
