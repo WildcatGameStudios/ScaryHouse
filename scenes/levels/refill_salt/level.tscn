@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgtn0kfufrrnq"]
+[gd_scene load_steps=5 format=3 uid="uid://bgtn0kfufrrnq"]
 
 [ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_5xq8l"]
+[ext_resource type="Script" uid="uid://c1yvsa40cig6c" path="res://scripts/levels/refill_salt/level.gd" id="1_sxfp6"]
 [ext_resource type="PackedScene" uid="uid://c6u8cxeiwavfs" path="res://scenes/levels/refill_salt/blade_rotate.tscn" id="2_8rc5k"]
-[ext_resource type="PackedScene" uid="uid://d38ac2onmvr6k" path="res://scenes/levels/refill_salt/blade_random.tscn" id="3_8y7tl"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_oni3l"]
+height = 2975.0
+radius = 17.0
 
 [node name="RefillSalt" type="Node3D" groups=["world"]]
+script = ExtResource("1_sxfp6")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -28,17 +33,17 @@ height = 1.0
 sides = 50
 
 [node name="tunnel" type="CSGCombiner3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1263, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 0)
 use_collision = true
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="tunnel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1250, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 radius = 20.0
 height = 2975.0
 sides = 50
 
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="tunnel"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1250, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 operation = 2
 radius = 17.0
 height = 2975.0
@@ -53,15 +58,6 @@ size = Vector3(150, 1, 150)
 
 [node name="obstacle1" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1450, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle2" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1400, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -69,15 +65,6 @@ sides = 50
 
 [node name="obstacle3" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1350, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle4" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1300, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -85,15 +72,6 @@ sides = 50
 
 [node name="obstacle5" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1250, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle6" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1200, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -101,15 +79,6 @@ sides = 50
 
 [node name="obstacle7" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1100, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle8" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1050, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -117,39 +86,16 @@ sides = 50
 
 [node name="obstacle9" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1000, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
 sides = 50
 
-[node name="obstacle10" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 950, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle11" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 900, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle12" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 850, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="rotating1" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 900, 50)
 
 [node name="obstacle13" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 800, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -157,7 +103,6 @@ sides = 50
 
 [node name="obstacle14" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 750, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -165,7 +110,6 @@ sides = 50
 
 [node name="obstacle15" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 700, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -173,7 +117,6 @@ sides = 50
 
 [node name="obstacle16" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 650, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -181,15 +124,23 @@ sides = 50
 
 [node name="obstacle17" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 600, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
 sides = 50
 
-[node name="obstacle18" type="CSGCylinder3D" parent="obstacles"]
+[node name="cross" type="CSGCombiner3D" parent="obstacles"]
+use_collision = true
+
+[node name="obstacle18" type="CSGCylinder3D" parent="obstacles/cross"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 550, 50)
-operation = 2
+use_collision = true
+radius = 4.0
+height = 100.0
+sides = 50
+
+[node name="obstacle20" type="CSGCylinder3D" parent="obstacles/cross"]
+transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 550, 50)
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -197,7 +148,6 @@ sides = 50
 
 [node name="obstacle19" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 500, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -205,7 +155,6 @@ sides = 50
 
 [node name="obstacle20" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 450, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -213,7 +162,6 @@ sides = 50
 
 [node name="obstacle21" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 400, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -221,7 +169,6 @@ sides = 50
 
 [node name="obstacle22" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 350, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -229,15 +176,6 @@ sides = 50
 
 [node name="obstacle23" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 300, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle24" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 250, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -245,7 +183,6 @@ sides = 50
 
 [node name="obstacle25" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 250, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -253,7 +190,6 @@ sides = 50
 
 [node name="obstacle26" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 200, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -261,15 +197,6 @@ sides = 50
 
 [node name="obstacle27" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 150, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle28" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 100, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -277,15 +204,6 @@ sides = 50
 
 [node name="obstacle29" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 50, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle30" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -293,15 +211,6 @@ sides = 50
 
 [node name="obstacle31" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -50, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle32" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -100, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -309,15 +218,6 @@ sides = 50
 
 [node name="obstacle33" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -150, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle34" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -200, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -325,15 +225,6 @@ sides = 50
 
 [node name="obstacle35" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -250, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle36" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -300, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -341,15 +232,6 @@ sides = 50
 
 [node name="obstacle37" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -350, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle38" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -400, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -357,15 +239,6 @@ sides = 50
 
 [node name="obstacle39" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -450, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle40" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -500, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -373,15 +246,6 @@ sides = 50
 
 [node name="obstacle41" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -550, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle42" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -600, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -389,15 +253,6 @@ sides = 50
 
 [node name="obstacle43" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -650, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle44" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -700, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -405,15 +260,6 @@ sides = 50
 
 [node name="obstacle45" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -750, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle46" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -800, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -421,15 +267,6 @@ sides = 50
 
 [node name="obstacle47" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -850, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle48" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -900, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -437,15 +274,6 @@ sides = 50
 
 [node name="obstacle49" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -950, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle50" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1000, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -453,15 +281,6 @@ sides = 50
 
 [node name="obstacle51" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1050, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle52" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1100, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -469,15 +288,6 @@ sides = 50
 
 [node name="obstacle53" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1150, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle64" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1200, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -485,15 +295,6 @@ sides = 50
 
 [node name="obstacle55" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1250, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle56" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1300, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -501,15 +302,6 @@ sides = 50
 
 [node name="obstacle57" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1350, 50)
-operation = 2
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle58" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1400, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -517,7 +309,6 @@ sides = 50
 
 [node name="obstacle59" type="CSGCylinder3D" parent="obstacles"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1450, 50)
-operation = 2
 use_collision = true
 radius = 4.0
 height = 100.0
@@ -526,8 +317,12 @@ sides = 50
 [node name="player" parent="." instance=ExtResource("1_5xq8l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1501, 0)
 
-[node name="Blade" parent="." instance=ExtResource("2_8rc5k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1470.4, 50)
+[node name="Area3D" type="Area3D" parent="."]
 
-[node name="Blade2" parent="." instance=ExtResource("3_8y7tl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1485.71, 50)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 50)
+shape = SubResource("CylinderShape3D_oni3l")
+
+[connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="Area3D" to="." method="_on_area_3d_body_exited"]
