@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6u8cxeiwavfs"]
+[gd_scene load_steps=2 format=3 uid="uid://ctmfhcl4e8gyw"]
 
 [ext_resource type="Script" uid="uid://c1qran0ruhep5" path="res://scripts/levels/refill_salt/blade_rotate.gd" id="1_42tna"]
 
-[node name="Blade" type="Node3D"]
+[node name="BladeRotate" type="Node3D"]
 script = ExtResource("1_42tna")
 
 [node name="obstacle1" type="CSGCylinder3D" parent="."]

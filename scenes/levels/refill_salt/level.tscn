@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bgtn0kfufrrnq"]
+[gd_scene load_steps=6 format=3 uid="uid://bgtn0kfufrrnq"]
 
 [ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_5xq8l"]
 [ext_resource type="Script" uid="uid://c1yvsa40cig6c" path="res://scripts/levels/refill_salt/level.gd" id="1_sxfp6"]
-[ext_resource type="PackedScene" uid="uid://c6u8cxeiwavfs" path="res://scenes/levels/refill_salt/blade_rotate.tscn" id="2_8rc5k"]
+[ext_resource type="PackedScene" uid="uid://ctmfhcl4e8gyw" path="res://scenes/levels/refill_salt/blade_rotate.tscn" id="2_8rc5k"]
+[ext_resource type="PackedScene" uid="uid://bmnc22pi61tyf" path="res://scenes/levels/refill_salt/blade_static.tscn" id="2_sxfp6"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_oni3l"]
 height = 2975.0
@@ -56,263 +57,72 @@ size = Vector3(150, 1, 150)
 
 [node name="obstacles" type="Node" parent="."]
 
-[node name="obstacle1" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1450, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static1" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1450, 50)
 
-[node name="obstacle3" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1350, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static2" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1350, 50)
 
-[node name="obstacle5" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1250, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static3" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1250, 50)
 
-[node name="obstacle7" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1100, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static4" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1150, 50)
 
-[node name="obstacle9" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1000, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static5" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1050, 50)
 
 [node name="rotating1" parent="obstacles" instance=ExtResource("2_8rc5k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 900, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 950, 50)
 
-[node name="obstacle13" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 800, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static6" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 850, 50)
 
-[node name="obstacle14" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 750, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static7" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 800, 50)
 
-[node name="obstacle15" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 700, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static8" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 750, 50)
 
-[node name="obstacle16" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 650, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static9" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 700, 50)
 
-[node name="obstacle17" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 600, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static10" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 650, 50)
 
-[node name="cross" type="CSGCombiner3D" parent="obstacles"]
-use_collision = true
+[node name="static11" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 600, 50)
 
-[node name="obstacle18" type="CSGCylinder3D" parent="obstacles/cross"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 550, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static12" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 600, 50)
 
-[node name="obstacle20" type="CSGCylinder3D" parent="obstacles/cross"]
-transform = Transform3D(-4.37114e-08, 1, -4.37114e-08, 0, -4.37114e-08, -1, -1, -4.37114e-08, 1.91069e-15, 0, 550, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static_cross1" type="Node3D" parent="obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 550, 50)
 
-[node name="obstacle19" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 500, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static13" parent="obstacles/static_cross1" instance=ExtResource("2_sxfp6")]
 
-[node name="obstacle20" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 450, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static14" parent="obstacles/static_cross1" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="obstacle21" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 400, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="rotating2" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 500, 50)
 
-[node name="obstacle22" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 350, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static15" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 450, 50)
 
-[node name="obstacle23" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 300, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static16" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 400, 50)
 
-[node name="obstacle25" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 250, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static_cross3" type="Node3D" parent="obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 350, 50)
 
-[node name="obstacle26" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 200, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static17" parent="obstacles/static_cross3" instance=ExtResource("2_sxfp6")]
 
-[node name="obstacle27" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 150, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static18" parent="obstacles/static_cross3" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 
-[node name="obstacle29" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 50, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle31" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -50, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle33" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -150, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle35" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -250, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle37" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -350, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle39" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -450, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle41" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -550, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle43" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -650, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle45" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -750, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle47" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -850, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle49" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -950, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle51" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1050, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle53" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1150, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle55" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1250, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle57" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1350, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
-
-[node name="obstacle59" type="CSGCylinder3D" parent="obstacles"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -1450, 50)
-use_collision = true
-radius = 4.0
-height = 100.0
-sides = 50
+[node name="static19" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 50)
 
 [node name="player" parent="." instance=ExtResource("1_5xq8l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1501, 0)

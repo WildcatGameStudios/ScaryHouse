@@ -8,7 +8,8 @@ var player_orig_min_look: float
 
 func _ready() -> void:
 	player.walk_speed = player.run_speed # will be removed
-	seed(randi_range(0,3)) # use onlt a few versions so it's easy to test for impossibility
+	seed(0)
+	#seed(randi_range(0,3)) # use only a few versions so it's easy to test for impossibility
 	for i in obstacles.get_children():
 		i.position.x = randf_range(-15,15) # set the x to a number between -15 and 15
 		var z_range = sqrt(225 - i.position.x * i.position.x) # set z to a number so that it is within a circle depending on x
@@ -22,7 +23,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 	pass
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
-	# acceleration motion for player
+	# remove acceleration motion for player
 	pass
 
 func _on_tree_exited() -> void:
