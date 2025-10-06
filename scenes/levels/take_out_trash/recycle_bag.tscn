@@ -59,6 +59,6 @@ draw_pass_1 = SubResource("BoxMesh_87h2n")
 emitting = false
 amount = 50
 one_shot = true
-explosiveness = 0.9
+explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_87h2n")
 draw_pass_1 = SubResource("BoxMesh_tah56")

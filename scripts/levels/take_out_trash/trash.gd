@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name Trash
 
 #emitted when enters right bin or collideds
-#connected in level script for penalties / score increment
+#connected in level script for penalties / score increment and bin movement speed
 signal collided(in_bin: bool)
 
 @export_enum("TRASH","RECYCLE") var trash_type: int
@@ -32,9 +32,12 @@ func _ready() -> void:
 	$Area3D.area_entered.connect(in_trash)
 
 func _physics_process(delta: float) -> void:
+	#when colliding and not hitting a bin
 	if move_and_slide():
 		collided.emit(false)
 		$HitWallParticles.emitting = true
+		$CollisionShape3D.disabled = true
+		$MeshInstance3D.visible = false
 		await get_tree().create_timer(0.5).timeout
 		self.queue_free()
 	velocity += gravity * delta

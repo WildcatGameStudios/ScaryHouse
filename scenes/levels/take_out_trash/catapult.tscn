@@ -49,7 +49,7 @@ transform = Transform3D(4.6064, 0, 0, 0, 4.6064, 0, 0, 0, 4.6064, 0, 0, 0)
 shape = SubResource("BoxShape3D_pn6mw")
 
 [node name="InteractionCamera" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.8984, -13.1247)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.92188, -9.64293)
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
