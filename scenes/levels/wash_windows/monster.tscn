@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://gimwur1l45bs"]
+
+[ext_resource type="Script" uid="uid://dg5dcc111krix" path="res://scenes/levels/wash_windows/monster.gd" id="1_17l4i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5d0jo"]
+albedo_color = Color(0.955348, 0.102831, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_17l4i"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sssuu"]
+
+[node name="Monster" type="CharacterBody3D"]
+script = ExtResource("1_17l4i")
+
+[node name="Visual" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0267887, 0.655889, 0.151224)
+material_override = SubResource("StandardMaterial3D_5d0jo")
+mesh = SubResource("BoxMesh_17l4i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0267887, 0.655889, 0.151224)
+shape = SubResource("BoxShape3D_sssuu")

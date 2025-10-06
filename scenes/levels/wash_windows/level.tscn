@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://dafejkibcr0t5" path="res://art/materials/testing/green.tres" id="1_72jgg"]
 [ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="2_obxn0"]
-[ext_resource type="PackedScene" uid="uid://crli6js6wxqnl" path="res://scenes/levels/wash_windows/window.tscn" id="3_obxn0"]
+[ext_resource type="PackedScene" uid="uid://dx5lq132ex5m0" path="res://scenes/levels/wash_windows/window.tscn" id="3_obxn0"]
 
 [node name="Level" type="Node3D" groups=["world"]]
 
@@ -27,7 +27,7 @@ size = Vector3(102.351, 1, 200)
 material = ExtResource("1_72jgg")
 
 [node name="player" parent="." instance=ExtResource("2_obxn0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 12, 0)
+transform = Transform3D(0.033696, 0, 0.999432, 0, 1, 0, -0.999432, 0, 0.033696, 30, 10.3154, 0)
 
 [node name="Window" parent="." instance=ExtResource("3_obxn0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 7.5, 11)
