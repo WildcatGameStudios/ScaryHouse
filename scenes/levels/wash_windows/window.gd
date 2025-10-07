@@ -1,3 +1,4 @@
+class_name Game_Window
 extends Node3D
 @export var clean_target: float = 100.0
 @export var clean_decay_rate: float = 5.0  # Cleanliness lost per second

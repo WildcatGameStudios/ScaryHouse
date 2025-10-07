@@ -1,46 +1,53 @@
-[gd_scene load_steps=7 format=3 uid="uid://dx5lq132ex5m0"]
+[gd_scene load_steps=8 format=3 uid="uid://dx5lq132ex5m0"]
 
 [ext_resource type="Script" uid="uid://ce84h1iglirin" path="res://scenes/levels/wash_windows/window.gd" id="1_shmvf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_twhpq"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_twhpq"]
+size = Vector2(5.25, 5.8)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shmvf"]
 albedo_color = Color(0.354229, 0.192303, 7.21961e-08, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ni11f"]
+albedo_color = Color(0.428446, 0.280314, 2.40654e-07, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_twhpq"]
+material = SubResource("StandardMaterial3D_ni11f")
+size = Vector3(5.5, 6.25, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_shmvf"]
 
 [node name="Window" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0098238, 0.00446719, -0.00173712)
 script = ExtResource("1_shmvf")
 
 [node name="Collider" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.66763, -3.21066, 1.54805)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.66763, -3.21066, 1.54183)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collider"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.053323, 2.6464, 3.24145, -1.88001)
+transform = Transform3D(5.09235, 0, 0, 0, 6.26283, 0, 0, 0, 0.053323, 0, 0, 0)
 shape = SubResource("BoxShape3D_twhpq")
 
 [node name="Monster_Spawn_Point" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00253963, 0.00344056, 0.016127)
+transform = Transform3D(223.82, 0, 0, 0, 233.108, 0, 0, 0, 2.38159, -2.67885, -3.22229, 1.68014)
 
 [node name="Dirt_Particles" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0214083, 0.0318219, -0.367715)
+transform = Transform3D(0.997031, 0, 0, 0, 1.0787, 0, 0, 0, 0.997031, -2.67498, -3.211, 1.56671)
 mesh = SubResource("QuadMesh_twhpq")
 surface_material_override/0 = SubResource("StandardMaterial3D_shmvf")
 
 [node name="Shutter_Left" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.484106, 0, 0, 0, 1.00356, 0, 0, 0, 0.0132634, 0.221269, 0.0240852, -0.385607)
+transform = Transform3D(0.471661, 0, 0, 0, 1.00356, 0, 0, 0, 0.0132634, -1.40953, -3.211, 1.54796)
 mesh = SubResource("BoxMesh_twhpq")
 
 [node name="Shutter_Right" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.48432, 0, 0, 0, 1, 0, 0, 0, 0.0132163, -0.265833, 0.0240852, -0.385607)
+transform = Transform3D(0.467415, 0, 0, 0, 1, 0, 0, 0, 0.0132163, -4.00939, -3.211, 1.548)
 mesh = SubResource("BoxMesh_twhpq")
 
 [node name="Meter_Root" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.628508, -0.378692)
+transform = Transform3D(5.36513, 0, 0, 0, 8.94212, 0, 0, 0, 1, -2.54982, 0.452944, 1.46276)
 
 [node name="Meter_Bar" type="MeshInstance3D" parent="Meter_Root"]
 transform = Transform3D(0.858454, 0, 0, 0, 0.0378995, 0, 0, 0, 0.0309881, -0.0282851, 0.007653, 0.0519151)
