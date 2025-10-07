@@ -51,6 +51,7 @@ func _input(event):
 			switch_tool("tranquilizer")
 		else:
 			handle_shot("tranquilizer")
+		
 			
 func switch_tool(tool: String):
 	# Toggles the visual guns
@@ -79,12 +80,12 @@ func handle_shot(tool: String):
 	
 	# 2. Set position and initial rotation based on the calculated direction
 	projectile.global_transform.origin = start_point
+	projectile.look_at(target_point, Vector3.UP) 
+
 	var firing_direction: Vector3 = -gun_muzzle.global_transform.basis.z.normalized()
 	
 	projectile.setup_movement(firing_direction)
 	
-	# LookAt() rotates the projectile to face the target point
-	projectile.look_at(target_point, Vector3.UP) 
 	# 3. Configure the projectile (color and type)
 	var mesh = projectile.get_node("Mesh") as MeshInstance3D
 	var material = mesh.get_material_override() as StandardMaterial3D
@@ -98,7 +99,6 @@ func handle_shot(tool: String):
 		projectile.type = "tranquilizer"
 		if material:
 			material.albedo_color = Color.YELLOW
-
 
 func _physics_process(delta):
 	# Only keep the window cycling logic here. Shooting is now in _input.
