@@ -3,6 +3,11 @@ extends Node3D
 @export var clean_target: float = 100.0
 @export var clean_decay_rate: float = 5.0  # Cleanliness lost per second
 @export var shutter_speed: float = 5.0    # Speed of the shutter animation
+@export var closed_x_left: float = 0.0
+@export var closed_x_right: float = -2.598
+@export var open_x_left: float = -1.5
+@export var open_x_right: float = 1.5
+
 
 @onready var collider: Area3D = $Collider
 @onready var meter_bar: MeshInstance3D = $Meter_Root/Meter_Bar
@@ -45,13 +50,13 @@ func _process(delta: float) -> void:
 		current_cleanliness = clampf(current_cleanliness, 0, clean_target)
 
 	#Shutter Animation
-	var target_left_x = 0.0
-	var target_right_x = 0.0
+	var target_left_x = closed_x_left
+	var target_right_x = closed_x_right
 	
 	if current_state != State.CLOSED:
-		# Shutters open outward
-		target_left_x = -1.5 
-		target_right_x = 1.5
+		# Shutters open outward, using the exported values
+		target_left_x = open_x_left 
+		target_right_x = open_x_right
 
 	var current_pos_l = shutter_left.position.x
 	var new_pos_l = lerpf(current_pos_l, target_left_x, shutter_speed * delta)
@@ -80,8 +85,8 @@ func activate_window():
 func close_shutters(immediate: bool = false):
 	current_state = State.CLOSED
 	if immediate:
-		shutter_left.position.x = 0.0
-		shutter_right.position.x = 0.0
+		shutter_left.position.x = closed_x_left
+		shutter_right.position.x = closed_x_right
 	
 	if monster_instance:
 		# Safely remove monster if it's still alive
@@ -114,13 +119,14 @@ func receive_water_hit(amount: float):
 	current_cleanliness = clampf(current_cleanliness, 0, clean_target)
 	
 	# Update visuals (dirtiness fading)
-	dirt_particles.scale = Vector3.ONE * (1.0 - current_cleanliness / clean_target)
+	var ratio = 1.0 - (current_cleanliness / clean_target)
+	dirt_particles.scale = Vector3.ONE * ratio
 	
 	if current_cleanliness >= clean_target:
 		is_clean = true
 		current_state = State.CLOSED
 		emit_signal("window_cleaned", self)
-
+ 
 ## Called when hit by tranquilizer
 func receive_tranquilizer_hit():
 	if is_clean: return

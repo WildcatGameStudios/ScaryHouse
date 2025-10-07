@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://6xbrspilb0gk"]
+
+[ext_resource type="Script" uid="uid://dmrocy1fua0xc" path="res://scenes/levels/wash_windows/projectile.gd" id="1_6ohgj"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6ohgj"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_le6o5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ohgj"]
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="Projectile" type="CharacterBody3D"]
+script = ExtResource("1_6ohgj")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_6ohgj")
+surface_material_override/0 = SubResource("StandardMaterial3D_le6o5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Mesh"]
+shape = SubResource("BoxShape3D_6ohgj")

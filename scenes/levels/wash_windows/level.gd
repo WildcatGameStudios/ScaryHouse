@@ -1,82 +1,112 @@
 extends Node3D
-@export var water_clean_amount: float = 10.0 # How much cleanliness is gained per second of water contact
+@export var water_clean_amount: float = 10.0
 @export var min_cooldown: float = 1.0
 @export var max_cooldown: float = 4.0
 @onready var gun_ray_cast: RayCast3D = $player/Gun_RayCast
 
+# NEW ONREADYS: Visual guns and spawn point (Must match level.tscn structure!)
+@onready var water_gun_visual: MeshInstance3D = $player/Hand_Pivot/Water_Gun 
+@onready var tranquilizer_gun_visual: MeshInstance3D = $player/Hand_Pivot/Tranquilizer_Gun
+@onready var gun_muzzle: Node3D = $player/Hand_Pivot/Gun_Muzzle
+# END NEW ONREADYS
+
+const PROJECTILE_SCENE = preload("res://scenes/levels/wash_windows/projectile.tscn")
+
 var active_windows: Array[Node] = []
 var all_windows: Array[Node] = []
-var active_shots: Array[String] = [] # Tracks raycasts hitting windows
 var window_cooldown_timer: float = 0.0
-
+var current_tool: String = "water" 
 
 func _ready():
-	# Gather all windows
-	for child in get_children():
-		# Using the "Window_" prefix to find all instantiated scenes
-		if child is Node3D and child.name.begins_with("Window_"):
-			all_windows.append(child)
+		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) # FIX: Capture mouse focus
+	
+		for child in get_children():
+			if child is Node3D and child.name.begins_with("Window_"):
+				all_windows.append(child)
 			
-			# Connect signals for game flow
-			child.window_cleaned.connect(_on_window_cleaned)
-			child.monster_spotted.connect(_on_monster_spotted)
-			child.window_hit.connect(_on_window_broken)
+				child.window_cleaned.connect(_on_window_cleaned)
+				child.monster_spotted.connect(_on_monster_spotted)
+				child.window_hit.connect(_on_window_broken)
 			
-	# Start the game flow
-	start_new_round()
+	# NEW: Initialize the visible gun
+		switch_tool(current_tool)
+		start_new_round()
 
-# This simulates water/tranquilizer shots hitting a window
-func simulate_hit(window_node: Node3D, tool: String):
-	var window_script: Game_Window = window_node # <-- UPDATED CAST
-
-	if tool == "water":
-		window_script.receive_water_hit(water_clean_amount)
-	elif tool == "tranquilizer":
-		window_script.receive_tranquilizer_hit()
+# --------------------------------------------------------------------------------------
+# INPUT AND SHOOTING
+# --------------------------------------------------------------------------------------
 
 func _input(event):
-	# Check for instant-fire tranquilizer shot (single press)
-	if event.is_action_just_pressed("fire_tranquilizer"):
-		handle_shot("tranquilizer")
-	
-func handle_shot(tool: String):
-	# This handles single-fire tools (like the tranquilizer gun)
-	if gun_ray_cast.is_colliding():
-		var hit_object = gun_ray_cast.get_collider()
-		
-		# Check if the hit object is a CollisionShape3D belonging to a Game_Window
-		var collider_node = hit_object as CollisionShape3D
-		if collider_node and collider_node.get_parent() and collider_node.get_parent().get_parent() is Game_Window:
-			var window_root: Game_Window = collider_node.get_parent().get_parent()
+	# Tool Switch using MOUSE BUTTONS for visual swapping
+	# NOTE: These actions need to be assigned in Input Map!
+	if Input.is_action_just_pressed("fire_water"):
+		if current_tool != "water":
+			switch_tool("water")
+			# If the user clicks water button while holding water gun, fire immediately
+		else:
+			handle_shot("water")
 			
-			if tool == "tranquilizer":
-				window_root.receive_tranquilizer_hit()
+	if Input.is_action_just_pressed("fire_tranquilizer"):
+		if current_tool != "tranquilizer":
+			switch_tool("tranquilizer")
+		else:
+			handle_shot("tranquilizer")
+			
+func switch_tool(tool: String):
+	# Toggles the visual guns
+		current_tool = tool
+		water_gun_visual.visible = (tool == "water")
+		tranquilizer_gun_visual.visible = (tool == "tranquilizer")
+
+func handle_shot(tool: String):
+	# --- FIND THE AIMING VECTOR ---
+	var start_point: Vector3 = gun_muzzle.global_transform.origin
+	var target_point: Vector3
+	
+	# Check if the raycast hit something
+	if gun_ray_cast.is_colliding():
+		target_point = gun_ray_cast.get_collision_point()
+	else:
+		# If the raycast misses, project a target point far away 
+		# (This is the end point of the RayCast in world space)
+		target_point = gun_ray_cast.to_global(gun_ray_cast.target_position)
+
+	# Calculate the normalized direction from the muzzle to the target point
+	var shoot_direction: Vector3 = (target_point - start_point).normalized()
+	
+	# ---------------------------------
+	
+	# 1. Spawn the projectile instance
+	var projectile = PROJECTILE_SCENE.instantiate()
+	get_parent().add_child(projectile) 
+	
+	# 2. Set position and initial rotation based on the calculated direction
+	projectile.global_transform.origin = start_point
+	
+	# LookAt() rotates the projectile to face the target point
+	projectile.look_at(target_point, Vector3.UP, true) 
+	# 3. Configure the projectile (color and type)
+	var mesh = projectile.get_node("Mesh") as MeshInstance3D
+	var material = mesh.get_material_override() as StandardMaterial3D
+	
+	if tool == "water":
+		projectile.type = "water"
+		projectile.damage = water_clean_amount * 5 
+		if material:
+			material.albedo_color = Color.BLUE
+	elif tool == "tranquilizer":
+		projectile.type = "tranquilizer"
+		if material:
+			material.albedo_color = Color.YELLOW
+
 
 func _physics_process(delta):
-# --- Continuous Water Spray Logic ---
-	if Input.is_action_pressed("fire_water"):
-		var hit_object = gun_ray_cast.get_collider()
-	
-		if hit_object:
-		# We assume the window's Area3D is the grandparent of the CollisionShape3D
-			var collider_node = hit_object as CollisionShape3D
-			if collider_node and collider_node.get_parent() and collider_node.get_parent().get_parent() is Game_Window:
-				var window_root: Game_Window = collider_node.get_parent().get_parent()
-			
-			# 1. Clean window if it's open for cleaning
-				if window_root.current_state == Game_Window.State.OPEN_CLEAN:
-					window_root.receive_water_hit(water_clean_amount * delta)
-			
-			# 2. Trigger monster attack if player sprays monster
-				elif window_root.current_state == Game_Window.State.OPEN_MONSTER:
-				# Hitting monster with water causes immediate attack (as per level description)
-					window_root.receive_water_hit(water_clean_amount * delta) 
-
-# Cooldown for opening/closing windows (Keep existing logic)
+	# Only keep the window cycling logic here. Shooting is now in _input.
 	if window_cooldown_timer > 0:
 		window_cooldown_timer -= delta
-	if window_cooldown_timer <= 0:
+	else: 
 		handle_window_cycle()
+
 
 func start_new_round():
 	# Find two dirty, non-active windows to start the game
