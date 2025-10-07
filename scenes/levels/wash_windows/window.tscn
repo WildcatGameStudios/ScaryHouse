@@ -31,7 +31,7 @@ transform = Transform3D(5.09235, 0, 0, 0, 6.26283, 0, 0, 0, 0.053323, 1.40837, 3
 shape = SubResource("BoxShape3D_twhpq")
 
 [node name="Monster_Spawn_Point" type="Node3D" parent="."]
-transform = Transform3D(223.82, 0, 0, 0, 233.108, 0, 0, 0, 2.38159, -2.67885, -3.22229, 1.68014)
+transform = Transform3D(223.82, 0, 0, 0, 233.108, 0, 0, 0, 2.38159, -1.3068, 0.132145, 1.68791)
 
 [node name="Dirt_Particles" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.997031, 0, 0, 0, 1.0787, 0, 0, 0, 0.997031, -1.26377, 0, 1.567)

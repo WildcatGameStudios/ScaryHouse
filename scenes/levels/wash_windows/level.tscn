@@ -44,11 +44,14 @@ material = ExtResource("1_72jgg")
 
 [node name="player" parent="." instance=ExtResource("2_obxn0")]
 transform = Transform3D(0.033696, 0, 0.999432, 0, 1, 0, -0.999432, 0, 0.033696, 30, 10.3154, 0)
+up_direction = Vector3(0, 0, -1)
 
 [node name="Gun_RayCast" type="RayCast3D" parent="player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19209e-07, -2.19345e-05, -1.90735e-06)
+target_position = Vector3(0, 0, 0)
 
 [node name="Hand_Pivot" type="Node3D" parent="player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.5, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.5, -0.999996)
 
 [node name="Water_Gun" type="MeshInstance3D" parent="player/Hand_Pivot"]
 mesh = SubResource("BoxMesh_r5fah")

@@ -70,21 +70,21 @@ func handle_shot(tool: String):
 		# If the raycast misses, project a target point far away 
 		# (This is the end point of the RayCast in world space)
 		target_point = gun_ray_cast.to_global(gun_ray_cast.target_position)
-
-	# Calculate the normalized direction from the muzzle to the target point
+		
 	var shoot_direction: Vector3 = (target_point - start_point).normalized()
-	
-	# ---------------------------------
-	
+
 	# 1. Spawn the projectile instance
 	var projectile = PROJECTILE_SCENE.instantiate()
 	get_parent().add_child(projectile) 
 	
 	# 2. Set position and initial rotation based on the calculated direction
 	projectile.global_transform.origin = start_point
+	var firing_direction: Vector3 = -gun_muzzle.global_transform.basis.z.normalized()
+	
+	projectile.setup_movement(firing_direction)
 	
 	# LookAt() rotates the projectile to face the target point
-	projectile.look_at(target_point, Vector3.UP, true) 
+	projectile.look_at(target_point, Vector3.UP) 
 	# 3. Configure the projectile (color and type)
 	var mesh = projectile.get_node("Mesh") as MeshInstance3D
 	var material = mesh.get_material_override() as StandardMaterial3D
