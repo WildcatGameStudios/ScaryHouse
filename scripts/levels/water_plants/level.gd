@@ -4,6 +4,7 @@ extends Node3D
 @onready var items: Node = $items
 @onready var plants: Node = $plants
 @onready var ray_cast_3d: RayCast3D = $player/head/Camera3D/RayCast3D
+@onready var flies_2: CSGCylinder3D = $items/flies2
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("e"):
@@ -13,5 +14,8 @@ func _process(delta: float) -> void:
 			items.remove_child(collider)
 			player.add_hand_object(collider)
 			collider.position = Vector3(0,.2,0)
-		elif collider.get_parent() in plants.get_children():
-			print(player.get_hand_object())
+		elif collider and collider.get_parent() in plants.get_children():
+			if player.get_hand_object().get_meta("item_type") == collider.get_parent().needs.back():
+				collider.get_parent().remove_need()
+			else:
+				pass

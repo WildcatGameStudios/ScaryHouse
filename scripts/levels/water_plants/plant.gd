@@ -64,3 +64,9 @@ func dying(delta: float) -> void:
 func exit_dying() -> void:
 	death_timer = time_to_die
 	position.y = -2
+
+func remove_need() -> void:
+	get_child(needs.size() + 2).queue_free()
+	needs.pop_back()
+	needs_list.size.y -= .2
+	needs_list.position.y -= .1

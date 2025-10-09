@@ -42,17 +42,18 @@ func get_transition(delta):
 				else:
 					parent.dying_rolls_timer = parent.time_between_dying_rolls
 		"dying":
-			pass
+			if parent.needs == []:
+				set_state("active")
 	
 func enter_state(new_state, old_state) :
-	match state:
+	match new_state:
 		"active":
 			parent.enter_active()
 		"dying":
 			parent.enter_dying()
 	
 func exit_state(old_state, new_state) : 
-	match new_state:
+	match old_state:
 		"inactive":
 			parent.exit_inactive()
 		"active":
