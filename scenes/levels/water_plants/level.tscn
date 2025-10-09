@@ -126,7 +126,7 @@ size = Vector3(5, 1, 5)
 material = SubResource("StandardMaterial3D_aswn4")
 
 [node name="player" parent="." instance=ExtResource("2_1enwu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 7.39941)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46559, 3.95678)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 2.5)
@@ -187,51 +187,53 @@ use_collision = true
 size = Vector3(2, 0.5, 1)
 material = SubResource("StandardMaterial3D_4ljn0")
 
-[node name="fertilizer1" parent="." instance=ExtResource("2_rnrpy")]
+[node name="items" type="Node" parent="."]
+
+[node name="fertilizer1" parent="items" instance=ExtResource("2_rnrpy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.55, 1.25)
 material = SubResource("StandardMaterial3D_dtcjp")
 
-[node name="fertilizer2" parent="." instance=ExtResource("2_rnrpy")]
+[node name="fertilizer2" parent="items" instance=ExtResource("2_rnrpy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.55, 1)
 material = SubResource("StandardMaterial3D_85ofr")
 
-[node name="fertilizer3" parent="." instance=ExtResource("2_rnrpy")]
+[node name="fertilizer3" parent="items" instance=ExtResource("2_rnrpy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.55, 0.75)
 material = SubResource("StandardMaterial3D_laj3e")
 
-[node name="light1" parent="." instance=ExtResource("3_apnnk")]
+[node name="light1" parent="items" instance=ExtResource("3_apnnk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.55, 1.25)
 material = SubResource("StandardMaterial3D_fgq4r")
 
-[node name="light2" parent="." instance=ExtResource("3_apnnk")]
+[node name="light2" parent="items" instance=ExtResource("3_apnnk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.55, 1)
 material = SubResource("StandardMaterial3D_p6f8n")
 
-[node name="light3" parent="." instance=ExtResource("3_apnnk")]
+[node name="light3" parent="items" instance=ExtResource("3_apnnk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.55, 0.75)
 material = SubResource("StandardMaterial3D_xq8tw")
 
-[node name="flies1" parent="." instance=ExtResource("4_4ljn0")]
+[node name="flies1" parent="items" instance=ExtResource("4_4ljn0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.55, 1.25)
 material = SubResource("StandardMaterial3D_yifmo")
 
-[node name="flies2" parent="." instance=ExtResource("4_4ljn0")]
+[node name="flies2" parent="items" instance=ExtResource("4_4ljn0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.55, 1)
 material = SubResource("StandardMaterial3D_n88vw")
 
-[node name="flies3" parent="." instance=ExtResource("4_4ljn0")]
+[node name="flies3" parent="items" instance=ExtResource("4_4ljn0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.55, 0.75)
 material = SubResource("StandardMaterial3D_5ncw7")
 
-[node name="water1" parent="." instance=ExtResource("5_aq4vj")]
+[node name="water1" parent="items" instance=ExtResource("5_aq4vj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.55, 1.25)
 material = SubResource("StandardMaterial3D_7sah6")
 
-[node name="water2" parent="." instance=ExtResource("5_aq4vj")]
+[node name="water2" parent="items" instance=ExtResource("5_aq4vj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.55, 1)
 material = SubResource("StandardMaterial3D_5wcdn")
 
-[node name="water3" parent="." instance=ExtResource("5_aq4vj")]
+[node name="water3" parent="items" instance=ExtResource("5_aq4vj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.55, 0.75)
 material = SubResource("StandardMaterial3D_hppwq")
 

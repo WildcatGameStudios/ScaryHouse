@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://becfga7jr74mk"]
+
+[node name="Ladder" type="CSGBox3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0633707, -4.76837e-07, -0.0270929)
+size = Vector3(3, 300, 0.5)

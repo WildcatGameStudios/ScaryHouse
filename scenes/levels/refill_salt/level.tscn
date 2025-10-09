@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgtn0kfufrrnq"]
+[gd_scene load_steps=7 format=3 uid="uid://bgtn0kfufrrnq"]
 
 [ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_5xq8l"]
 [ext_resource type="Script" uid="uid://c1yvsa40cig6c" path="res://scripts/levels/refill_salt/level.gd" id="1_sxfp6"]
 [ext_resource type="PackedScene" uid="uid://ctmfhcl4e8gyw" path="res://scenes/levels/refill_salt/blade_rotate.tscn" id="2_8rc5k"]
 [ext_resource type="PackedScene" uid="uid://bmnc22pi61tyf" path="res://scenes/levels/refill_salt/blade_static.tscn" id="2_sxfp6"]
+[ext_resource type="PackedScene" uid="uid://becfga7jr74mk" path="res://scenes/levels/refill_salt/ladder.tscn" id="5_oni3l"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_oni3l"]
 height = 2975.0
@@ -124,6 +125,147 @@ transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 
 [node name="static19" parent="obstacles" instance=ExtResource("2_sxfp6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 300, 50)
 
+[node name="static20" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 250, 50)
+
+[node name="static21" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 200, 50)
+
+[node name="static_cross4" type="Node3D" parent="obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 150, 50)
+
+[node name="static22" parent="obstacles/static_cross4" instance=ExtResource("2_sxfp6")]
+
+[node name="static23" parent="obstacles/static_cross4" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="static24" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 100, 50)
+
+[node name="static25" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 50)
+
+[node name="static_cross5" type="Node3D" parent="obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+
+[node name="static26" parent="obstacles/static_cross5" instance=ExtResource("2_sxfp6")]
+
+[node name="static27" parent="obstacles/static_cross5" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="rotating5" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -50, 50)
+
+[node name="static26" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -100, 50)
+
+[node name="static27" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 50)
+
+[node name="static28" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -200, 50)
+
+[node name="rotating6" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -250, 50)
+
+[node name="rotating7" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -300, 50)
+rotation_speed = -5
+
+[node name="static29" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -350, 50)
+
+[node name="static30" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -400, 50)
+
+[node name="rotating8" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -450, 50)
+
+[node name="static_cross6" type="Node3D" parent="obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -500, 50)
+
+[node name="static31" parent="obstacles/static_cross6" instance=ExtResource("2_sxfp6")]
+
+[node name="static32" parent="obstacles/static_cross6" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="static_cross7" type="Node3D" parent="obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -550, 50)
+
+[node name="static33" parent="obstacles/static_cross7" instance=ExtResource("2_sxfp6")]
+
+[node name="static34" parent="obstacles/static_cross7" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="rotating9" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -600, 50)
+
+[node name="static_cross8" type="Node3D" parent="obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -650, 50)
+
+[node name="static35" parent="obstacles/static_cross8" instance=ExtResource("2_sxfp6")]
+
+[node name="static36" parent="obstacles/static_cross8" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="static37" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -700, 50)
+
+[node name="static38" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -750, 50)
+
+[node name="static39" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -800, 50)
+
+[node name="rotating10" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -850, 50)
+
+[node name="static_cross9" type="Node3D" parent="obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -900, 50)
+
+[node name="static40" parent="obstacles/static_cross9" instance=ExtResource("2_sxfp6")]
+
+[node name="static41" parent="obstacles/static_cross9" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="rotating11" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -950, 50)
+rotation_speed = -5
+
+[node name="static_cross10" type="Node3D" parent="obstacles"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1000, 50)
+
+[node name="static42" parent="obstacles/static_cross10" instance=ExtResource("2_sxfp6")]
+
+[node name="static43" parent="obstacles/static_cross10" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="rotating12" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1050, 50)
+
+[node name="static44" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1100, 50)
+
+[node name="static45" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1150, 50)
+
+[node name="static46" parent="obstacles" instance=ExtResource("2_sxfp6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1200, 50)
+
+[node name="rotating13" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1250, 50)
+
+[node name="rotating14" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1300, 50)
+rotation_speed = -5
+
+[node name="rotating15" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1350, 50)
+
+[node name="rotating16" parent="obstacles" instance=ExtResource("2_8rc5k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1400, 50)
+rotation_speed = -5
+
 [node name="player" parent="." instance=ExtResource("1_5xq8l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1501, 0)
 
@@ -132,6 +274,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1501, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13, 50)
 shape = SubResource("CylinderShape3D_oni3l")
+
+[node name="Ladder" parent="." instance=ExtResource("5_oni3l")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1349.5, 0)
 
 [connection signal="tree_exited" from="." to="." method="_on_tree_exited"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
