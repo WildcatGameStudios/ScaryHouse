@@ -2,26 +2,16 @@ extends Node3D
 
 @onready var player: player = $player
 @onready var items: Node = $items
-var pick_up_ray: RayCast3D = RayCast3D.new()
-var seeing: CSGSphere3D = CSGSphere3D.new()
-
-func _ready() -> void:
-	player.camera_3d.add_child(pick_up_ray)
-	pick_up_ray.target_position = Vector3(0,0,-3)
-	pick_up_ray.global_position = player.camera_3d.global_position
-	player.camera_3d.add_child(seeing)
-	seeing.radius = .01
-	seeing.position.z = -1
-	seeing.visible = false
+@onready var plants: Node = $plants
+@onready var ray_cast_3d: RayCast3D = $player/head/Camera3D/RayCast3D
 
 func _process(delta: float) -> void:
-	var coll = pick_up_ray.get_collider()
-	if coll in  items.get_children():
-		seeing.visible = true
-		if Input.is_action_just_pressed("e"):
-			coll.use_collision = false
-			items.remove_child(coll)
-			player.add_hand_object(coll)
-			coll.position = Vector3(0,.2,0)
-	else:
-		seeing.visible = false
+	if Input.is_action_just_pressed("e"):
+		var collider = ray_cast_3d.get_collider()
+		if collider in items.get_children():
+			collider.use_collision = false
+			items.remove_child(collider)
+			player.add_hand_object(collider)
+			collider.position = Vector3(0,.2,0)
+		elif collider.get_parent() in plants.get_children():
+			print(player.get_hand_object())
