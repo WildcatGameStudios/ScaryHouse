@@ -45,13 +45,13 @@ func enter_dying() -> void:
 		new_need.material = StandardMaterial3D.new()
 		match needs[i]:
 			0:
-				new_need.material.albedo_color = Color(10.0 / 17,5.0 / 17,0) # brown fertilizer
-			1:
-				new_need.material.albedo_color = Color(.5,0,.5) # purple light
-			2:
-				new_need.material.albedo_color = Color(0,0,0) # black flies
-			3:
 				new_need.material.albedo_color = Color(0,0,1) # blue water
+			1:
+				new_need.material.albedo_color = Color(0,0,0) # black flies
+			2:
+				new_need.material.albedo_color = Color(.5,0,.5) # purple light
+			3:
+				new_need.material.albedo_color = Color(10.0 / 17,5.0 / 17,0) # brown fertilizer
 		add_child(new_need)
 
 func dying(delta: float) -> void:
@@ -63,7 +63,7 @@ func dying(delta: float) -> void:
 
 func exit_dying() -> void:
 	death_timer = time_to_die
-	position.y = -2
+	position.y = -3
 
 func remove_need() -> void:
 	get_child(needs.size() + 2).queue_free()

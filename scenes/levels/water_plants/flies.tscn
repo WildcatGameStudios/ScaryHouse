@@ -10,4 +10,4 @@ radius = 0.05
 height = 0.1
 sides = 16
 material = SubResource("StandardMaterial3D_blumj")
-metadata/item_type = 2
+metadata/item_type = 1
