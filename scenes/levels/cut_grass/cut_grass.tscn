@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2xs783lpjc4r"]
+
+[ext_resource type="Material" uid="uid://dafejkibcr0t5" path="res://art/materials/testing/green.tres" id="1_pfvpd"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_2stse"]
+material = ExtResource("1_pfvpd")
+size = Vector2(0.05, 1)
+center_offset = Vector3(0, 0.5, 0)
+
+[node name="cut_grass" type="MeshInstance3D"]
+mesh = SubResource("QuadMesh_2stse")

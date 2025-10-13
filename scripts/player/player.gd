@@ -160,8 +160,8 @@ func add_hand_object(object : Node3D, hand : int = 1, obj_scale : Vector3 = Vect
 	elif hand == 1 : # right hand
 		right_hand.add_child(object) 
 		obj = right_hand.get_child(0)
-		
 	obj.scale = obj_scale # set scale
+	
 
 func remove_hand_object(hand : int = 1) -> Node3D :
 	var obj : Node3D 

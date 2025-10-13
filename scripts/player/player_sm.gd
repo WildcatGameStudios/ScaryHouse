@@ -79,7 +79,7 @@ func update_state() -> void:
 
 func set_transition(start: String, end: String, fn: Callable) -> void:
 	if start == end:
-		print("player_sm: Attempt to set transition from '%s' to itself" % end)
+		#print("player_sm: Attempt to set transition from '%s' to itself" % end)
 		return
 	var key = "%d%s:%d%s" % [start.length(), start, end.length(), end]
 	transitions[key] = fn
@@ -93,11 +93,14 @@ func call_transition(start: String, end: String) -> void:
 ## Returns if state was successfully queued or not.
 func queue_transition(state: String) -> bool:
 	if states.has(state) == null:
-		print("player_sm: Attempt to switch to invalid state '%s'" % state)
+		#print("player_sm: Attempt to switch to invalid state '%s'" % state)
+		pass
 	elif !enabled[state]:
-		print("player_sm: Attempt to switch to disabled state '%s'" % state)
+		#print("player_sm: Attempt to switch to disabled state '%s'" % state)
+		pass
 	elif queued_state != "":
-		print("player_sm: State switch already queued for '%s'" % queued_state)
+		#print("player_sm: State switch already queued for '%s'" % queued_state)
+		pass
 	else:
 		queued_state = state
 		return true

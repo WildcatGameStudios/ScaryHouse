@@ -1,12 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4hp3rpnk244h"]
+[gd_scene load_steps=3 format=3 uid="uid://ur3yeos6shwv"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s6wwi"]
-transparency = 4
-albedo_color = Color(0.49677, 0.87, 0.1914, 0.423529)
+[ext_resource type="Material" uid="uid://dafejkibcr0t5" path="res://art/materials/testing/green.tres" id="1_lpxqg"]
 
-[node name="Tall_grass" type="Node3D"]
+[sub_resource type="QuadMesh" id="QuadMesh_lpxqg"]
+material = ExtResource("1_lpxqg")
+size = Vector2(0.05, 2)
+center_offset = Vector3(0, 1, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401306, 0)
-size = Vector3(1, 1.8, 1)
-material = SubResource("StandardMaterial3D_s6wwi")
+[node name="tall_grass" type="MeshInstance3D"]
+mesh = SubResource("QuadMesh_lpxqg")

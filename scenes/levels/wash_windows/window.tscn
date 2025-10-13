@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dx5lq132ex5m0"]
 
-[ext_resource type="Script" uid="uid://ce84h1iglirin" path="res://scenes/levels/wash_windows/window.gd" id="1_shmvf"]
+[ext_resource type="Script" uid="uid://ce84h1iglirin" path="res://window.gd" id="1_shmvf"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_twhpq"]
 

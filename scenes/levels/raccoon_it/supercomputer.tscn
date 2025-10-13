@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d3j0h8s72bs4p"]
+[gd_scene load_steps=5 format=3 uid="uid://d3j0h8s72bs4p"]
 
 [ext_resource type="Material" uid="uid://bgwwd0flxk7qy" path="res://art/materials/testing/black.tres" id="1_ilvy5"]
 [ext_resource type="Script" uid="uid://60cjmhd7sfsi" path="res://scripts/levels/raccoon_it/supercomputer.gd" id="1_msj6f"]
 [ext_resource type="Material" uid="uid://bhfo6utyyml6o" path="res://art/materials/testing/grey.tres" id="2_msj6f"]
+[ext_resource type="PackedScene" uid="uid://2r3mlxd6wpaa" path="res://scenes/levels/raccoon_it/component.tscn" id="4_wqmnm"]
 
 [node name="Supercomputer" type="Node3D"]
 script = ExtResource("1_msj6f")
@@ -167,3 +168,6 @@ operation = 2
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="main_combiner/component_container/component_11/subtraction_combiner"]
 transform = Transform3D(0.18, 0, 0, 0, 0.1, 0, 0, 0, 0.18, 0, 0.00648457, 0)
+
+[node name="hover_piece" parent="main_combiner/component_container" instance=ExtResource("4_wqmnm")]
+visible = false
