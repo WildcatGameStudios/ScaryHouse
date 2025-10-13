@@ -1,11 +1,12 @@
 extends Node3D
+
 @export var water_clean_amount: float = 10.0
 @export var min_cooldown: float = 1.0
 @export var max_cooldown: float = 4.0
 @onready var gun_ray_cast: RayCast3D = $player/Gun_RayCast
 
 # NEW ONREADYS: Visual guns and spawn point (Must match level.tscn structure!)
-@onready var water_gun_visual: MeshInstance3D = $player/Hand_Pivot/Water_Gun 
+@onready var water_gun_visual: MeshInstance3D = $player/Hand_Pivot/Water_Gun
 @onready var tranquilizer_gun_visual: MeshInstance3D = $player/Hand_Pivot/Tranquilizer_Gun
 @onready var gun_muzzle: Node3D = $player/Hand_Pivot/Gun_Muzzle
 # END NEW ONREADYS
@@ -15,22 +16,25 @@ const PROJECTILE_SCENE = preload("res://scenes/levels/wash_windows/projectile.ts
 var active_windows: Array[Node] = []
 var all_windows: Array[Node] = []
 var window_cooldown_timer: float = 0.0
-var current_tool: String = "water" 
+var current_tool: String = "water"
 
 func _ready():
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED) # FIX: Capture mouse focus
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	all_windows = find_children("Window", "Node3D")
+	if all_windows.is_empty():
+		print("No nodes starting with Window")
+		return
 	
-		for child in get_children():
-			if child is Node3D and child.name.begins_with("Window_"):
-				all_windows.append(child)
-			
-				child.window_cleaned.connect(_on_window_cleaned)
-				child.monster_spotted.connect(_on_monster_spotted)
-				child.window_hit.connect(_on_window_broken)
+	for child in get_children():
+		if child is Node3D and child.name.begins_with("Window"):
+			all_windows.append(child)
+			child.window_cleaned.connect(_on_window_cleaned)
+			child.monster_spotted.connect(_on_monster_spotted)
+			child.window_hit.connect(_on_window_broken)
 			
 	# NEW: Initialize the visible gun
-		switch_tool(current_tool)
-		start_new_round()
+	switch_tool(current_tool)
+	start_new_round()
 
 # --------------------------------------------------------------------------------------
 # INPUT AND SHOOTING
@@ -52,17 +56,20 @@ func _input(event):
 		else:
 			handle_shot("tranquilizer")
 		
-			
+		
+
 func switch_tool(tool: String):
 	# Toggles the visual guns
-		current_tool = tool
-		water_gun_visual.visible = (tool == "water")
-		tranquilizer_gun_visual.visible = (tool == "tranquilizer")
+	current_tool = tool
+	water_gun_visual.visible = (tool == "water")
+	tranquilizer_gun_visual.visible = (tool == "tranquilizer")
 
 func handle_shot(tool: String):
 	# --- FIND THE AIMING VECTOR ---
 	var start_point: Vector3 = gun_muzzle.global_transform.origin
 	var target_point: Vector3
+	
+	gun_ray_cast.force_raycast_update()
 	
 	# Check if the raycast hit something
 	if gun_ray_cast.is_colliding():
@@ -76,11 +83,11 @@ func handle_shot(tool: String):
 
 	# 1. Spawn the projectile instance
 	var projectile = PROJECTILE_SCENE.instantiate()
-	get_parent().add_child(projectile) 
+	get_parent().add_child(projectile)
 	
 	# 2. Set position and initial rotation based on the calculated direction
 	projectile.global_transform.origin = start_point
-	projectile.look_at(target_point, Vector3.UP) 
+	projectile.look_at(target_point, Vector3.UP)
 
 	var firing_direction: Vector3 = -gun_muzzle.global_transform.basis.z.normalized()
 	
@@ -92,7 +99,7 @@ func handle_shot(tool: String):
 	
 	if tool == "water":
 		projectile.type = "water"
-		projectile.damage = water_clean_amount * 5 
+		projectile.damage = water_clean_amount * 5
 		if material:
 			material.albedo_color = Color.BLUE
 	elif tool == "tranquilizer":
@@ -104,11 +111,12 @@ func _physics_process(delta):
 	# Only keep the window cycling logic here. Shooting is now in _input.
 	if window_cooldown_timer > 0:
 		window_cooldown_timer -= delta
-	else: 
+	else:
 		handle_window_cycle()
 
 
 func start_new_round():
+	active_windows.clear()
 	# Find two dirty, non-active windows to start the game
 	for window in all_windows:
 		var window_script: Game_Window = window # <-- UPDATED CAST
@@ -118,31 +126,41 @@ func start_new_round():
 			if active_windows.size() == 2:
 				break
 				
-	# Initial activation of the windows
-	for window in active_windows:
-		(window as Game_Window).activate_window() # <-- UPDATED CAST
-		
+	handle_window_cycle()
 	set_next_cooldown()
 
 func handle_window_cycle():
 	# Find an active window and randomly cycle its state (open/closed)
 	if active_windows.is_empty():
-		print("LEVEL CLEARED! 🥳")
+		print("LEVEL CLEARED!")
 		return
-
-	# Pick a random active window to close and another to open
-	var window_to_close = active_windows[randi() % active_windows.size()]
-	(window_to_close as Game_Window).close_shutters() # <-- UPDATED CAST
 	
-	var window_to_open = active_windows[randi() % active_windows.size()]
-	(window_to_open as Game_Window).activate_window() # <-- UPDATED CAST
+	for window in active_windows:
+		(window as Game_Window).close_shutters()
+		
+	var spawn_monster = randi() % 2 == 0 # 50% chance a monster will be the target
+	var monster_window: Game_Window = null
+	
+	if spawn_monster:
+		var index = randi() % active_windows.size()
+		monster_window = active_windows[index] as Game_Window
+	for window in active_windows:
+		var w = window as Game_Window
+		
+		# All windows must start dirty when they enter the cycle
+		w.current_cleanliness = 0.0
+		
+		if w == monster_window:
+			w.open_monster() # Opens with a monster
+		else:
+			w.open_clean() # Opens clean (needs water)
 	
 	set_next_cooldown()
 
 func set_next_cooldown():
 	# Adjust cooldown based on game difficulty
 	var cleaned_count = all_windows.filter(func(w): return (w as Game_Window).is_clean).size() # <-- UPDATED CAST
-	var speedup_factor = float(cleaned_count) / float(all_windows.size()) * 0.5 
+	var speedup_factor = float(cleaned_count) / float(all_windows.size()) * 0.5
 	
 	var current_max = max_cooldown - (max_cooldown * speedup_factor)
 	var current_min = min_cooldown - (min_cooldown * speedup_factor)
@@ -153,7 +171,7 @@ func set_next_cooldown():
 
 func _on_window_cleaned(window: Node3D):
 	active_windows.erase(window)
-	print(window.name, " is CLEAN! 🧼")
+	print(window.name, " is CLEAN!")
 	
 	# Bring in a new window for the cycle
 	var new_window_found = false
@@ -167,10 +185,9 @@ func _on_window_cleaned(window: Node3D):
 			break
 			
 	if not new_window_found and active_windows.is_empty():
-		print("LEVEL CLEARED! 🍾")
+		print("LEVEL CLEARED!")
 
 func _on_monster_spotted(window: Node3D):
-	print(window.name, " MONSTER SPOTTED! Prepare tranquilizer. ⚠️")
 	
 	var monster_scene = preload("res://scenes/levels/wash_windows/monster.tscn")
 	var monster = monster_scene.instantiate()
@@ -183,13 +200,12 @@ func _on_monster_spotted(window: Node3D):
 	monster.attack_player.connect(_on_monster_attacks.bind(window))
 
 func _on_monster_attacks(window: Node3D):
-	print("PLAYER HIT! Damage Dealt. 💥")
+	print("MONSTER HIT!")
 	(window as Game_Window).close_shutters()
 
 func _on_window_broken(window: Node3D):
-	print(window.name, " BROKEN! A Large Amount of Money Has Been Deducted. - 💸")
+	print(window.name, " BROKEN! A Large Amount of Money Has Been Deducted.")
 	
 	# Treat as finished to stop it from being recycled
 	(window as Game_Window).is_clean = true
 	active_windows.erase(window)
-	

@@ -8,7 +8,6 @@ extends Node3D
 @export var open_x_left: float = -1.5
 @export var open_x_right: float = 1.5
 
-
 @onready var collider: Area3D = $Collider
 @onready var meter_bar: MeshInstance3D = $Meter_Root/Meter_Bar
 @onready var dirt_particles: MeshInstance3D = $Dirt_Particles
