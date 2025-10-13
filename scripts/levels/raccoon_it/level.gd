@@ -218,7 +218,10 @@ func enter_comp_view () -> void :
 	# check for piece being held 
 	if selected_index != -1 :  # if piece is being held 
 		# add into tree and set up in tree 
-		var type = player.get_hand_object().type # assumes hand object is component
+		var piece = player.get_hand_object() # assumes hand object is component
+		var type = Piece.EMPTY
+		if piece != null : 
+			type = piece.type
 		supercomputer.set_hover(hover_index, type)
 		var old_piece = player.remove_hand_object() # remove right hand piece after placing into hover 
 		old_piece.queue_free()

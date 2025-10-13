@@ -10,7 +10,7 @@ void vertex() {
 void fragment() {
 	// At runtime, INSTANCE_CUSTOM.x is valid
     float cut_height = INSTANCE_CUSTOM.x;
-	
+
     ALBEDO = grass_color.rgb;
 }
 
