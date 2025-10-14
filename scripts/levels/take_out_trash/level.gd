@@ -3,7 +3,7 @@ extends Node3D
 #assign catapult for the level so we can use this reference
 @export var catapult: Node3D
 @export var base_trash_launch_strength: Vector2 = Vector2(30,5)
-#speed increase on binned trash
+#trash bin movement speed increase on binned trash
 @export var bin_speed_increase: float = 0.2
 
 #holds the trash that is in the catapult
@@ -45,6 +45,7 @@ func trash_collided(hit_bin: bool):
 	if hit_bin:
 		print("hit")
 		binned_counter += 1
+		#bins start moving when 4 trash is binned
 		if binned_counter >= 4:
 			$AnimationPlayer.play("slide_bins")
 			$AnimationPlayer.speed_scale += bin_speed_increase

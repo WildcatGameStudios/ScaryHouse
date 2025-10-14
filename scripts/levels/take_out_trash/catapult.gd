@@ -25,7 +25,7 @@ signal throw_trash(time_held: float)
 func handle_inputs(delta: float):
 	#melee button enters interaction mode if near catapult
 	#exits if in interaction mode
-	if Input.is_action_just_pressed("melee"):
+	if Input.is_action_just_pressed("e"):
 		if interaction_mode:
 			interaction_mode = false
 			player_head.position = saved_head_position
