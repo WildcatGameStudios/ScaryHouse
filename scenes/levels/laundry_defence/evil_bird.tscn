@@ -1,30 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcew3ouivmecn"]
+[gd_scene load_steps=4 format=3 uid="uid://dcew3ouivmecn"]
 
 [ext_resource type="Material" uid="uid://bgwwd0flxk7qy" path="res://art/materials/testing/black.tres" id="1_5w5kp"]
+[ext_resource type="Script" uid="uid://bntly360q65hh" path="res://scripts/levels/laundry_defence/evil_bird.gd" id="1_wim3q"]
 
-[node name="EvilBird" type="Node3D"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_wim3q"]
 
-[node name="body" type="CSGSphere3D" parent="."]
+[node name="EvilBird" type="RigidBody3D"]
+freeze = true
+script = ExtResource("1_wim3q")
+
+[node name="feet" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.935663, 0)
+
+[node name="collider" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_wim3q")
+
+[node name="grab_timer" type="Timer" parent="."]
+
+[node name="takeoff_timer" type="Timer" parent="."]
+
+[node name="despawn_timer" type="Timer" parent="."]
+
+[node name="mesh" type="CSGCombiner3D" parent="."]
+
+[node name="body" type="CSGSphere3D" parent="mesh"]
 transform = Transform3D(1, 0, 0, 0, 2, 0, 0, 0, 1, 0, 0, 0)
 rings = 12
 material = ExtResource("1_5w5kp")
 
-[node name="wing_L" type="CSGSphere3D" parent="."]
+[node name="wing_L" type="CSGSphere3D" parent="mesh"]
 transform = Transform3D(0.490478, 1.74291, 0, -0.871454, 0.980956, 0, 0, 0, 0.57, 0.950224, 0.693245, 0)
 rings = 12
 material = ExtResource("1_5w5kp")
 
-[node name="wing_L2" type="CSGSphere3D" parent="."]
+[node name="wing_L2" type="CSGSphere3D" parent="mesh"]
 transform = Transform3D(-0.490904, -1.74243, -4.9831e-08, -0.871214, 0.981808, 0, 4.29162e-08, 1.52328e-07, -0.57, -0.95, 0.693, 0)
 rings = 12
 material = ExtResource("1_5w5kp")
 
-[node name="head" type="CSGSphere3D" parent="."]
+[node name="head" type="CSGSphere3D" parent="mesh"]
 transform = Transform3D(0.59, 0, 0, 0, -0.677545, -0.483046, 0, 0.966091, -0.338773, 0, 1.36202, 0.53529)
 rings = 12
 material = ExtResource("1_5w5kp")
 
-[node name="neck" type="CSGSphere3D" parent="."]
+[node name="neck" type="CSGSphere3D" parent="mesh"]
 transform = Transform3D(0.59, 0, 0, 0, -1.1799, 0.00782579, 0, -0.0156516, -0.589948, 0, 1.136, 0.0892152)
 rings = 12
 material = ExtResource("1_5w5kp")
+
+[connection signal="timeout" from="grab_timer" to="." method="_on_grab_timer_timeout"]
+[connection signal="timeout" from="takeoff_timer" to="." method="_on_takeoff_timer_timeout"]
+[connection signal="timeout" from="despawn_timer" to="." method="_on_despawn_timer_timeout"]
