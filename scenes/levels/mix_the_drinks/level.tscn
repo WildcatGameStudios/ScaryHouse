@@ -1,10 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://cdleffrmyexy3"]
+[gd_scene load_steps=19 format=3 uid="uid://cdleffrmyexy3"]
 
 [ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_7ujf3"]
+[ext_resource type="Script" uid="uid://b8csw788ynekc" path="res://scripts/levels/mix_the_drinks/level.gd" id="1_eohhe"]
 [ext_resource type="Material" uid="uid://y7a2l32bbdfj" path="res://art/materials/testing/red.tres" id="1_luuw4"]
 [ext_resource type="PackedScene" uid="uid://bswtglpfw3c7" path="res://scenes/levels/mix_the_drinks/ingredients.tscn" id="2_0644w"]
 [ext_resource type="Material" uid="uid://djd2faaq4ltra" path="res://art/materials/testing/pale.tres" id="2_wjvjx"]
 [ext_resource type="Material" uid="uid://bpxiy7koaf8n8" path="res://art/materials/testing/brown.tres" id="4_wjvjx"]
+[ext_resource type="PackedScene" uid="uid://cxnx5dunqvg7q" path="res://scenes/levels/mix_the_drinks/bottle.tscn" id="7_grb2o"]
+[ext_resource type="PackedScene" uid="uid://hghlf0v8h3rn" path="res://scenes/levels/mix_the_drinks/fridge.tscn" id="8_kg4kx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1o1lg"]
 material = ExtResource("1_luuw4")
@@ -29,14 +32,10 @@ albedo_color = Color(1, 1, 0.113725, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lhhpr"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wnpfq"]
-albedo_color = Color(0.946816, 0.85496, 0.515371, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wfk2x"]
-
 [sub_resource type="Environment" id="Environment_7ujf3"]
 
 [node name="MixTheDrinks" type="Node3D" groups=["world"]]
+script = ExtResource("1_eohhe")
 
 [node name="HouseGrey" type="Node3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, 0.2, 0, 0, 0, 0.7, 0, 0, 0)
@@ -159,10 +158,10 @@ skeleton = NodePath("../MeshInstance3D")
 shape = SubResource("BoxShape3D_vonw3")
 
 [node name="player" parent="StartPos" instance=ExtResource("1_7ujf3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.4287, 3.31956, 45.7906)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 55.4287, 1.18869, 45.7906)
 
 [node name="BarGrey" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, -12.9204, 0, -2.14116)
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, -14.7205, -0.308806, 5.96459)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="BarGrey"]
 transform = Transform3D(5, 0, 0, 0, 3, 0, 0, 0, 10, 40.6588, 1.53678, 6.83227)
@@ -192,7 +191,7 @@ mesh = SubResource("BoxMesh_xu0r3")
 shape = SubResource("BoxShape3D_vonw3")
 
 [node name="RecipeBook" type="MeshInstance3D" parent="BarGrey"]
-transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 2, 38.8529, 3.28939, 2.93206)
+transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 2, 42.1445, 3.28678, 11.3807)
 material_override = SubResource("StandardMaterial3D_lhhpr")
 mesh = SubResource("BoxMesh_xu0r3")
 
@@ -234,16 +233,51 @@ mesh = SubResource("BoxMesh_lhhpr")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BarGrey/Stools/MeshInstance3D3/StaticBody3D"]
 shape = SubResource("BoxShape3D_vonw3")
 
-[node name="Bottle" type="Node3D" parent="BarGrey"]
+[node name="Ingredients" type="Node3D" parent="BarGrey"]
+transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 0.5, 42.7487, 3.53678, 1.45668)
 
-[node name="Bottle (Mix Mechanic)" type="MeshInstance3D" parent="BarGrey/Bottle"]
-transform = Transform3D(1.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 43.5612, 1.23913, 11.2045)
-material_override = SubResource("StandardMaterial3D_wnpfq")
-mesh = SubResource("BoxMesh_xu0r3")
-surface_material_override/0 = SubResource("StandardMaterial3D_wfk2x")
+[node name="blueberry_brew" parent="BarGrey/Ingredients" instance=ExtResource("2_0644w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+type = 1
 
-[node name="Ingredients" parent="BarGrey" instance=ExtResource("2_0644w")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42.6552, 1.03652, 1.26463)
+[node name="candy_corn_crush" parent="BarGrey/Ingredients" instance=ExtResource("2_0644w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
+type = 2
+
+[node name="creepy_caramel" parent="BarGrey/Ingredients" instance=ExtResource("2_0644w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4.5)
+type = 3
+
+[node name="ghoulish_ginger" parent="BarGrey/Ingredients" instance=ExtResource("2_0644w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
+type = 4
+
+[node name="moon_melon" parent="BarGrey/Ingredients" instance=ExtResource("2_0644w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 7.5)
+type = 5
+
+[node name="phantom_peach" parent="BarGrey/Ingredients" instance=ExtResource("2_0644w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 9)
+type = 6
+
+[node name="pumpkin_pulp" parent="BarGrey/Ingredients" instance=ExtResource("2_0644w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.5)
+type = 7
+
+[node name="twilight_tonic" parent="BarGrey/Ingredients" instance=ExtResource("2_0644w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+type = 8
+
+[node name="vampiric_vanilla" parent="BarGrey/Ingredients" instance=ExtResource("2_0644w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 13.5)
+type = 9
+
+[node name="wretched_whipped" parent="BarGrey/Ingredients" instance=ExtResource("2_0644w")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 15)
+type = 10
+
+[node name="Bottle" parent="BarGrey" instance=ExtResource("7_grb2o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43, 3.78678, 10)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7ujf3")
@@ -252,3 +286,6 @@ environment = SubResource("Environment_7ujf3")
 transform = Transform3D(1, 0, 0, 0, 0.00710346, 0.999975, 0, -0.999975, 0.00710346, 0, 46, 0)
 light_color = Color(0.917647, 1, 1, 1)
 light_energy = 0.923
+
+[node name="Fridge" parent="." instance=ExtResource("8_kg4kx")]
+transform = Transform3D(-8.74228e-08, 0, 1, 0, 4, 0, -2, 0, -4.37114e-08, 31.6135, 2.00466, 19.725)

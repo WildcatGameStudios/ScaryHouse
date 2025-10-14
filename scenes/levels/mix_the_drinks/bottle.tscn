@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://cxnx5dunqvg7q"]
+
+[ext_resource type="Script" uid="uid://bci76hjkha41e" path="res://scripts/levels/mix_the_drinks/bottle_mixer.gd" id="1_20hk0"]
+[ext_resource type="Material" uid="uid://bpxiy7koaf8n8" path="res://art/materials/testing/brown.tres" id="1_88rfo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_20hk0"]
+albedo_color = Color(0.946816, 0.85496, 0.515371, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_brobn"]
+material = ExtResource("1_88rfo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m3nbm"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3fw7m"]
+
+[node name="Bottle" type="Node3D"]
+script = ExtResource("1_20hk0")
+
+[node name="Bottle (Mix Mechanic)" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 1.5, 0, 0, 0, 0.4, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_20hk0")
+mesh = SubResource("BoxMesh_brobn")
+surface_material_override/0 = SubResource("StandardMaterial3D_m3nbm")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Bottle (Mix Mechanic)"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bottle (Mix Mechanic)/StaticBody3D"]
+shape = SubResource("BoxShape3D_3fw7m")
