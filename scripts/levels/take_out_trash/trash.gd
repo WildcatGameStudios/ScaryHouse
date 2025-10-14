@@ -25,6 +25,8 @@ func in_trash(area: Area3D):
 		gravity = Vector3.ZERO
 		velocity = Vector3(0,30,0)
 		$HitBinParticles.emitting = true
+		$CollisionShape3D.disabled = true
+		$Area3D/CollisionShape3D.disabled = true
 		await get_tree().create_timer(1.5).timeout
 		self.queue_free()
 
@@ -37,6 +39,7 @@ func _physics_process(delta: float) -> void:
 		collided.emit(false)
 		$HitWallParticles.emitting = true
 		$CollisionShape3D.disabled = true
+		$Area3D/CollisionShape3D.disabled = true
 		$MeshInstance3D.visible = false
 		await get_tree().create_timer(0.5).timeout
 		self.queue_free()

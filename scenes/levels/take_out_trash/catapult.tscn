@@ -22,14 +22,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 size = Vector3(1, 0.5, 2)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.996029, -0.0394417, -0.0798084, -0.00888057, 0.848001, -0.529919, 0.0885786, 0.528524, 0.844284, -0.0271038, 1.72433, -1.05102)
+transform = Transform3D(0.999945, 0.0104718, 0, -0.00888057, 0.848001, -0.529919, -0.0055492, 0.52989, 0.848048, -0.0271038, 1.72433, -1.05102)
 size = Vector3(0.25, 0.25, 2.31982)
 
 [node name="shot_thing" type="CSGCombiner3D" parent="CSGCombiner3D/CSGBox3D"]
-transform = Transform3D(0.99602, -0.00837622, 0.0887432, -0.0399248, 0.848206, 0.52816, -0.0796966, -0.5296, 0.844496, 0.135238, -0.905422, 1.80365)
+transform = Transform3D(0.996021, -0.00832713, 0.0887418, -0.0399921, 0.848029, 0.528439, -0.079656, -0.529884, 0.844322, 0.135238, -0.905422, 1.80365)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="CSGCombiner3D/CSGBox3D/shot_thing"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81799, -2.81325)
+transform = Transform3D(1, -2.77396e-11, 0, 6.82121e-12, 1, -7.27596e-12, 7.45058e-09, 0, 1, 0.14164, 2.81807, -2.79984)
 radius = 1.0
 rings = 12
 
@@ -37,7 +37,7 @@ rings = 12
 operation = 2
 
 [node name="CSGSphere3D2" type="CSGSphere3D" parent="CSGCombiner3D/CSGBox3D/shot_thing/subtractor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.82393, -2.81325)
+transform = Transform3D(1, -2.77396e-11, 0, 6.82121e-12, 1, -7.27596e-12, 7.45058e-09, 0, 1, 0.14164, 2.82401, -2.79984)
 radius = 1.0
 rings = 12
 

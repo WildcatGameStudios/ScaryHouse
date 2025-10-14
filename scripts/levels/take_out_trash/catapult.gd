@@ -30,11 +30,13 @@ func handle_inputs(delta: float):
 			interaction_mode = false
 			player_head.position = saved_head_position
 			player_instance.can_walk = true
+			player_instance.visible = true
 		elif player_in_area:
 			interaction_mode = true
 			saved_head_position = player_head.position
 			player_head.global_position = $InteractionCamera.position
 			player_instance.can_walk = false
+			player_instance.visible = false
 	
 	#stop reading inputs if not in interaction mode
 	if !interaction_mode:
