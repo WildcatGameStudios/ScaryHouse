@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8yil7qtsjgsn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yle4j"]
+albedo_color = Color(0.450648, 0.450648, 0.450648, 1)
+metallic = 0.23
+
+[node name="sink" type="Node3D"]
+
+[node name="mesh" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="body" type="CSGBox3D" parent="mesh"]
+size = Vector3(1.5, 1.5, 3.8)
+material = SubResource("StandardMaterial3D_yle4j")
+
+[node name="sink_cutout" type="CSGCombiner3D" parent="mesh"]
+operation = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="mesh/sink_cutout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0.9)
+size = Vector3(1.2, 1, 1.6)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="mesh/sink_cutout"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, -0.9)
+size = Vector3(1.2, 1, 1.6)

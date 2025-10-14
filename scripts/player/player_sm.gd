@@ -54,7 +54,7 @@ func _process(delta: float) -> void:
 	toggle_state("Run", parent.can_run)
 	toggle_state("Jump", parent.can_jump)
 	toggle_state("Crouch", parent.can_crouch)
-	toggle_state("dash", parent.can_dash)
+	toggle_state("Dash", parent.can_dash)
 	
 	update_state()
 	dt = delta

@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://butwtcp4xp2ck"]
+
+[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_4r2sj"]
+[ext_resource type="Script" uid="uid://bh1qpqn7vsac2" path="res://scripts/levels/wash_the_dishes/level.gd" id="1_a0o8y"]
+[ext_resource type="PackedScene" uid="uid://c8yil7qtsjgsn" path="res://scenes/levels/wash_the_dishes/sink.tscn" id="2_pm16b"]
+[ext_resource type="PackedScene" uid="uid://cbt6y5ijj0mo2" path="res://scenes/levels/wash_the_dishes/plate.tscn" id="4_p3o5g"]
+[ext_resource type="PackedScene" uid="uid://ml1i1p2jlshg" path="res://scenes/levels/wash_the_dishes/bowl.tscn" id="5_nw4vg"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4r2sj"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_hnxtj"]
+sky_material = SubResource("ProceduralSkyMaterial_4r2sj")
+
+[sub_resource type="Environment" id="Environment_pm16b"]
+background_mode = 2
+sky = SubResource("Sky_hnxtj")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4r2sj"]
+albedo_color = Color(0.412152, 0.412152, 0.412152, 1)
+
+[node name="level" type="Node3D" groups=["world"]]
+script = ExtResource("1_a0o8y")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0.254559, -0.402276, 0.0306129)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pm16b")
+
+[node name="room" type="CSGCombiner3D" parent="."]
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -7)
+size = Vector3(13, 8, 1)
+material = SubResource("StandardMaterial3D_4r2sj")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="room"]
+size = Vector3(13, 1, 13)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 7)
+size = Vector3(13, 8, 1)
+material = SubResource("StandardMaterial3D_4r2sj")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 4, 0)
+size = Vector3(1, 8, 13)
+material = SubResource("StandardMaterial3D_4r2sj")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 4, 0)
+size = Vector3(1, 8, 13)
+material = SubResource("StandardMaterial3D_4r2sj")
+
+[node name="player" parent="." instance=ExtResource("1_4r2sj")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -5.86159, 2.20221, -1.42015)
+
+[node name="sink" parent="." instance=ExtResource("2_pm16b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 0.9, 0)
+
+[node name="dishes" type="Node3D" parent="."]
+
+[node name="plate" parent="dishes" instance=ExtResource("4_p3o5g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.54649, 1.69842, 0.969172)
+
+[node name="plate2" parent="dishes" instance=ExtResource("4_p3o5g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.05118, 2.58088, 0.95395)
+
+[node name="bowl" parent="dishes" instance=ExtResource("5_nw4vg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 4, 1)
