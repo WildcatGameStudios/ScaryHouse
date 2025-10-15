@@ -1,44 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://bswtglpfw3c7"]
+[gd_scene load_steps=5 format=3 uid="uid://bswtglpfw3c7"]
 
-[ext_resource type="PackedScene" uid="uid://jdj706nxdxol" path="res://scenes/levels/mix_the_drinks/Ingredients/pumpkin_pulp.tscn" id="1_uvdnp"]
-[ext_resource type="PackedScene" uid="uid://c8x5smedm73p5" path="res://scenes/levels/mix_the_drinks/Ingredients/ghoulish_ginger_fizz.tscn" id="2_iejux"]
-[ext_resource type="PackedScene" uid="uid://pp0xd6mhesv3" path="res://scenes/levels/mix_the_drinks/Ingredients/phantom_peach.tscn" id="3_0vtnd"]
-[ext_resource type="PackedScene" uid="uid://hbtphrhqsbib" path="res://scenes/levels/mix_the_drinks/Ingredients/candy_corn_crush.tscn" id="4_dqses"]
-[ext_resource type="PackedScene" uid="uid://ckkbdktq1mh41" path="res://scenes/levels/mix_the_drinks/Ingredients/moon_melon_mist.tscn" id="5_a4ik0"]
-[ext_resource type="PackedScene" uid="uid://cf4af80tx5bqt" path="res://scenes/levels/mix_the_drinks/Ingredients/vampiric_vanilla.tscn" id="6_1ci4k"]
-[ext_resource type="PackedScene" uid="uid://cbcqgy2b6frje" path="res://scenes/levels/mix_the_drinks/Ingredients/blueberry_brew.tscn" id="7_sxhun"]
-[ext_resource type="PackedScene" uid="uid://bdwhepvmx2h7e" path="res://scenes/levels/mix_the_drinks/Ingredients/creepy_caramel.tscn" id="8_lh8ws"]
-[ext_resource type="PackedScene" uid="uid://dhmm4xmx4mscc" path="res://scenes/levels/mix_the_drinks/Ingredients/wretched_whipped_cream.tscn" id="9_futch"]
-[ext_resource type="PackedScene" uid="uid://y6i2b0gnouth" path="res://scenes/levels/mix_the_drinks/Ingredients/twilight_tonic.tscn" id="10_wnp28"]
+[ext_resource type="Script" uid="uid://ckx1up82m60iw" path="res://scripts/levels/mix_the_drinks/ingredients.gd" id="1_s5ej7"]
 
-[node name="Ingredients" type="Node3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5ej7"]
 
-[node name="Pumpkin Pulp" parent="." instance=ExtResource("1_uvdnp")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.324, 10)
+[sub_resource type="BoxMesh" id="BoxMesh_nappx"]
+material = SubResource("StandardMaterial3D_s5ej7")
 
-[node name="Ghoulish Ginger Fizz" parent="." instance=ExtResource("2_iejux")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.324, 9)
+[sub_resource type="BoxShape3D" id="BoxShape3D_s5ej7"]
 
-[node name="Phantom Peach" parent="." instance=ExtResource("3_0vtnd")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.324, 8)
+[node name="Ingredient" type="Node3D"]
+script = ExtResource("1_s5ej7")
 
-[node name="Candy Corn Crush" parent="." instance=ExtResource("4_dqses")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.324, 7)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_nappx")
 
-[node name="Moon Melon Mist" parent="." instance=ExtResource("5_a4ik0")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.324, 6)
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
 
-[node name="Vampiric Vanilla" parent="." instance=ExtResource("6_1ci4k")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.324, 5)
-
-[node name="Blueberry Brew" parent="." instance=ExtResource("7_sxhun")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.324, 4)
-
-[node name="Creepy Caramel" parent="." instance=ExtResource("8_lh8ws")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.324, 3)
-
-[node name="Wretched Whipped Cream" parent="." instance=ExtResource("9_futch")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.324, 2)
-
-[node name="Twilight Tonic" parent="." instance=ExtResource("10_wnp28")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 2.324, 1)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("BoxShape3D_s5ej7")

@@ -56,7 +56,7 @@ class_name player
 @onready var head: Node3D = $head
 @onready var psm: Node = $PSM
 @onready var right_hand: Marker3D = $head/right_hand
-@onready var left_hand: Marker3D = $head/eft_hand
+@onready var left_hand: Marker3D = $head/left_hand_objecteft_hand
 @onready var camera_3d: Camera3D = $head/Camera3D
 
 
