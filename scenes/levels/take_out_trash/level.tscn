@@ -171,6 +171,7 @@ _data = {
 [node name="Level" type="Node3D" node_paths=PackedStringArray("catapult") groups=["world"]]
 script = ExtResource("1_n8jg4")
 catapult = NodePath("Catapult")
+total_trash = 15
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pk70s")
@@ -251,6 +252,7 @@ libraries = {
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.23861, -3.2053)
 
 [node name="TrashCooldown" type="Timer" parent="."]
+one_shot = true
 autostart = true
 
 [connection signal="timeout" from="TrashCooldown" to="." method="_on_trash_cooldown_timeout"]
