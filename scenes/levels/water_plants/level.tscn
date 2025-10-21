@@ -128,12 +128,15 @@ material = SubResource("StandardMaterial3D_aswn4")
 [node name="player" parent="." instance=ExtResource("2_1enwu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46559, 3.95678)
 
-[node name="RayCast3D" type="RayCast3D" parent="player/head/Camera3D" index="0"]
+[node name="RayCast3D2" type="RayCast3D" parent="player/head/Camera3D" index="0"]
 target_position = Vector3(0, 0, -3)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="player/head/Camera3D" index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 radius = 0.01
+
+[node name="holding" type="Node3D" parent="player/head" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.67, -0.476, -1.032)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 2.5)

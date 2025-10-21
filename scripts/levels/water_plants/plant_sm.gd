@@ -33,16 +33,16 @@ func state_logic(delta) :
 func get_transition(delta):
 	match state:
 		"inactive":
-			if parent.activate_timer <= 0:
+			if parent.activate_timer <= 0: # activate
 				set_state("active")
 		"active":
-			if parent.dying_rolls_timer <= 0:	
+			if parent.dying_rolls_timer <= 0: # roll rand to see if plant should start dying
 				if randf() < parent.start_dying_chance:
 					set_state("dying")
 				else:
 					parent.dying_rolls_timer = parent.time_between_dying_rolls
 		"dying":
-			if parent.needs == []:
+			if parent.needs == []: # needs fulfilled
 				set_state("active")
 	
 func enter_state(new_state, old_state) :
