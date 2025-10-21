@@ -16,10 +16,10 @@ func _ready() -> void:
 	orig_run_speed = player.run_speed
 
 func _process(delta: float) -> void:
-	if finish_timer <= 0 and not finished:
-		plants.queue_free()
-		finished = true
-	elif not finished:
+	if not finished:
+		if finish_timer <= 0:
+			plants.queue_free()
+			finished = true
 		finish_timer -= delta
 		if Input.is_action_just_pressed("e"):
 			var collider = ray_cast_3d.get_collider()

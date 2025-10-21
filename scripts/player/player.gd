@@ -29,8 +29,8 @@ class_name player
 @export_category("Movement")
 
 @export_group("Horizontal Movement Variables")
-@export var walk_speed: int = 8
-@export var run_speed: int = 20
+@export var walk_speed: float = 3
+@export var run_speed: float = 20
 @export var crouch_speed: int = 2
 
 @export_group("Jump Variables")
