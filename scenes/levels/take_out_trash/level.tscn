@@ -171,7 +171,7 @@ _data = {
 [node name="Level" type="Node3D" node_paths=PackedStringArray("catapult") groups=["world"]]
 script = ExtResource("1_n8jg4")
 catapult = NodePath("Catapult")
-total_trash = 15
+bin_speed_increase = 0.4
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pk70s")

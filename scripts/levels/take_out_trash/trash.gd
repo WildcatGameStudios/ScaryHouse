@@ -9,6 +9,8 @@ signal collided(in_bin: bool)
 @export var gravity_strength: float = 9
 
 var gravity: Vector3 = Vector3(0,-gravity_strength,0)
+var launched: bool = false
+var rotations: Array[float] = [0,0,0]
 
 #do stuff when it goes in the trash
 func in_trash(area: Area3D):
@@ -30,8 +32,28 @@ func in_trash(area: Area3D):
 		await get_tree().create_timer(1.5).timeout
 		self.queue_free()
 
+func randomize_rotations():
+	#randomizes rotation on three axes
+	for i in range(3):
+		var this_rotation: float
+		this_rotation = randi() % 100
+		this_rotation /= 1000
+		rotations[i] = this_rotation
+
+func rotate_trash():
+	#rotates trash based on values in rotations array
+	for i in range(3):
+		match i:
+			0:
+				rotate(Vector3(1,0,0),rotations[i])
+			1:
+				rotate(Vector3(0,1,0),rotations[i])
+			2:
+				rotate(Vector3(0,0,1),rotations[i])
+
 func _ready() -> void:
 	$Area3D.area_entered.connect(in_trash)
+	randomize_rotations()
 
 func _physics_process(delta: float) -> void:
 	#when colliding and not hitting a bin
@@ -44,3 +66,5 @@ func _physics_process(delta: float) -> void:
 		await get_tree().create_timer(0.5).timeout
 		self.queue_free()
 	velocity += gravity * delta
+	if launched:
+		rotate_trash()

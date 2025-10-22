@@ -5,7 +5,8 @@ extends Node3D
 @export var base_trash_launch_strength: Vector2 = Vector2(30,5)
 #trash bin movement speed increase on binned trash
 @export var bin_speed_increase: float = 0.2
-@export var total_trash: int
+@export var total_trash: int = 15
+@export var move_bins_threshold: int = 3
 
 #holds the trash that is in the catapult
 var current_trash: Node3D
@@ -13,6 +14,8 @@ var current_trash: Node3D
 var thrown_counter: int = 0
 #number of bags binned
 var binned_counter: float = 0
+#order of trash/recycling, shuffled in ready and referenced when loading trash
+var trash_list: Array[bool]
 
 func launch_trash(throw_strength: float):
 	#exit if no trash to launch
@@ -21,6 +24,7 @@ func launch_trash(throw_strength: float):
 	
 	#add velocity rotated to catapult arm rotation
 	current_trash.velocity = throw_strength * Vector3(base_trash_launch_strength.x,base_trash_launch_strength.y,0).rotated(Vector3(0,1,0),catapult.catapult_arm.rotation.y-PI/2)
+	current_trash.launched = true
 	#empty current trash because it's not longer in the catapult
 	current_trash = null
 	thrown_counter += 1
@@ -32,13 +36,11 @@ func load_trash():
 	if current_trash != null:
 		return
 	
-	#choose random number for trash type
-	var trash_type = randi() % 2
 	var trash: Node3D
-	if trash_type == 0:
+	if trash_list[thrown_counter] == true:
 		#trash scene
 		trash = load("uid://dyrpy368isbe3").instantiate()
-	if trash_type == 1:
+	if trash_list[thrown_counter] == false:
 		#recycle scene
 		trash = load("uid://0eekxcndxw8o").instantiate()
 	
@@ -46,17 +48,26 @@ func load_trash():
 	current_trash = trash
 	trash.collided.connect(trash_collided)
 
+func randomize_trash_order():
+	#alternates between true/false and shuffles for even, random distribution
+	var is_trash_bag: bool = true
+	for i in range(total_trash):
+		trash_list.append(is_trash_bag)
+		is_trash_bag = !is_trash_bag
+	
+	trash_list.shuffle()
+
 #do stuff when trash collides (hit a bin or a wall)
 func trash_collided(hit_bin: bool):
 	if hit_bin:
 		print("hit")
 		binned_counter += 1
-		#bins start moving when 3 trash is binned
-		if binned_counter >= 3:
-			$AnimationPlayer.play("slide_bins")
-			$AnimationPlayer.speed_scale += bin_speed_increase
+		$AnimationPlayer.speed_scale += bin_speed_increase
 	else:
 		print("no hit")
+	#bins start moving when some trash is binned
+	if thrown_counter >= move_bins_threshold:
+		$AnimationPlayer.play("slide_bins")
 
 func evalutate_score() -> float:
 	var score = 100 * (binned_counter / total_trash)
@@ -64,6 +75,7 @@ func evalutate_score() -> float:
 
 func _ready() -> void:
 	catapult.throw_trash.connect(launch_trash)
+	randomize_trash_order()
 
 func _physics_process(delta: float) -> void:
 	#position current trash in catapult bowl
@@ -71,7 +83,6 @@ func _physics_process(delta: float) -> void:
 		current_trash.global_position = catapult.catapult_bowl.global_position + Vector3(0,3,0)
 		#remove velocity from gravity
 		current_trash.velocity = Vector3.ZERO
-	print(evalutate_score())
 
 #replace trash after launch and short cooldown
 func _on_trash_cooldown_timeout() -> void:
