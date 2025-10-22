@@ -1,11 +1,151 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1hp25hiol51q"]
+[gd_scene load_steps=10 format=3 uid="uid://b1hp25hiol51q"]
+
+[ext_resource type="Script" uid="uid://bnbvax55q672r" path="res://scripts/levels/cut_grass/scarecrow.gd" id="1_olyay"]
+
+[sub_resource type="FogMaterial" id="FogMaterial_olyay"]
+density = 1.031
+albedo = Color(0.954532, 0.95388, 0.950929, 1)
+emission = Color(0.571627, 0.458078, 0.853183, 1)
+height_falloff = 0.655361
+edge_fade = 0.0535889
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v7ho2"]
-albedo_color = Color(0.75, 0.58225, 0.2925, 1)
+albedo_color = Color(0.74902, 0.580392, 0.294118, 1)
+emission = Color(0.669372, 0.50435, 1, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="Animation" id="Animation_hxi85"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FogVolume:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.5, 2, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player_detect/CollisionShape3D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(2, 2, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_olyay"]
+resource_name = "activate"
+length = 7.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FogVolume:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(2, 2, 0.2), Vector3(10, 10, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player_detect/CollisionShape3D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(2, 2, 2), Vector3(10, 5, 10)]
+}
+
+[sub_resource type="Animation" id="Animation_pqvj2"]
+resource_name = "deactivate"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FogVolume:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(10, 10, 5), Vector3(2, 2, 0.2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("player_detect/CollisionShape3D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(10, 5, 10), Vector3(2, 0.2, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pqvj2"]
+_data = {
+&"RESET": SubResource("Animation_hxi85"),
+&"activate": SubResource("Animation_olyay"),
+&"deactivate": SubResource("Animation_pqvj2")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_olyay"]
+size = Vector3(1, 1.8, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hxi85"]
+size = Vector3(2, 2, 2)
 
 [node name="Scarecrow" type="Node3D"]
+script = ExtResource("1_olyay")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+size = Vector3(1.5, 2, 0.2)
+material = SubResource("FogMaterial_olyay")
+
+[node name="body" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.401306, 0)
 size = Vector3(1, 1.8, 1)
 material = SubResource("StandardMaterial3D_v7ho2")
+
+[node name="eye_L" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.218, 1.046, -0.456)
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="eye_R" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.217649, 1.04631, -0.45636)
+size = Vector3(0.2, 0.2, 0.2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pqvj2")
+}
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_olyay")
+
+[node name="player_detect" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="player_detect"]
+shape = SubResource("BoxShape3D_hxi85")
+
+[connection signal="body_entered" from="player_detect" to="." method="_on_player_detect_body_entered"]
+[connection signal="body_exited" from="player_detect" to="." method="_on_player_detect_body_exited"]
