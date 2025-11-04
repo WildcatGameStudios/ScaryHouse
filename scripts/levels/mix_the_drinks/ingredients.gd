@@ -1,3 +1,4 @@
+# ingredients.gd
 extends Node3D
 class_name TargetScene
 @onready var mesh_instance: MeshInstance3D = $MeshInstance3D

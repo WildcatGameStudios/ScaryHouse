@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cdleffrmyexy3"]
+[gd_scene load_steps=20 format=3 uid="uid://cdleffrmyexy3"]
 
 [ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_7ujf3"]
 [ext_resource type="Script" uid="uid://b8csw788ynekc" path="res://scripts/levels/mix_the_drinks/level.gd" id="1_eohhe"]
@@ -29,6 +29,8 @@ material = ExtResource("4_wjvjx")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lhhpr"]
 albedo_color = Color(1, 1, 0.113725, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kg4kx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lhhpr"]
 
@@ -194,6 +196,15 @@ shape = SubResource("BoxShape3D_vonw3")
 transform = Transform3D(2, 0, 0, 0, 0.5, 0, 0, 0, 2, 42.1445, 3.28678, 11.3807)
 material_override = SubResource("StandardMaterial3D_lhhpr")
 mesh = SubResource("BoxMesh_xu0r3")
+
+[node name="book_Camera" type="Camera3D" parent="BarGrey/RecipeBook"]
+transform = Transform3D(-2.18557e-08, -0.496139, 0.0620174, 0, 0.496139, 3.96911, -0.5, 2.16869e-08, -2.71087e-09, 0.110362, 3.63242, 0)
+fov = 110.966
+
+[node name="StaticBody3D" type="StaticBody3D" parent="BarGrey/RecipeBook"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BarGrey/RecipeBook/StaticBody3D"]
+shape = SubResource("BoxShape3D_kg4kx")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="BarGrey"]
 transform = Transform3D(4.5, 0, 0, 0, 2, 0, 0, 0, 10, 40.8788, 7.11861, 6.83227)

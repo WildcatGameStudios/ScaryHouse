@@ -34,12 +34,17 @@ enum ingredient_type {
 var ingredients
 var current_collider: TargetScene = null
 var bottle_mixer  # Reference to the bottle mixer
+var isMixed : bool = false
+
+var recipe_book_camera_active: bool = false
+var original_camera: Camera3D
 
 const INGREDIENTS = preload("res://scenes/levels/mix_the_drinks/ingredients.tscn")
 
 @onready var ingredients_container: Node3D = $BarGrey/Ingredients
 @onready var player: player = $StartPos/player
 @onready var ray_cast: RayCast3D
+@onready var book_Camera: Camera3D = $BarGrey/RecipeBook/book_Camera
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -75,7 +80,7 @@ func get_target_scene_from_collider(collider) -> TargetScene:
 	
 	return null
 
-# NEW FUNCTION: Check if collider is part of the bottle
+# Check if collider is part of the bottle
 func is_bottle_collider(collider) -> bool:
 	# Check if collider is the bottle itself or any of its children
 	var node = collider
@@ -96,8 +101,16 @@ func _process(delta: float) -> void:
 	if ray_cast.is_colliding():
 		var collider = ray_cast.get_collider()
 		
+		# Check if we're looking at the recipe book
+		if is_recipe_book_collider(collider):
+			#print("Looking at recipe book!")
+			
+			if Input.is_action_just_pressed("select"):
+				interact_with_recipe_book()
+				return  # Return early to prevent other interactions
+		
 		# Check if we're looking at the bottle mixer OR any of its children
-		if is_bottle_collider(collider):
+		elif is_bottle_collider(collider):
 			#print("Looking at bottle mixer!")
 			
 			if Input.is_action_just_pressed("select"):
@@ -115,6 +128,10 @@ func _process(delta: float) -> void:
 					pickup_handler(target_scene)
 	else:
 		current_collider = null
+		
+		
+	if recipe_book_camera_active and Input.is_action_just_pressed("ui_cancel"):
+		switch_to_player_camera()
 
 func interact_with_bottle():
 	# Check if player is holding an ingredient using get_hand_object()
@@ -184,19 +201,12 @@ func create_basic_mixed_bottle(drink_type: int):
 	
 func create_mixed_bottle(mix_result: Dictionary):
 	print("Creating successful bottle: ", mix_result.recipe_name)
-	# TODO: Implement mixed bottle creation
-	# const MIXED_BOTTLE = preload("res://path/to/mixed_bottle.tscn")
-	# var mixed_bottle = MIXED_BOTTLE.instantiate()
-	# mixed_bottle.set_drink_properties(mix_result)
-	# player.add_hand_object(mixed_bottle, 1, Vector3(1.0, 1.0, 1.0))
+	isMixed = true
+	
 
 func create_failed_mixture(mix_result: Dictionary):
 	print("Creating failed mixture")
-	# TODO: Implement failed bottle creation
-	# const FAILED_BOTTLE = preload("res://path/to/failed_bottle.tscn")
-	# var failed_bottle = FAILED_BOTTLE.instantiate()
-	# failed_bottle.set_drink_properties(mix_result)
-	# player.add_hand_object(failed_bottle, 1, Vector3(1.0, 1.0, 1.0))
+	
 
 func pickup_handler(collider: TargetScene):
 	var hand_ingredient = player.get_hand_object(1)
@@ -232,3 +242,56 @@ func remove_all_collision(ingredient: TargetScene):
 	var collision_polygons = ingredient.find_children("*", "CollisionPolygon3D", true)
 	for collision_polygon in collision_polygons:
 		collision_polygon.queue_free()
+		
+		
+# ---Recipe Book camera functions:
+# detects recipe book clicks
+func is_recipe_book_collider(collider) -> bool:
+	# checks if collider is the recipe book itself or any of its children
+	var node = collider
+	while node != null:
+		if node.name == "RecipeBook" or node.is_in_group("recipe_book"):
+			return true
+		node = node.get_parent()
+	return false
+
+# handles recipe book interaction
+func interact_with_recipe_book():
+	if recipe_book_camera_active:
+		switch_to_player_camera()
+	else:
+		switch_to_recipe_book_camera()
+
+func switch_to_recipe_book_camera():
+	if book_Camera and player: #both are true when both have paths that arn't null
+		original_camera = player.get_node("head/Camera3D")
+		
+		# disables player camera, enables book camera
+		original_camera.current = false
+		book_Camera.current = true
+		
+		# disables player movement
+		player.can_walk = false
+		player.can_run = false
+		player.can_jump = false
+		player.can_crouch = false
+		player.can_dash = false
+		
+		recipe_book_camera_active = true
+		print("Switched to recipe book camera")
+
+func switch_to_player_camera():
+	if original_camera and book_Camera:
+		# switches back to player camera
+		book_Camera.current = false
+		original_camera.current = true
+		
+		# re-enable player movement
+		player.can_walk = true
+		player.can_run = true
+		player.can_jump = true
+		player.can_crouch = true
+		player.can_dash = true
+		
+		recipe_book_camera_active = false
+		print("Switched back to player camera")
