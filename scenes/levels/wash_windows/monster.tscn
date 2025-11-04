@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://gimwur1l45bs"]
 
-[ext_resource type="Script" uid="uid://dg5dcc111krix" path="res://monster.gd" id="1_17l4i"]
+[ext_resource type="Script" uid="uid://dg5dcc111krix" path="res://scripts/levels/wash_windows/monster.gd" id="1_17l4i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5d0jo"]
 albedo_color = Color(0.955348, 0.102831, 0, 1)
