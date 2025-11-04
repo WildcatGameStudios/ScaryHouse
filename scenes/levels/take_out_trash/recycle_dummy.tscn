@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dccwqtq7kfg26"]
+
+[ext_resource type="Material" uid="uid://duqsxewc3wmum" path="res://art/materials/testing/blue.tres" id="1_aqr0g"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_fbikt"]
+material = ExtResource("1_aqr0g")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_aqr0g"]
+radius = 0.387355
+height = 1.30319
+
+[node name="RecycleDummy" type="RigidBody3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.62, 0, 0, 0, 1.23, 0, 0, 0, 0.75, 0, 0, 0)
+mesh = SubResource("SphereMesh_fbikt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.987299, -0.0668846, 0.144108, 0.0558543, 0.995287, 0.0792768, -0.148732, -0.0702209, 0.986381, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_aqr0g")

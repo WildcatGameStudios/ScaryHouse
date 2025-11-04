@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmqb1kmubkmqg"]
+
+[ext_resource type="Material" uid="uid://bhfo6utyyml6o" path="res://art/materials/testing/grey.tres" id="1_ky4nf"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_bj7um"]
+material = ExtResource("1_ky4nf")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ky4nf"]
+radius = 0.387355
+height = 1.30319
+
+[node name="TrashDummy" type="RigidBody3D"]
+transform = Transform3D(0.993779, 0.0675748, -0.0885292, -0.06025, 0.994731, 0.0829508, 0.0936681, -0.0771009, 0.992614, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.62, 0, 0, 0, 1.23, 0, 0, 0, 0.75, 0, 0, 0)
+mesh = SubResource("SphereMesh_bj7um")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_ky4nf")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://dyrpy368isbe3"]
+[gd_scene load_steps=18 format=3 uid="uid://dyrpy368isbe3"]
 
 [ext_resource type="Script" uid="uid://bn2x5shlvbi63" path="res://scripts/levels/take_out_trash/trash.gd" id="1_75afs"]
 [ext_resource type="Material" uid="uid://bhfo6utyyml6o" path="res://art/materials/testing/grey.tres" id="1_pgho8"]
+[ext_resource type="Curve" uid="uid://bpw0cgi0mijdq" path="res://scenes/levels/take_out_trash/particle_curve.tres" id="3_2ihay"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_75afs"]
 material = ExtResource("1_pgho8")
@@ -9,11 +10,15 @@ material = ExtResource("1_pgho8")
 [sub_resource type="BoxShape3D" id="BoxShape3D_75afs"]
 size = Vector3(0.45, 1, 0.45)
 
+[sub_resource type="CurveTexture" id="CurveTexture_sxy0x"]
+curve = ExtResource("3_2ihay")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_75afs"]
 spread = 180.0
 initial_velocity_min = 10.0
 initial_velocity_max = 15.5
 gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_sxy0x")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ihay"]
 albedo_color = Color(1, 1, 0, 1)
@@ -21,17 +26,36 @@ albedo_color = Color(1, 1, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_75afs"]
 material = SubResource("StandardMaterial3D_2ihay")
 
+[sub_resource type="CurveTexture" id="CurveTexture_2ihay"]
+curve = ExtResource("3_2ihay")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ihay"]
 spread = 180.0
 initial_velocity_min = 25.0
 initial_velocity_max = 30.0
 gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_2ihay")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_75afs"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxy0x"]
 albedo_color = Color(1, 0, 0, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_sxy0x"]
-material = SubResource("StandardMaterial3D_75afs")
+[sub_resource type="BoxMesh" id="BoxMesh_fsjxf"]
+material = SubResource("StandardMaterial3D_sxy0x")
+size = Vector3(0.1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fsjxf"]
+albedo_color = Color(0, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vegx0"]
+material = SubResource("StandardMaterial3D_fsjxf")
+size = Vector3(1, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3p4q"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_52mbj"]
+material = SubResource("StandardMaterial3D_i3p4q")
+size = Vector3(1, 1, 0.1)
 
 [node name="TrashBag" type="CharacterBody3D"]
 script = ExtResource("1_75afs")
@@ -50,14 +74,34 @@ shape = SubResource("BoxShape3D_75afs")
 
 [node name="HitBinParticles" type="GPUParticles3D" parent="."]
 emitting = false
-amount = 20
+amount = 40
+lifetime = 2.0
+one_shot = true
 process_material = SubResource("ParticleProcessMaterial_75afs")
 draw_pass_1 = SubResource("BoxMesh_75afs")
 
-[node name="HitWallParticles" type="GPUParticles3D" parent="."]
+[node name="HitWallParticles" type="Node3D" parent="."]
+
+[node name="Red" type="GPUParticles3D" parent="HitWallParticles"]
 emitting = false
 amount = 50
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_2ihay")
-draw_pass_1 = SubResource("BoxMesh_sxy0x")
+draw_pass_1 = SubResource("BoxMesh_fsjxf")
+
+[node name="Blue" type="GPUParticles3D" parent="HitWallParticles"]
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_2ihay")
+draw_pass_1 = SubResource("BoxMesh_vegx0")
+
+[node name="Yellow" type="GPUParticles3D" parent="HitWallParticles"]
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_2ihay")
+draw_pass_1 = SubResource("BoxMesh_52mbj")
