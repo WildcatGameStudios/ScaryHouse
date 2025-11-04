@@ -172,6 +172,7 @@ _data = {
 script = ExtResource("1_n8jg4")
 catapult = NodePath("Catapult")
 bin_speed_increase = 0.4
+total_trash = 5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pk70s")
@@ -184,12 +185,12 @@ shadow_enabled = true
 use_collision = true
 
 [node name="ground" type="CSGBox3D" parent="main"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -5)
+transform = Transform3D(1.93718, 0, 0, 0, 1, 0, 0, 0, 1, 4.05145, -0.5, -5)
 size = Vector3(10, 1, 30)
 material = ExtResource("1_u2gu7")
 
 [node name="boundry_L" type="CSGBox3D" parent="main"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 5.5, 2.5, -5)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 13.8467, 2.5, -5)
 size = Vector3(5, 1, 30)
 material = ExtResource("1_u2gu7")
 
@@ -199,13 +200,18 @@ size = Vector3(5, 1, 30)
 material = ExtResource("1_u2gu7")
 
 [node name="boundry_back" type="CSGBox3D" parent="main"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 2.5, -12)
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1.89714, 1, -4.37114e-08, 0, 4.37114e-08, 1, -8.29266e-08, 3.88979, 2.5, -12)
 size = Vector3(5, 1, 10)
 material = ExtResource("1_u2gu7")
 
 [node name="boundry_front" type="CSGBox3D" parent="main"]
-transform = Transform3D(1.91069e-15, 4.37114e-08, 1, 1, -4.37114e-08, 0, 4.37114e-08, 1, -4.37114e-08, 0, 0.5, 3)
+transform = Transform3D(1.91069e-15, 4.37114e-08, 1.92089, 1, -4.37114e-08, 0, 4.37114e-08, 1, -8.39646e-08, 4.22505, 0.5, 3)
 size = Vector3(1.5, 1, 10)
+material = ExtResource("1_u2gu7")
+
+[node name="reserve_boundary" type="CSGBox3D" parent="main"]
+transform = Transform3D(-4.37114e-08, -1, 1.71292e-14, 1, -4.37114e-08, 2.39707e-22, 4.02341e-21, 1.06581e-14, 1.54357, 4.29144, 0.5, -4.38398)
+size = Vector3(1.5, 1, 10.0411)
 material = ExtResource("1_u2gu7")
 
 [node name="Catapult" parent="." node_paths=PackedStringArray("player_instance") instance=ExtResource("2_hnof0")]
@@ -242,6 +248,9 @@ transform = Transform3D(1, 0, 0, 0, 0.835673, 0.549227, 0, -0.549227, 0.835673, 
 
 [node name="RecycleBin" parent="." instance=ExtResource("7_n8jg4")]
 transform = Transform3D(1, 0, 0, 0, 0.835673, 0.549227, 0, -0.549227, 0.835673, -30, -59.5579, 150)
+
+[node name="TrashReserve" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.52973, 6.84235, -5.17518)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

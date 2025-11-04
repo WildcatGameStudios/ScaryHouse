@@ -47,6 +47,8 @@ func load_trash():
 	add_child(trash)
 	current_trash = trash
 	trash.collided.connect(trash_collided)
+	
+	$TrashReserve.get_child(0).queue_free()
 
 func randomize_trash_order():
 	#alternates between true/false and shuffles for even, random distribution
@@ -69,6 +71,19 @@ func trash_collided(hit_bin: bool):
 	if thrown_counter >= move_bins_threshold:
 		$AnimationPlayer.play("slide_bins")
 
+func create_trash_reserve():
+	for i in range(total_trash):
+		var trash: Node3D
+		if trash_list[i] == true:
+			#dummy trash scene
+			trash = load("uid://cmqb1kmubkmqg").instantiate()
+		if trash_list[i] == false:
+			#dummy recycle scene
+			trash = load("uid://dccwqtq7kfg26").instantiate()
+		$TrashReserve.add_child(trash)
+		trash.global_position = $TrashReserve.position
+		await get_tree().create_timer(0.2).timeout
+
 func evalutate_score() -> float:
 	var score = 100 * (binned_counter / total_trash)
 	return score
@@ -76,6 +91,7 @@ func evalutate_score() -> float:
 func _ready() -> void:
 	catapult.throw_trash.connect(launch_trash)
 	randomize_trash_order()
+	create_trash_reserve()
 
 func _physics_process(delta: float) -> void:
 	#position current trash in catapult bowl
