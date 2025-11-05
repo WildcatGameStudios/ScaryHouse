@@ -171,8 +171,6 @@ _data = {
 [node name="Level" type="Node3D" node_paths=PackedStringArray("catapult") groups=["world"]]
 script = ExtResource("1_n8jg4")
 catapult = NodePath("Catapult")
-bin_speed_increase = 0.4
-total_trash = 5
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_pk70s")
@@ -251,6 +249,38 @@ transform = Transform3D(1, 0, 0, 0, 0.835673, 0.549227, 0, -0.549227, 0.835673, 
 
 [node name="TrashReserve" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.52973, 6.84235, -5.17518)
+
+[node name="Trajectory" type="Node3D" parent="."]
+
+[node name="Trail" type="CSGBox3D" parent="Trajectory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.09671, 3.46617, 3.38452)
+
+[node name="Trail2" type="CSGBox3D" parent="Trajectory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.09671, 3.46617, 3.38452)
+
+[node name="Trail3" type="CSGBox3D" parent="Trajectory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.09671, 3.46617, 3.38452)
+
+[node name="Trail4" type="CSGBox3D" parent="Trajectory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.09671, 3.46617, 3.38452)
+
+[node name="Trail5" type="CSGBox3D" parent="Trajectory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.09671, 3.46617, 3.38452)
+
+[node name="Trail6" type="CSGBox3D" parent="Trajectory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.09671, 3.46617, 3.38452)
+
+[node name="Trail7" type="CSGBox3D" parent="Trajectory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.09671, 3.46617, 3.38452)
+
+[node name="Trail8" type="CSGBox3D" parent="Trajectory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.09671, 3.46617, 3.38452)
+
+[node name="Trail9" type="CSGBox3D" parent="Trajectory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.09671, 3.46617, 3.38452)
+
+[node name="Trail10" type="CSGBox3D" parent="Trajectory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.09671, 3.46617, 3.38452)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

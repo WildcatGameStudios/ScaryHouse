@@ -84,6 +84,21 @@ func create_trash_reserve():
 		trash.global_position = $TrashReserve.position
 		await get_tree().create_timer(0.2).timeout
 
+func get_trajectory_point(time: float) -> Vector3:
+	var throw_strength = catapult.throw_strength
+	var initial_velocity = (1.48 * throw_strength * Vector3(base_trash_launch_strength.x,base_trash_launch_strength.y,0).rotated(Vector3(0,1,0),catapult.catapult_arm.rotation.y-PI/2))
+	var initial_position = catapult.catapult_bowl.global_position + Vector3(0,3,0)
+	
+	var calculated_position: Vector3
+	calculated_position = initial_position + (initial_velocity * time) + Vector3(0,-9*time*time,0)
+	return calculated_position
+
+func set_trail():
+	var time = 0.3
+	for trail in $Trajectory.get_children():
+		trail.position = get_trajectory_point(time)
+		time += 0.3
+
 func evalutate_score() -> float:
 	var score = 100 * (binned_counter / total_trash)
 	return score
@@ -92,6 +107,9 @@ func _ready() -> void:
 	catapult.throw_trash.connect(launch_trash)
 	randomize_trash_order()
 	create_trash_reserve()
+
+func _process(delta: float) -> void:
+	set_trail()
 
 func _physics_process(delta: float) -> void:
 	#position current trash in catapult bowl
