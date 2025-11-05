@@ -1,23 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://bxn0j2tw4oyok"]
+[gd_scene load_steps=3 format=3 uid="uid://b0p34cga3ycg0"]
 
-[ext_resource type="Material" uid="uid://bhfo6utyyml6o" path="res://art/materials/testing/grey.tres" id="1_4qvao"]
+[ext_resource type="ArrayMesh" uid="uid://drx0vxke6gd6f" path="res://resources/meshes/scythe_mesh.res" id="1_4qvao"]
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_b3t4n"]
-material = ExtResource("1_4qvao")
-top_radius = 0.1
-bottom_radius = 0.1
-height = 1.4
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4qvao"]
+blend_mode = 4
+cull_mode = 1
+shading_mode = 0
+albedo_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+grow = true
+grow_amount = 0.1
 
-[sub_resource type="BoxMesh" id="BoxMesh_4qvao"]
-material = ExtResource("1_4qvao")
-size = Vector3(0.2, 0.2, 0.8)
+[node name="scythe" type="Node3D"]
 
-[node name="Scythe" type="Node3D"]
-
-[node name="base" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.499057, 0.006984)
-mesh = SubResource("CylinderMesh_b3t4n")
-
-[node name="blade" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0.25)
-mesh = SubResource("BoxMesh_4qvao")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.75, 0, 0, 0)
+material_overlay = SubResource("StandardMaterial3D_4qvao")
+mesh = ExtResource("1_4qvao")
