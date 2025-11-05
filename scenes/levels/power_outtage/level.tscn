@@ -1,8 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://bng0r4evqg80f"]
+[gd_scene load_steps=18 format=3 uid="uid://bng0r4evqg80f"]
 
 [ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_4mcrw"]
+[ext_resource type="Script" uid="uid://n47pcs0irn0v" path="res://scripts/levels/power_outage/level.gd" id="1_lvjgv"]
 [ext_resource type="PackedScene" uid="uid://st4bba80mfej" path="res://scenes/levels/power_outtage/lilypad.tscn" id="2_7d60q"]
 [ext_resource type="PackedScene" uid="uid://c0rttcvwrv18e" path="res://scenes/levels/power_outtage/breaker.tscn" id="3_cehnq"]
+[ext_resource type="Script" uid="uid://bkt5cg0343p5o" path="res://scripts/levels/power_outage/lilypad_group.gd" id="3_trc0c"]
+[ext_resource type="Script" uid="uid://diw1vujweiu1l" path="res://scripts/levels/power_outage/batpath.gd" id="6_3hm3e"]
+[ext_resource type="PackedScene" uid="uid://n4ps05wh3yd6" path="res://scenes/levels/power_outtage/bat.tscn" id="6_uai5q"]
+[ext_resource type="Shader" uid="uid://wyl0x5cei50s" path="res://scripts/levels/power_outage/mud.gdshader" id="7_004qc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4mcrw"]
 sky_top_color = Color(0.252202, 0.214962, 0.338636, 1)
@@ -26,7 +31,29 @@ albedo_color = Color(0.685614, 0.265279, 0, 1)
 material = SubResource("StandardMaterial3D_4mcrw")
 size = Vector3(25, 1.1, 50)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_oh0ii"]
+size = Vector3(25, 1.3, 50)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lvjgv"]
+height = 1.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uai5q"]
+shader = ExtResource("7_004qc")
+shader_parameter/tint_color = Color(0.35, 0.25, 0.1, 1)
+shader_parameter/fade = 1.0
+
+[sub_resource type="Curve3D" id="Curve3D_uai5q"]
+bake_interval = 150.0
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -5, -20, 0, 0, 0, 0, 0, 0, 0, 0, -47),
+"tilts": PackedFloat32Array(0, 0, 0)
+}
+point_count = 3
+
 [node name="level" type="Node3D" groups=["world"]]
+script = ExtResource("1_lvjgv")
+bat_attack_interval = 7.0
+debuffed_movement = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_7d60q")
@@ -37,16 +64,17 @@ light_color = Color(0.990515, 0.733095, 0.593997, 1)
 light_energy = 0.5
 shadow_enabled = true
 
-[node name="player" parent="." instance=ExtResource("1_4mcrw")]
+[node name="player" parent="." groups=["player"] instance=ExtResource("1_4mcrw")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0.5, 0)
 can_run = true
+can_jump = true
 
 [node name="entrance" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14, 0)
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="entrance"]
-transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 1, 0, -14, 19.5)
+transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 1, 0.0879421, -13.9324, 19.5202)
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="entrance"]
 radius = 20.0
@@ -87,34 +115,84 @@ operation = 2
 transform = Transform3D(24, 0, 0, 0, -1.09278e-06, -24, 0, 25, -1.04907e-06, 0, 0, 45)
 sides = 16
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="cave"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 45)
-mesh = SubResource("BoxMesh_7d60q")
+[node name="bog" type="CSGCombiner3D" parent="cave"]
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="cave"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="cave/bog"]
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 1, 0, 0, 70)
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="cave"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="cave/bog"]
 transform = Transform3D(5, 0, 0, 0, 1, 0, 0, 0, 4, 0, -0.0127983, 69.555)
 size = Vector3(1, 0.603027, 1)
 
-[node name="lilypad" parent="." instance=ExtResource("2_7d60q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.23931, -0.101804, 35.6833)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="cave/bog"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 45)
+mesh = SubResource("BoxMesh_7d60q")
+skeleton = NodePath("../..")
 
-[node name="lilypad2" parent="." instance=ExtResource("2_7d60q")]
-transform = Transform3D(0.414693, 0, 0.909961, 0, 1, 0, -0.909961, 0, 0.414693, -5.11846, -0.068675, 25.5915)
+[node name="bogArea" type="Area3D" parent="cave/bog/MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -45)
 
-[node name="lilypad3" parent="." instance=ExtResource("2_7d60q")]
-transform = Transform3D(-0.439939, 0, -0.898028, 0, 1, 0, 0.898028, 0, -0.439939, 6.99893, -0.163918, 31.3033)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cave/bog/MeshInstance3D/bogArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 45)
+shape = SubResource("BoxShape3D_oh0ii")
 
-[node name="lilypad4" parent="." instance=ExtResource("2_7d60q")]
-transform = Transform3D(-0.759271, 0, 0.650774, 0, 1, 0, -0.650774, 0, -0.759271, -6.57336, -0.0478331, 46.3254)
+[node name="dangerZone" type="Area3D" parent="cave"]
 
-[node name="lilypad5" parent="." instance=ExtResource("2_7d60q")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.13677, -0.0966963, 46.2371)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="cave/dangerZone"]
+transform = Transform3D(25, 0, 0, 0, -1.09278e-06, 25, 0, -25, -1.09278e-06, 0, 0, 45)
+shape = SubResource("CylinderShape3D_lvjgv")
 
-[node name="lilypad6" parent="." instance=ExtResource("2_7d60q")]
+[node name="lilypad_group" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6605, -0.193393, 62.1718)
+script = ExtResource("3_trc0c")
+
+[node name="lilypad" parent="lilypad_group" groups=["lilypads"] instance=ExtResource("2_7d60q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.849871, 0.091589, -24.3048)
+
+[node name="lilypad2" parent="lilypad_group" groups=["lilypads"] instance=ExtResource("2_7d60q")]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, -3.29075, 0.124718, -35.5768)
+
+[node name="lilypad3" parent="lilypad_group" groups=["lilypads"] instance=ExtResource("2_7d60q")]
+transform = Transform3D(-0.439939, 0, -0.898028, 0, 1, 0, 0.898028, 0, -0.439939, 6.30583, 0.029475, -29.2606)
+
+[node name="lilypad4" parent="lilypad_group" groups=["lilypads"] instance=ExtResource("2_7d60q")]
+transform = Transform3D(0.149535, 0, 0.988756, 0, 1, 0, -0.988756, 0, 0.149535, -3.91286, 0.14556, -15.8464)
+
+[node name="lilypad5" parent="lilypad_group" groups=["lilypads"] instance=ExtResource("2_7d60q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.69766, 0.0966967, -12.3865)
+
+[node name="lilypad6" parent="lilypad_group" groups=["lilypads"] instance=ExtResource("2_7d60q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
 [node name="breaker" parent="." instance=ExtResource("3_cehnq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10059, 1.57534, 69.3124)
+
+[node name="bat_timer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="muddy_vision" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_uai5q")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Path3D" type="Path3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.803, 68.21)
+curve = SubResource("Curve3D_uai5q")
+
+[node name="PathFollow3D" type="PathFollow3D" parent="Path3D" node_paths=PackedStringArray("player")]
+transform = Transform3D(1, 0, 0, 0, 0.970135, 0.242534, 0, -0.242534, 0.970135, 0, 0, 0)
+loop = false
+script = ExtResource("6_3hm3e")
+move_speed = 12.0
+player = NodePath("../../player")
+
+[node name="bat" parent="Path3D/PathFollow3D" instance=ExtResource("6_uai5q")]
+
+[connection signal="body_entered" from="cave/bog/MeshInstance3D/bogArea" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_exited" from="cave/bog/MeshInstance3D/bogArea" to="." method="_on_area_3d_body_exited"]
+[connection signal="body_entered" from="cave/dangerZone" to="." method="_on_danger_zone_body_entered"]
+[connection signal="body_exited" from="cave/dangerZone" to="." method="_on_danger_zone_body_exited"]
+[connection signal="timeout" from="bat_timer" to="." method="_on_timer_timeout"]
