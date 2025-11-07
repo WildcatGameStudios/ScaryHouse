@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bcv40fcphjv3m"]
+[gd_scene load_steps=8 format=3 uid="uid://bcv40fcphjv3m"]
 
 [ext_resource type="Script" uid="uid://qu65ebbkmrhx" path="res://scripts/player/player.gd" id="1_qhqgy"]
 [ext_resource type="Script" uid="uid://dntg3ga86vnxk" path="res://scripts/player/player_sm.gd" id="2_gmlin"]
 [ext_resource type="PackedScene" uid="uid://b81qx5c25q7p2" path="res://scenes/general/hitbox.tscn" id="4_gmlin"]
+[ext_resource type="PackedScene" uid="uid://d3pcm07s2j0no" path="res://scenes/player/player_ui.tscn" id="4_lvxji"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8afob"]
 
@@ -62,6 +63,8 @@ shape = SubResource("CapsuleShape3D_lvxji")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 visible = false
 mesh = SubResource("CapsuleMesh_gmlin")
+
+[node name="player_ui" parent="." instance=ExtResource("4_lvxji")]
 
 [connection signal="timeout" from="timers/dash_timer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="timers/dash_cooldown_timer" to="." method="_on_dash_cooldown_timer_timeout"]
