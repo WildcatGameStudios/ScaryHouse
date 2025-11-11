@@ -39,7 +39,6 @@ environment = SubResource("Environment_myx6j")
 
 [node name="player" parent="." instance=ExtResource("1_yeexk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4938, 5.77955, -42.0305)
-walk_speed = 3
 run_speed = 8
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]

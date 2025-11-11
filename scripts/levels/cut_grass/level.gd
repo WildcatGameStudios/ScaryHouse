@@ -54,11 +54,11 @@ var score
 func _ready() -> void:
 	# set scarecrows 
 	scarecrows = scarecrow_container.get_children()
-	scarecrows[0].activate()
+	#scarecrows[0].activate()
 	scarecrows[1].activate()
-	scarecrows[2].activate()
+	#scarecrows[2].activate()
 	scarecrows[3].activate()
-	scarecrows[4].activate()
+	#scarecrows[4].activate()
 	scarecrows[5].activate()
 	# set spot
 	base_grass_y = top_left.position.y
@@ -78,8 +78,6 @@ func _ready() -> void:
 	
 	# set first multimesh positions 
 	grass_positions = calc_grass_positions()
-	print(grass_positions.size())
-	print(grass_count)
 	for current_blade in range(grass_count) : 
 		var rot_y  = random.randi_range(0,360)
 		var rot_amount = deg_to_rad(rot_y)
@@ -102,13 +100,13 @@ func _physics_process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	# if e 
 	if Input.is_action_just_pressed("e") and not scythe_picked_up : 
-		if player_in_scythe_area : 
-			scythe.position = Vector3(0.236,-0.4,0)
-			scythe.rotate(Vector3(0,1,0), deg_to_rad(-90))
-			scythe.rotate(Vector3(0,0,1), deg_to_rad(20.5))
+
+			scythe.position = Vector3(-0.53, -0.63, 0.29)
+			scythe.rotate(Vector3(1,0,0), deg_to_rad(35))
+			scythe.rotate(Vector3(0,0,1), deg_to_rad(-20))
 			scythe.get_parent().remove_child(scythe)
 			
-			player.add_hand_object(scythe, 1)
+			player.add_hand_object(scythe, 1, Vector3(0.02,0.02,0.02))
 			scythe_picked_up = true
 	
 	if Input.is_action_just_pressed("select") : 

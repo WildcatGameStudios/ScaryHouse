@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dp5qhttovmkvw" path="res://scripts/levels/cut_grass/level.gd" id="1_iirsj"]
 [ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_j7ifn"]
 [ext_resource type="PackedScene" uid="uid://b1hp25hiol51q" path="res://scenes/levels/cut_grass/scarecrow.tscn" id="3_1jmjd"]
-[ext_resource type="PackedScene" uid="uid://bxn0j2tw4oyok" path="res://scenes/levels/cut_grass/scythe.tscn" id="3_iirsj"]
+[ext_resource type="PackedScene" uid="uid://b0p34cga3ycg0" path="res://scenes/levels/cut_grass/scythe.tscn" id="3_iirsj"]
 [ext_resource type="Shader" uid="uid://cpk6s42fx2kuf" path="res://resources/shaders/tall_grass.gdshader" id="5_u1s1r"]
 [ext_resource type="QuadMesh" uid="uid://d04hy4ixrmca7" path="res://resources/meshes/tall_grass.tres" id="5_vpfwn"]
 
@@ -61,10 +61,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_1jmjd")
-
-[node name="player" parent="." instance=ExtResource("1_j7ifn")]
-transform = Transform3D(-0.997086, 0, 0.0762841, 0, 1, 0, -0.0762841, 0, -0.997086, 5.4938, 5.77955, -42.0305)
-run_speed = 8
 
 [node name="CSG_containers" type="Node3D" parent="."]
 
@@ -129,7 +125,7 @@ material = SubResource("StandardMaterial3D_j7ifn")
 [node name="Scarecrows" type="Node3D" parent="."]
 
 [node name="Scarecrow" parent="Scarecrows" instance=ExtResource("3_1jmjd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 4.56939, -31.658)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.0091, 4.6577, -31.619)
 
 [node name="Scarecrow2" parent="Scarecrows" instance=ExtResource("3_1jmjd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.11459, 4.56939, -24.5867)
@@ -145,9 +141,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.9853, 4.56939, -35.2619)
 
 [node name="Scarecrow6" parent="Scarecrows" instance=ExtResource("3_1jmjd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0005, 4.56939, -14.9962)
-
-[node name="Scythe" parent="." instance=ExtResource("3_iirsj")]
-transform = Transform3D(-0.0165671, 0.226903, 0.973777, -0.219186, 0.949397, -0.224951, -0.975543, -0.217165, 0.034005, 0, 4.33426, -39.5543)
 
 [node name="scythe_pickup" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.395142, 5.59623, -38.422)
@@ -191,6 +184,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0)
+
+[node name="player" parent="." instance=ExtResource("1_j7ifn")]
+transform = Transform3D(-0.997086, 0, 0.0762841, 0, 1, 0, -0.0762841, 0, -0.997086, 19.3957, 5.77955, -36.9347)
+
+[node name="Scythe" parent="." instance=ExtResource("3_iirsj")]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, -0.208063, 4.07069, -37.7126)
 
 [connection signal="player_enter" from="Scarecrows/Scarecrow" to="." method="_on_scarecrow_player_enter"]
 [connection signal="player_left" from="Scarecrows/Scarecrow" to="." method="_on_scarecrow_player_left"]

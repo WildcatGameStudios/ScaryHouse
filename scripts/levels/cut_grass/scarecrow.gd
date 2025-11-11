@@ -8,31 +8,22 @@ signal player_left
 
 
 # refrences 
-@onready var eye_l: CSGBox3D = $eye_L
-@onready var eye_r: CSGBox3D = $eye_R
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var collision_shape_3d: CollisionShape3D = $player_detect/CollisionShape3D
 
-var eye_mat : StandardMaterial3D
 
 
 func _ready() : 
-	eye_mat = StandardMaterial3D.new()
-	eye_mat.albedo_color = Color(0.0,0.0,0.0,0.0)
-	
-	eye_l.material = eye_mat
-	eye_r.material = eye_mat
+	# set our shape to a unique instance 
+	var coll_shape = collision_shape_3d.shape.duplicate()
+	self.collision_shape_3d.shape = coll_shape
 
 func activate() : 
-	eye_mat.albedo_color = Color(108.0 / 255, 0.0, 149.0 / 255)
-	eye_mat.emission_enabled = true
-	eye_mat.emission = Color(171.0 / 255, 129.0 /255, 1.0 )
-	eye_mat.emission_energy_multiplier = 3
+	print(name , " actiavting")
 	animation_player.play("activate")
 	
 
 func deactivate () : 
-	eye_mat.albedo_color = Color(0.0,0.0,0.0,0.0)
-	eye_mat.emission_enabled = false
 	animation_player.play('deactivate')
 
 
