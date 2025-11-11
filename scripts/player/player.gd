@@ -52,6 +52,11 @@ class_name player
 @export var dash_duration: float = 0.4
 @export var dash_distance: float = 5
 
+@export_category("Ice Physics")
+@export var is_ice_skating: bool = false # Toggle this for ice level
+@export var ice_friction: float = 0.05   # How slippery the ice is
+@export var ice_acceleration: float = 1.0 # How quickly you speed up on ice
+
 # scene refrences 
 @onready var head: Node3D = $head
 @onready var psm: Node = $PSM
@@ -220,41 +225,65 @@ func unbob(delta: float) -> void:
 	bob_time = PI / 8.0
 
 # function to handle the walk logic 
-func walk(delta) -> void: 
-	# first get walk direction 
+func walk(delta) -> void:
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	# multiply the direction we got by the basis ( normal axis of player ) 
-	# to get the direction the player should move  
 	var move_direction: Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	
-	# if move direction is not 0 
-	if move_direction: 
-		velocity.x = move_direction.x * walk_speed
-		velocity.z = move_direction.z * walk_speed
-	else: 
-		velocity.x = move_toward(velocity.x, 0, walk_speed)
-		velocity.z = move_toward(velocity.z, 0, walk_speed)
+	if is_ice_skating:
+		# Ice physics: accelerate/decelerate slowly
+		if move_direction:
+			var target_velocity = move_direction * walk_speed
+			# Use ice_acceleration to slowly reach target speed
+			var acceleration_step = walk_speed * ice_acceleration * delta
+			velocity.x = move_toward(velocity.x, target_velocity.x, acceleration_step)
+			velocity.z = move_toward(velocity.z, target_velocity.z, acceleration_step)
+		else:
+			# Use ice_friction to slowly slide to a stop
+			var deceleration_step = walk_speed * ice_friction * delta
+			velocity.x = move_toward(velocity.x, 0, deceleration_step)
+			velocity.z = move_toward(velocity.z, 0, deceleration_step)
+	else:
+		# Normal physics: snappy movement
+		if move_direction:
+			velocity.x = move_direction.x * walk_speed
+			velocity.z = move_direction.z * walk_speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, walk_speed)
+			velocity.z = move_toward(velocity.z, 0, walk_speed)
+
 
 func stop_walking(delta) -> void:
-	velocity.x = 0
-	velocity.z = 0
+	if !is_ice_skating:
+		# Instant stop on normal ground
+		velocity.x = 0
+		velocity.z = 0
+	# On ice, do nothing to allow sliding to a stop
 
 # function for player run 
-func run(delta): 
-	# first get walk direction 
+func run(delta):
 	var input_direction: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	# multiply the direction we got by the basis ( normal axis of player ) 
-	# to get the direction the player should move  
 	var move_direction: Vector3 = (transform.basis * Vector3(input_direction.x, 0, input_direction.y)).normalized()
 	
-	# if move direction is not 0 
-	if move_direction: 
-		velocity.x = move_direction.x * run_speed
-		velocity.z = move_direction.z * run_speed
-		
-	else: 
-		velocity.x = move_toward(velocity.x, 0, run_speed)
-		velocity.z = move_toward(velocity.z, 0, run_speed)
+	if is_ice_skating:
+		# Ice physics, accelerate/decelerate slowly
+		if move_direction:
+			var target_velocity = move_direction * run_speed
+			var acceleration_step = run_speed * ice_acceleration * delta
+			velocity.x = move_toward(velocity.x, target_velocity.x, acceleration_step)
+			velocity.z = move_toward(velocity.z, target_velocity.z, acceleration_step)
+		else:
+			var deceleration_step = run_speed * ice_friction * delta
+			velocity.x = move_toward(velocity.x, 0, deceleration_step)
+			velocity.z = move_toward(velocity.z, 0, deceleration_step)
+	else:
+		# Normal physics
+		if move_direction:
+			velocity.x = move_direction.x * run_speed
+			velocity.z = move_direction.z * run_speed
+		else:
+			velocity.x = move_toward(velocity.x, 0, run_speed)
+			velocity.z = move_toward(velocity.z, 0, run_speed)
+
 	bob_speed_mod = 1.5
 	bob(delta)
 
