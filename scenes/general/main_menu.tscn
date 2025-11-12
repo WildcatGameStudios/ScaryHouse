@@ -20,4 +20,69 @@ offset_bottom = 40.0
 layout_mode = 2
 text = "Clean Gutters"
 
+[node name="CutGrass" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Cut Grass"
+
+[node name="FeedCats" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Feed Cats"
+
+[node name="LaundryDefence" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Laundry Defence"
+
+[node name="MixTheDrinks" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Mix Drinks"
+
+[node name="PowerOuttage" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Power Outtage"
+
+[node name="PutGroceriesAway" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Put Groceries Away"
+
+[node name="RaccoonIT" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Raccoon IT"
+
+[node name="RefillSalt" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Refill Salt"
+
+[node name="ShineShoes" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Shine Shoes"
+
+[node name="TakeOutTrash" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Take Out Trash"
+
+[node name="WashTheDishes" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Wash Dishes"
+
+[node name="WashWindows" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Wash Windows"
+
+[node name="WaterPlants" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Water Plants"
+
 [connection signal="pressed" from="VBoxContainer/CleanGutters" to="." method="_on_clean_gutters_pressed"]
+[connection signal="pressed" from="VBoxContainer/CutGrass" to="." method="_on_cut_grass_pressed"]
+[connection signal="pressed" from="VBoxContainer/FeedCats" to="." method="_on_feed_cats_pressed"]
+[connection signal="pressed" from="VBoxContainer/LaundryDefence" to="." method="_on_laundry_defence_pressed"]
+[connection signal="pressed" from="VBoxContainer/MixTheDrinks" to="." method="_on_mix_the_drinks_pressed"]
+[connection signal="pressed" from="VBoxContainer/PowerOuttage" to="." method="_on_power_outtage_pressed"]
+[connection signal="pressed" from="VBoxContainer/PutGroceriesAway" to="." method="_on_put_groceries_away_pressed"]
+[connection signal="pressed" from="VBoxContainer/RaccoonIT" to="." method="_on_raccoon_it_pressed"]
+[connection signal="pressed" from="VBoxContainer/RefillSalt" to="." method="_on_refill_salt_pressed"]
+[connection signal="pressed" from="VBoxContainer/ShineShoes" to="." method="_on_shine_shoes_pressed"]
+[connection signal="pressed" from="VBoxContainer/TakeOutTrash" to="." method="_on_take_out_trash_pressed"]
+[connection signal="pressed" from="VBoxContainer/WashTheDishes" to="." method="_on_wash_the_dishes_pressed"]
+[connection signal="pressed" from="VBoxContainer/WashWindows" to="." method="_on_wash_windows_pressed"]
+[connection signal="pressed" from="VBoxContainer/WaterPlants" to="." method="_on_water_plants_pressed"]
