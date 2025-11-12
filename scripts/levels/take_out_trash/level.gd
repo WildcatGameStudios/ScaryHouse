@@ -86,7 +86,7 @@ func create_trash_reserve():
 
 func get_trajectory_point(time: float) -> Vector3:
 	var throw_strength = catapult.throw_strength
-	var initial_velocity = (1.48 * throw_strength * Vector3(base_trash_launch_strength.x,base_trash_launch_strength.y,0).rotated(Vector3(0,1,0),catapult.catapult_arm.rotation.y-PI/2))
+	var initial_velocity = (1.47 * throw_strength * Vector3(base_trash_launch_strength.x,base_trash_launch_strength.y,0).rotated(Vector3(0,1,0),catapult.catapult_arm.rotation.y-PI/2))
 	var initial_position = catapult.catapult_bowl.global_position + Vector3(0,3,0)
 	
 	var calculated_position: Vector3
@@ -96,6 +96,10 @@ func get_trajectory_point(time: float) -> Vector3:
 func set_trail():
 	var time = 0.3
 	for trail in $Trajectory.get_children():
+		if Input.is_action_pressed("jump"):
+			trail.visible = true
+		else:
+			trail.visible = false
 		trail.position = get_trajectory_point(time)
 		time += 0.3
 

@@ -1,9 +1,22 @@
-[gd_scene format=3 uid="uid://d3pcm07s2j0no"]
+[gd_scene load_steps=2 format=3 uid="uid://d3pcm07s2j0no"]
 
-[node name="player_ui" type="Control"]
+[ext_resource type="Script" uid="uid://b8t3t41p0cn1q" path="res://scripts/player/player_ui.gd" id="1_32d7b"]
+
+[node name="PlayerUI" type="Control" node_paths=PackedStringArray("buttons")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_32d7b")
+buttons = [NodePath("VBoxContainer/Main Menu")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Main Menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Main Menu"
