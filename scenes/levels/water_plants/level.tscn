@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bvpxpn4fotxxv"]
+[gd_scene load_steps=31 format=3 uid="uid://bvpxpn4fotxxv"]
 
 [ext_resource type="Script" uid="uid://bbwm44dlwmya2" path="res://scripts/levels/water_plants/level.gd" id="1_apnnk"]
 [ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="2_1enwu"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dpns0ocbunlsd" path="res://scenes/levels/water_plants/light.tscn" id="3_apnnk"]
 [ext_resource type="PackedScene" uid="uid://bsfk5h4xfrtat" path="res://scenes/levels/water_plants/flies.tscn" id="4_4ljn0"]
 [ext_resource type="PackedScene" uid="uid://q26xppkmbj0y" path="res://scenes/levels/water_plants/water.tscn" id="5_aq4vj"]
+[ext_resource type="PackedScene" uid="uid://bqls71mybynew" path="res://art/models/water_plants/lamp.glb" id="8_4ljn0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_if3ys"]
 
@@ -19,78 +20,67 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aswn4"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnrpy"]
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_apnnk"]
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aq4vj"]
 albedo_color = Color(0.588235, 0.294118, 0, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ao4o0"]
+albedo_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjhdi"]
-albedo_color = Color(0.670588, 0.984314, 1, 1)
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jlrlt"]
-albedo_color = Color(0.670588, 0.984314, 1, 1)
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ljn0"]
 albedo_color = Color(0.588235, 0.294118, 0, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hppwq"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yifmo"]
 resource_local_to_scene = true
-albedo_color = Color(0, 0, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wcdn"]
-resource_local_to_scene = true
-albedo_color = Color(0, 0, 1, 1)
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7sah6"]
 resource_local_to_scene = true
-albedo_color = Color(0, 0, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ncw7"]
-resource_local_to_scene = true
-albedo_color = Color(0, 0, 0, 1)
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n88vw"]
 resource_local_to_scene = true
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yifmo"]
-resource_local_to_scene = true
-albedo_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xq8tw"]
-resource_local_to_scene = true
-albedo_color = Color(0.501961, 0, 0.501961, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p6f8n"]
-resource_local_to_scene = true
-albedo_color = Color(0.501961, 0, 0.501961, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgq4r"]
-resource_local_to_scene = true
-albedo_color = Color(0.501961, 0, 0.501961, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_laj3e"]
-resource_local_to_scene = true
-albedo_color = Color(0.588235, 0.294118, 0, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85ofr"]
-resource_local_to_scene = true
-albedo_color = Color(0.588235, 0.294118, 0, 1)
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dtcjp"]
 resource_local_to_scene = true
-albedo_color = Color(0.588235, 0.294118, 0, 1)
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fgq4r"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_85ofr"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51yu1"]
-albedo_color = Color(0.670588, 0.984314, 1, 1)
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dc5q8"]
-albedo_color = Color(0.670588, 0.984314, 1, 1)
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ptbt"]
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_q34jd"]
+albedo_color = Color(0, 0, 0, 1)
 
 [node name="Level" type="Node3D" groups=["world"]]
 script = ExtResource("1_apnnk")
@@ -102,9 +92,9 @@ size = Vector3(5, 1, 5)
 material = SubResource("StandardMaterial3D_if3ys")
 
 [node name="start2" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 3, 1.5, 7.5)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 3, 1.5, 7.55)
 use_collision = true
-size = Vector3(5, 1, 5)
+size = Vector3(5, 1, 4.9)
 material = SubResource("StandardMaterial3D_y3sin")
 
 [node name="start4" type="CSGBox3D" parent="."]
@@ -114,15 +104,15 @@ size = Vector3(5, 1, 5.2)
 material = SubResource("StandardMaterial3D_1enwu")
 
 [node name="start3" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -3, 1.5, 7.5)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -3, 1.5, 7.55)
 use_collision = true
-size = Vector3(5, 1, 5)
+size = Vector3(5, 1, 4.9)
 material = SubResource("StandardMaterial3D_3wrt3")
 
 [node name="start5" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 7.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 7.55)
 use_collision = true
-size = Vector3(5, 1, 5)
+size = Vector3(5, 1, 4.9)
 material = SubResource("StandardMaterial3D_aswn4")
 
 [node name="player" parent="." instance=ExtResource("2_1enwu")]
@@ -149,6 +139,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 radius = 10.0
 height = 1.0
+sides = 40
 material = SubResource("StandardMaterial3D_apnnk")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="CSGCylinder3D"]
@@ -161,7 +152,7 @@ size = Vector3(20, 1, 10)
 [node name="CSGCylinder3D3" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
-radius = 12.0
+radius = 20.0
 height = 0.5
 material = SubResource("StandardMaterial3D_aq4vj")
 
@@ -172,11 +163,18 @@ operation = 2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6)
 size = Vector3(24, 1, 12)
 
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.25, 0)
+radius = 20.0
+height = 0.5
+material = SubResource("StandardMaterial3D_ao4o0")
+
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 0)
 use_collision = true
 radius = 13.0
 height = 10.0
+sides = 40
 material = SubResource("StandardMaterial3D_fjhdi")
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="CSGCylinder3D2"]
@@ -189,92 +187,84 @@ size = Vector3(26, 10, 13)
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGCylinder3D2/CSGCombiner3D"]
 radius = 12.0
 height = 10.0
+sides = 40
 material = SubResource("StandardMaterial3D_jlrlt")
 
 [node name="Table" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 1)
 use_collision = true
-size = Vector3(2, 0.5, 1)
+size = Vector3(3, 0.5, 2)
 material = SubResource("StandardMaterial3D_4ljn0")
 
 [node name="items" type="Node" parent="."]
 
 [node name="water1" parent="items" instance=ExtResource("5_aq4vj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.55, 0.75)
-material = SubResource("StandardMaterial3D_hppwq")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0.8, 0.5)
 
 [node name="water2" parent="items" instance=ExtResource("5_aq4vj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.55, 1)
-material = SubResource("StandardMaterial3D_5wcdn")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0.8, 1)
 
 [node name="water3" parent="items" instance=ExtResource("5_aq4vj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 0.55, 1.25)
-material = SubResource("StandardMaterial3D_7sah6")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9, 0.8, 1.383)
 
 [node name="flies1" parent="items" instance=ExtResource("4_4ljn0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.55, 0.75)
-material = SubResource("StandardMaterial3D_5ncw7")
-
-[node name="flies2" parent="items" instance=ExtResource("4_4ljn0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.55, 1)
-material = SubResource("StandardMaterial3D_n88vw")
-
-[node name="flies3" parent="items" instance=ExtResource("4_4ljn0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.55, 1.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.65, 0.515)
 material = SubResource("StandardMaterial3D_yifmo")
 
+[node name="flies2" parent="items" instance=ExtResource("4_4ljn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.65, 1)
+material = SubResource("StandardMaterial3D_7sah6")
+
+[node name="flies3" parent="items" instance=ExtResource("4_4ljn0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.65, 1.49)
+material = SubResource("StandardMaterial3D_n88vw")
+
 [node name="light1" parent="items" instance=ExtResource("3_apnnk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.55, 0.75)
-material = SubResource("StandardMaterial3D_xq8tw")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.79, 0.429)
 
 [node name="light2" parent="items" instance=ExtResource("3_apnnk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.55, 1)
-material = SubResource("StandardMaterial3D_p6f8n")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.79, 1)
 
 [node name="light3" parent="items" instance=ExtResource("3_apnnk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.55, 1.25)
-material = SubResource("StandardMaterial3D_fgq4r")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.79, 1.574)
 
 [node name="fertilizer1" parent="items" instance=ExtResource("2_rnrpy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.55, 0.75)
-material = SubResource("StandardMaterial3D_laj3e")
-
-[node name="fertilizer2" parent="items" instance=ExtResource("2_rnrpy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.55, 1)
-material = SubResource("StandardMaterial3D_85ofr")
-
-[node name="fertilizer3" parent="items" instance=ExtResource("2_rnrpy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 0.55, 1.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.7, 0.433)
 material = SubResource("StandardMaterial3D_dtcjp")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.692231, -0.0336307, 0.720892, -0.721676, -0.0322586, 0.691479, -3.72529e-09, -0.998914, -0.0466009, 6.80173, 15, -4.321)
+[node name="fertilizer2" parent="items" instance=ExtResource("2_rnrpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.7, 1)
+material = SubResource("StandardMaterial3D_fgq4r")
+
+[node name="fertilizer3" parent="items" instance=ExtResource("2_rnrpy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9, 0.7, 1.624)
+material = SubResource("StandardMaterial3D_85ofr")
 
 [node name="plants" type="Node" parent="."]
 
 [node name="Plant1" parent="plants" instance=ExtResource("2_y3sin")]
-transform = Transform3D(0.390731, 0, 0.920505, 0, 1, 0, -0.920505, 0, 0.390731, -10.115, -3, -2.271)
+transform = Transform3D(0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, -10.833, -3.25, -1.91)
 
 [node name="Plant2" parent="plants" instance=ExtResource("2_y3sin")]
-transform = Transform3D(0.390731, 0, 0.920505, 0, 1, 0, -0.920505, 0, 0.390731, -8.7, -3, -5)
+transform = Transform3D(0.543174, 0, 0.83962, 0, 1, 0, -0.83962, 0, 0.543174, -9.24, -3.25, -5.968)
 
 [node name="Plant3" parent="plants" instance=ExtResource("2_y3sin")]
-transform = Transform3D(0.927184, 0, 0.374607, 0, 1, 0, -0.374607, 0, 0.927184, -5, -3, -8.7)
+transform = Transform3D(0.826098, 0, 0.563526, 0, 1, 0, -0.563526, 0, 0.826098, -6.197, -3.25, -9.089)
 
 [node name="Plant4" parent="plants" instance=ExtResource("2_y3sin")]
-transform = Transform3D(0.927184, 0, 0.374607, 0, 1, 0, -0.374607, 0, 0.927184, -2, -3, -10)
+transform = Transform3D(0.980271, 0, 0.197657, 0, 1, 0, -0.197657, 0, 0.980271, -2.18, -3.25, -10.782)
 
 [node name="Plant5" parent="plants" instance=ExtResource("2_y3sin")]
-transform = Transform3D(0.927184, 0, -0.374607, 0, 1, 0, 0.374607, 0, 0.927184, 2, -3, -10)
+transform = Transform3D(0.980271, 0, -0.197657, 0, 1, 0, 0.197657, 0, 0.980271, 2.18, -3.25, -10.782)
 
 [node name="Plant6" parent="plants" instance=ExtResource("2_y3sin")]
-transform = Transform3D(0.927184, 0, -0.374607, 0, 1, 0, 0.374607, 0, 0.927184, 5, -3, -8.7)
+transform = Transform3D(0.826098, 0, -0.563526, 0, 1, 0, 0.563526, 0, 0.826098, 6.197, -3.25, -9.089)
 
 [node name="Plant7" parent="plants" instance=ExtResource("2_y3sin")]
-transform = Transform3D(0.390731, 0, -0.920505, 0, 1, 0, 0.920505, 0, 0.390731, 8.7, -3, -5)
+transform = Transform3D(0.543174, 0, -0.83962, 0, 1, 0, 0.83962, 0, 0.543174, 9.24, -3.25, -5.968)
 
 [node name="Plant8" parent="plants" instance=ExtResource("2_y3sin")]
-transform = Transform3D(0.390731, 0, -0.920505, 0, 1, 0, 0.920505, 0, 0.390731, 10, -3, -2)
+transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, 10.833, -3.25, -1.91)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 4.5, 0.5)
@@ -312,5 +302,14 @@ operation = 2
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D6/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.99, 0)
 size = Vector3(3, 3, 1)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6.45, -4)
+light_energy = 10.0
+spot_range = 25.0
+spot_angle = 80.0
+
+[node name="lamp2" parent="." instance=ExtResource("8_4ljn0")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 6, -4)
 
 [editable path="player"]

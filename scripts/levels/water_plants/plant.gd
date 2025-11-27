@@ -1,7 +1,12 @@
 extends Node3D
 
 @onready var plant: CSGBox3D = $Plant
-@onready var needs_list: CSGBox3D = $NeedsList
+var timeToChange: float = 1.5 # time it takes to rise or fall in seconds
+var acceleration: float = 3 # acceleration to rise or fall
+var startingVelocity: float = 3 / timeToChange + acceleration * timeToChange / 2 # starting velocity to rise
+var velocity: float
+@onready var needs_list: CSGBox3D = $needsList
+@onready var health_bar: CSGBox3D = $healthBar
 @export var time_to_activate: float = 0 # the plant will not start dying for this amount of time
 var activate_timer: float = time_to_activate
 @export var time_between_dying_rolls: float = 5 # while active, time between rolls to start dying
@@ -25,12 +30,16 @@ func enter_active() -> void:
 
 func active(delta: float) -> void:
 	dying_rolls_timer -= delta
+	if position.y > -3.25:
+		position.y += velocity * delta
+		velocity -= acceleration * delta
 
 func exit_active() -> void:
+	position.y = -3.25
+	velocity = startingVelocity
 	dying_rolls_timer = time_between_dying_rolls
 
 func enter_dying() -> void:
-	position.y = -.25 # move up so player can see
 	needs.append(randi_range(0,3)) # at least 1 need
 	while randf() < stop_adding_needs_chance and needs.size() < max_needs: # generate needs
 		needs.append(randi_range(0,3))
@@ -54,18 +63,25 @@ func enter_dying() -> void:
 		add_child(new_need)
 
 func dying(delta: float) -> void:
+	if velocity > 0 and position.y < -.25:
+		position.y += velocity * delta
+		velocity -= acceleration * delta
+	else:
+		position.y = -.25
+	
 	death_timer -= delta
 	if death_timer > time_to_die / 2: # if in first half of dying, increase red
-		plant.material.albedo_color = Color(2 * (1 - death_timer / time_to_die),1,0)
+		health_bar.material.albedo_color = Color(2 * (1 - death_timer / time_to_die),1,0)
 	else: # if in second half, decease green
-		plant.material.albedo_color = Color(1,2 * death_timer / (time_to_die),0)
+		health_bar.material.albedo_color = Color(1,2 * death_timer / time_to_die,0)
+	health_bar.size.x = 3 * death_timer / time_to_die
 
 func exit_dying() -> void:
 	death_timer = time_to_die
-	position.y = -3 # move down
+	velocity = 0
 
 func remove_need() -> void:
-	get_child(needs.size() + 2).queue_free()
+	get_child(needs.size() + 4).queue_free()
 	needs.pop_back()
 	needs_list.size.y -= .2
 	needs_list.position.y -= .1

@@ -1,13 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxkomju581h02"]
+[gd_scene load_steps=3 format=3 uid="uid://dxkomju581h02"]
+
+[ext_resource type="PackedScene" uid="uid://d128tc6po34lt" path="res://art/models/water_plants/fertilizer.glb" id="1_ga35b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_blumj"]
 resource_local_to_scene = true
-albedo_color = Color(0.588235, 0.294118, 0, 1)
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
 
-[node name="CSGCylinder3D4" type="CSGCylinder3D"]
+[node name="CSGBox3D" type="CSGBox3D"]
 use_collision = true
-radius = 0.05
-height = 0.1
-sides = 16
+size = Vector3(0.3, 0.42, 0.1)
 material = SubResource("StandardMaterial3D_blumj")
 metadata/item_type = 3
+
+[node name="fertilizer" parent="." instance=ExtResource("1_ga35b")]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

@@ -1,13 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpns0ocbunlsd"]
+[gd_scene load_steps=3 format=3 uid="uid://dpns0ocbunlsd"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_blumj"]
-resource_local_to_scene = true
-albedo_color = Color(0.501961, 0, 0.501961, 1)
+[ext_resource type="PackedScene" uid="uid://blcy378eleku6" path="res://art/models/water_plants/light.glb" id="1_0miyu"]
 
-[node name="CSGCylinder3D4" type="CSGCylinder3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0miyu"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[node name="CSGBox3D" type="CSGBox3D"]
 use_collision = true
-radius = 0.05
-height = 0.1
-sides = 16
-material = SubResource("StandardMaterial3D_blumj")
+size = Vector3(0.7, 0.8, 0.6)
+material = SubResource("StandardMaterial3D_0miyu")
 metadata/item_type = 2
+
+[node name="light" parent="." instance=ExtResource("1_0miyu")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.258819, -0.965926, 0, 0.965926, -0.258819, 1, -1.13133e-08, -4.2222e-08, 0.128543, 0.138949, 0)
+visible = false
