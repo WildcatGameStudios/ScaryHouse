@@ -52,7 +52,7 @@ point_count = 3
 
 [node name="level" type="Node3D" groups=["world"]]
 script = ExtResource("1_lvjgv")
-bat_attack_interval = 7.0
+bat_attack_interval = 6.0
 debuffed_movement = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -142,6 +142,63 @@ shape = SubResource("BoxShape3D_oh0ii")
 transform = Transform3D(25, 0, 0, 0, -1.09278e-06, 25, 0, -25, -1.09278e-06, 0, 0, 45)
 shape = SubResource("CylinderShape3D_lvjgv")
 
+[node name="lightGroup" type="Node3D" parent="cave"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="cave/lightGroup" groups=["lights"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.6214, 4.74411, 69.2145)
+visible = false
+light_color = Color(1, 0.898118, 0.764659, 1)
+omni_range = 13.177
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="cave/lightGroup" groups=["lights"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.621, 4.744, 69.215)
+visible = false
+light_color = Color(1, 0.898118, 0.764659, 1)
+omni_range = 13.177
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="cave/lightGroup" groups=["lights"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.621, 4.744, 20.4158)
+visible = false
+light_color = Color(1, 0.898118, 0.764659, 1)
+omni_range = 13.177
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="cave/lightGroup" groups=["lights"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.621, 4.744, 35.416)
+visible = false
+light_color = Color(1, 0.898118, 0.764659, 1)
+omni_range = 13.177
+
+[node name="OmniLight3D6" type="OmniLight3D" parent="cave/lightGroup" groups=["lights"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.621, 4.744, 53.416)
+visible = false
+light_color = Color(1, 0.898118, 0.764659, 1)
+omni_range = 13.177
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="cave/lightGroup" groups=["lights"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.621, 4.744, 20.416)
+visible = false
+light_color = Color(1, 0.898118, 0.764659, 1)
+omni_range = 13.177
+
+[node name="OmniLight3D7" type="OmniLight3D" parent="cave/lightGroup" groups=["lights"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.621, 4.744, 35.416)
+visible = false
+light_color = Color(1, 0.898118, 0.764659, 1)
+omni_range = 13.177
+
+[node name="OmniLight3D8" type="OmniLight3D" parent="cave/lightGroup" groups=["lights"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.621, 4.744, 53.416)
+visible = false
+light_color = Color(1, 0.898118, 0.764659, 1)
+omni_range = 13.177
+
+[node name="OmniLight3D9" type="OmniLight3D" parent="cave/lightGroup" groups=["lights"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.10059, 1.57534, 69.3124)
+visible = false
+light_color = Color(1, 0.898118, 0.764659, 1)
+light_energy = 2.5
+omni_range = 30.0
+
 [node name="lilypad_group" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6605, -0.193393, 62.1718)
 script = ExtResource("3_trc0c")
@@ -183,10 +240,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.803, 68.21)
 curve = SubResource("Curve3D_uai5q")
 
 [node name="PathFollow3D" type="PathFollow3D" parent="Path3D" node_paths=PackedStringArray("player")]
-transform = Transform3D(1, 0, 0, 0, 0.970135, 0.242534, 0, -0.242534, 0.970135, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 0.970134, 0.242533, 0, -0.242533, 0.970134, 0, 0, 0)
 loop = false
 script = ExtResource("6_3hm3e")
-move_speed = 12.0
+move_speed = 20.0
 player = NodePath("../../player")
 
 [node name="bat" parent="Path3D/PathFollow3D" instance=ExtResource("6_uai5q")]

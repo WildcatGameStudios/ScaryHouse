@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var player: player = $player
+@onready var ray_cast: RayCast3D
 @onready var attack_timer: Timer = $bat_timer
 @onready var mud_vision: ColorRect = $muddy_vision
 @onready var mat: ShaderMaterial = $muddy_vision.material
@@ -16,16 +17,24 @@ var fade_in_speed: float = 0.15
 var fade_out_speed: float = 0.3
 var in_mud: bool = false
 var in_danger: bool = false
+var lights: bool = false
 
 func _ready() -> void:
+	# Get the raycast from within the player scene instance
+	ray_cast = player.get_node("head/Camera3D/RayCast3D")
+	
+	if ray_cast == null:
+		print("ERROR: RayCast3D node not found in player scene!")
+		return
+	
 	attack_timer.wait_time = bat_attack_interval # Set bat attack timer
 	mat.set_shader_parameter("fade", fade_value) # Set fade to 0 for start of level
 
 # Bog logic
-func _on_area_3d_body_entered(body: Node3D) -> void:
+func _on_area_3d_body_entered(body: Node3D) -> void: 
 	if body == player:
 		player.walk_speed = debuffed_movement
-		print("Player in swamp, slowing down") # Debug purposes
+		print("Player in swamp, slowing down") 
 		in_mud = true
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
@@ -41,6 +50,30 @@ func _physics_process(delta: float) -> void:
 	elif in_mud == false:
 		fade_value = clamp(fade_value - fade_out_speed * delta, 0.0, 1.0)
 		mat.set_shader_parameter("fade", fade_value)
+	
+	if ray_cast == null:
+		return
+	
+	# Raycast logic
+	ray_cast.force_raycast_update() # Update raycast
+	if ray_cast.is_colliding():
+		var collider = ray_cast.get_collider()
+		#print(collider.name)
+		# Check if player is looking at breaker and close enough
+		if collider and collider.name == "breakerCollider" and collider.global_position.distance_to(player.global_position) < 2:
+			
+			# When player left clicks
+			if Input.is_action_just_pressed("select"):
+				# Turn on all lights
+				for light in get_tree().get_nodes_in_group("lights"):
+					light.visible = true
+					lights = true
+		
+		# Check if player is looking at the bat
+		if collider and collider.name == "bat" and collider.global_position.distance_to(player.global_position) < 5:
+			print("bat is here")
+			if Input.is_action_just_pressed("select"):
+				bat_path.scatter()
 
 # Bat logic
 func _on_danger_zone_body_entered(body: Node3D) -> void:
@@ -70,9 +103,10 @@ func update_bat_curve():
 	curve.add_point(end_pos)
 
 func _on_timer_timeout() -> void:
-	print("timer's done")
-	if not in_danger:
-		return
-	update_bat_curve()
-	bat_path.attack()
-	attack_timer.start() # Restart timer for attack loop
+	if lights == false: # If lights are not on
+		print("timer's done")
+		if not in_danger:
+			return
+		update_bat_curve()
+		bat_path.attack()
+		attack_timer.start() # Restart timer for attack loop
