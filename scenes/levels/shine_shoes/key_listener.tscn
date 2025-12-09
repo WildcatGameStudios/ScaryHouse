@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5ks0lge3015m"]
+
+[ext_resource type="Texture2D" uid="uid://bmj5ftlvwrrvn" path="res://scenes/levels/shine_shoes/art/All.png" id="1_vgigu"]
+[ext_resource type="Script" uid="uid://b7jlad27tlyqk" path="res://scripts/levels/shine_shoes/key_listener.gd" id="2_vgigu"]
+
+[node name="KeyListener" type="Sprite2D"]
+texture = ExtResource("1_vgigu")
+hframes = 2
+vframes = 3
+script = ExtResource("2_vgigu")
+
+[node name="RandomSpawnTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="RandomSpawnTimer" to="." method="_on_random_spawn_timer_timeout"]

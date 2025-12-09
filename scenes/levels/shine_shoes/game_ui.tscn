@@ -1,0 +1,140 @@
+[gd_scene load_steps=6 format=3 uid="uid://cybbeble43uo3"]
+
+[ext_resource type="Script" uid="uid://c6pfxd7eg4edc" path="res://scripts/levels/shine_shoes/game_ui.gd" id="1_451jp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8y1fh"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d256u"]
+bg_color = Color(0.333333, 0.333333, 0.333333, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvgu3"]
+bg_color = Color(0.466667, 0.466667, 0.466667, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bj8bo"]
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="GameUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_451jp")
+
+[node name="InGameLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="ScoreLabel" type="RichTextLabel" parent="InGameLayer"]
+unique_name_in_owner = true
+offset_left = 19.0
+offset_top = 19.0
+offset_right = 213.0
+offset_bottom = 103.0
+theme_override_font_sizes/normal_font_size = 32
+text = "0 pts"
+scroll_active = false
+
+[node name="ComboLabel" type="RichTextLabel" parent="InGameLayer"]
+unique_name_in_owner = true
+offset_left = 19.0
+offset_top = 64.0
+offset_right = 213.0
+offset_bottom = 148.0
+theme_override_font_sizes/normal_font_size = 32
+text = "0X combo"
+scroll_active = false
+
+[node name="LevelSelectLayer" type="CanvasLayer" parent="."]
+
+[node name="Fade" type="ColorRect" parent="LevelSelectLayer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0.25098, 0.25098, 0.25098, 0.752941)
+
+[node name="BackText" type="ColorRect" parent="LevelSelectLayer"]
+offset_left = 60.0
+offset_top = 60.0
+offset_right = 1092.0
+offset_bottom = 588.0
+color = Color(0.564751, 0.485284, 0.510721, 1)
+
+[node name="AboutLevelLable" type="RichTextLabel" parent="LevelSelectLayer/BackText"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 742.0
+offset_bottom = 490.0
+bbcode_enabled = true
+text = "[center][color=#711][font_size=32][b][u]Shine The Shoes!!![/u][/b][/font_size][/color][/center]
+
+[font_size=22][color=#000]As you are wandering the house, you pass by an unsuspecting closet. Sounds can be heard from inside the closet, it’s like there’s a party inside. You open the door and all sounds stops. The shoes stop dancing and turn around to face you. They begin tapping at the same time, in a slower, more militaristic tempo. They begin to approach you. They want to be cleaned.
+
+This is a rhythm game where you have to time key presses with the music to make sure the shoes get shined.
+
+Controls are [b]\"A\"[/b] (left), [b]\"S\"[/b] (middle), and [b]\"D\"[/b] (right). Try to get as high of a score as possible![/color][/font_size]"
+
+[node name="MenuLable" type="RichTextLabel" parent="LevelSelectLayer/BackText"]
+layout_mode = 0
+offset_left = 780.0
+offset_top = 40.0
+offset_right = 992.0
+offset_bottom = 80.0
+bbcode_enabled = true
+text = "[center][font_size=28][color=#334][b]Level Select:[/b][/color][/font_size][/center]"
+
+[node name="SongSelect" type="OptionButton" parent="LevelSelectLayer/BackText"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(212, 40)
+layout_mode = 0
+offset_left = 780.0
+offset_top = 100.0
+offset_right = 992.0
+offset_bottom = 180.0
+text_overrun_behavior = 3
+autowrap_mode = 3
+clip_text = true
+fit_to_longest_item = false
+item_count = 2
+popup/item_0/text = "_RIP"
+popup/item_0/id = 0
+popup/item_1/text = "TestLongNameVeryLongNameTooLongNameadushybvclidsfbvnkdjhbvdsf"
+popup/item_1/id = 1
+
+[node name="StartButton" type="Button" parent="LevelSelectLayer/BackText"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 780.0
+offset_top = 220.0
+offset_right = 992.0
+offset_bottom = 260.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_8y1fh")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_d256u")
+theme_override_styles/hover = SubResource("StyleBoxFlat_cvgu3")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_d256u")
+theme_override_styles/normal = SubResource("StyleBoxFlat_bj8bo")
+text = "Start Level"
+
+[connection signal="pressed" from="LevelSelectLayer/BackText/StartButton" to="." method="_on_start_button_pressed"]

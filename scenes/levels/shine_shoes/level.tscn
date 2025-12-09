@@ -1,14 +1,26 @@
-[gd_scene load_steps=7 format=3 uid="uid://bdlibiu3mstbl"]
+[gd_scene load_steps=13 format=3 uid="uid://bdlibiu3mstbl"]
 
 [ext_resource type="Material" uid="uid://bpxiy7koaf8n8" path="res://art/materials/testing/brown.tres" id="1_astpv"]
-[ext_resource type="PackedScene" uid="uid://bcv40fcphjv3m" path="res://scenes/player/player.tscn" id="1_yswj3"]
+[ext_resource type="Script" uid="uid://t356od6rgxbk" path="res://scripts/levels/shine_shoes/game_manager.gd" id="1_rfrnt"]
 [ext_resource type="Material" uid="uid://d1wqiyxt7mcuc" path="res://scenes/levels/shine_shoes/closet_red.tres" id="2_poom3"]
 [ext_resource type="PackedScene" uid="uid://ut8rcdpa5674" path="res://scenes/levels/shine_shoes/tshirt.tscn" id="3_poom3"]
 [ext_resource type="Material" uid="uid://bgwwd0flxk7qy" path="res://art/materials/testing/black.tres" id="5_yh1oc"]
+[ext_resource type="PackedScene" path="res://scenes/levels/shine_shoes/shoe_pair.tscn" id="6_dh78t"]
+[ext_resource type="Material" uid="uid://dcr0qj8g1uybh" path="res://art/materials/testing/dark_green.tres" id="7_u56lc"]
+[ext_resource type="Material" uid="uid://caeihk71ptlm3" path="res://art/materials/testing/orange.tres" id="8_qrmo8"]
+[ext_resource type="Material" uid="uid://djd2faaq4ltra" path="res://art/materials/testing/pale.tres" id="9_h4u2f"]
+[ext_resource type="Material" uid="uid://myct60omgde3" path="res://art/materials/testing/purple.tres" id="10_06q16"]
+[ext_resource type="PackedScene" uid="uid://cuj5kgai7y3fu" path="res://scenes/levels/shine_shoes/game_level.tscn" id="13_06q16"]
 
 [sub_resource type="Environment" id="Environment_abtou"]
 
 [node name="Level" type="Node3D" groups=["world"]]
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_rfrnt")
+
+[node name="PlayerAnimation" type="AnimationPlayer" parent="GameManager"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_abtou")
@@ -843,8 +855,26 @@ transform = Transform3D(0.109352, 0, 0, 0, 0.567455, 0, 0, 0, 0.0891181, -1.4172
 [node name="CSGCylinder3D10" type="CSGCylinder3D" parent="main5"]
 transform = Transform3D(0.109352, 0, 0, 0, 0.567455, 0, 0, 0, 0.0891181, 8.59141, 26.0453, -9.89349)
 
-[node name="player" parent="." instance=ExtResource("1_yswj3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98986, 0.487008, -0.551443)
+[node name="view" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.25, 2.1, 0)
+
+[node name="GameShoes" type="Node" parent="."]
+
+[node name="ShoePair" parent="GameShoes" instance=ExtResource("6_dh78t")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0.15, 2)
+shoe_material = ExtResource("7_u56lc")
+
+[node name="ShoePair2" parent="GameShoes" instance=ExtResource("6_dh78t")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0.15, 0.666)
+shoe_material = ExtResource("8_qrmo8")
+
+[node name="ShoePair3" parent="GameShoes" instance=ExtResource("6_dh78t")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0.15, -0.666)
+shoe_material = ExtResource("9_h4u2f")
+
+[node name="ShoePair4" parent="GameShoes" instance=ExtResource("6_dh78t")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -1, 0.15, -2)
+shoe_material = ExtResource("10_06q16")
 
 [node name="shoes" type="CSGCombiner3D" parent="."]
 
@@ -946,3 +976,5 @@ material = ExtResource("5_yh1oc")
 [node name="CSGSphere3D8" type="CSGSphere3D" parent="shoes2"]
 transform = Transform3D(0.798, 0, 0, 0, 0.42, 0, -3.55271e-15, 0, 0.42, -2.4, 1.2, -1.5)
 material = ExtResource("5_yh1oc")
+
+[node name="GameLevel" parent="." instance=ExtResource("13_06q16")]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://dexajbbos8f10"]
+
+[ext_resource type="Texture2D" uid="uid://bmj5ftlvwrrvn" path="res://scenes/levels/shine_shoes/prototype/art/All.png" id="1_odeei"]
+[ext_resource type="Script" uid="uid://d30uyrlryc21v" path="res://scripts/levels/shine_shoes/falling_key.gd" id="2_p0tci"]
+
+[node name="FallingKey" type="Sprite2D"]
+texture = ExtResource("1_odeei")
+hframes = 2
+vframes = 3
+frame = 1
+script = ExtResource("2_p0tci")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="DestroyTimer" to="." method="_on_destroy_timer_timeout"]

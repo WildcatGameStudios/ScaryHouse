@@ -1,0 +1,95 @@
+#	Valid Variables
+#	BPM - "Beats per minute" DEFAULT = 120
+#	NUM - "Numerater of the Time Signature (Beats in a measure)" DEFAULT = 4
+#	N_CHANNELS - "The count of the number of input channels you have" DEFAULT = 1
+
+#	Structure of Variables
+#	NAME = VALUE
+
+	##
+	## INITIAL VARS
+	##
+
+BPM = 112.5
+NUM = 4
+N_CHANNELS = 3
+
+#	Structure of the music rhythem
+#	Measure#:	(New line not required)
+#		Beat#/#ofDevision = 0-0, 1-1, 2-4 	(Channel-Subdivision, 0 is the count)
+#		Beat#/#ofDevision = (...) ; 		(';' marks end of measure)
+
+#	Ranges for different #'s:
+#		BPM: number > 0
+#		NUM: number > 0
+#		N_CHANNELS: number > 0
+#		Measure #: number > 0
+#		Beat #: 0 < number <= NUM
+#		Devision #: number > 0
+#		Channel #: 0 <= number < N_CHANNELS
+#		Subdivision #: 0 <= numebr < Devision# of current beat
+#		
+#	
+
+	##
+	## MUSIC
+	##
+
+# Measure 1 - 4 empty
+# Measure 5 - 8
+5: 1/1 = 1-0
+6: 1/1 = 0-0
+7: 1/1 = 1-0
+8: 1/2 = 2-0, 1-1
+
+# Measure 9 - 12
+9:	1/2 = 0-1
+	2/2 = 1-0, 2-1
+	3/4 = 2-0, 2-3
+	4/2 = 2-1
+10:	1/4 = 2-0, 1-3
+	2/2 = 2-1
+	3/4 = 1-0, 0-3
+	4/2 = 1-1
+11:	1/2 = 0-0, 1-1
+12: 1/2 = 0-0, 1-1
+
+# Measure 13 - 16
+13: 1/1 = 1-0
+14: 1/1 = 0-0
+15: 1/1 = 1-0
+16: 1/2 = 2-0, 1-1
+
+# Measure 17 - 20
+17:	1/2 = 0-1
+	2/2 = 1-0, 2-1
+	3/4 = 2-0, 2-3
+	4/2 = 2-1
+18:	1/4 = 2-0, 1-3
+	2/2 = 2-1
+	3/4 = 1-0, 0-3
+	4/2 = 1-1
+19:	1/2 = 0-0, 1-1
+	4/2 = 0-1
+20: 1/2 = 1-0, 2-1
+	4/2 = 0-1
+
+# Measures 21 - 24
+21: 1/2 = 1-0, 2-1
+	4/2 = 0-1
+22: 1/2 = 1-0, 2-1
+	4/2 = 0-1
+23: 1/2 = 1-0, 2-1
+24: 1/1 = 1-0
+
+# Measures 25 - 28
+
+26: 1/2 = 0-0, 0-1
+	2/2 = 1-0, 0-1
+	3/2 = 2-0, 0-1
+	4/2 = 2-0, 1-1
+27: 1/2 = 0-0, 0-1
+	2/2 = 1-0, 0-1
+	3/2 = 2-0, 0-1
+	4/2 = 2-0, 1-1
+28: 1/2 = 0-0

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cuj5kgai7y3fu"]
+
+[ext_resource type="PackedScene" uid="uid://b5ks0lge3015m" path="res://scenes/levels/shine_shoes/key_listener.tscn" id="1_sklrn"]
+[ext_resource type="PackedScene" path="res://scenes/levels/shine_shoes/game_ui.tscn" id="2_d65c1"]
+[ext_resource type="PackedScene" path="res://scenes/levels/shine_shoes/Conductor.tscn" id="3_wk374"]
+
+[node name="GameLevel" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="KeyListener_A" parent="." instance=ExtResource("1_sklrn")]
+position = Vector2(-75, 274)
+key_name = "Shine_left"
+
+[node name="KeyListener_S" parent="." instance=ExtResource("1_sklrn")]
+position = Vector2(0, 274)
+frame = 2
+key_name = "Shine_middle"
+
+[node name="KeyListener_D" parent="." instance=ExtResource("1_sklrn")]
+position = Vector2(75, 274)
+frame = 4
+key_name = "Shine_right"
+
+[node name="GameUI" parent="." instance=ExtResource("2_d65c1")]
+
+[node name="Conductor" parent="." instance=ExtResource("3_wk374")]

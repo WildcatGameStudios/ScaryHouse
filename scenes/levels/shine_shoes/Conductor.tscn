@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://rgd3ir7qfssw"]
+
+[ext_resource type="Script" uid="uid://cem1gscjyvqt6" path="res://scripts/levels/shine_shoes/conductor.gd" id="1_in2rw"]
+
+[node name="Conductor" type="Node"]
+script = ExtResource("1_in2rw")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="finished" from="MusicPlayer" to="." method="_on_music_player_finished"]

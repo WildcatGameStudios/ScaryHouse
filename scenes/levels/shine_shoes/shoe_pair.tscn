@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=3 uid="uid://gpbd4a4jmc6f"]
+
+[ext_resource type="Script" uid="uid://cr2hmftq5tp3t" path="res://scripts/levels/shine_shoes/shoe_pair.gd" id="1_0rhfb"]
+
+[sub_resource type="Animation" id="Animation_yhhfi"]
+resource_name = "Danse_1"
+
+[sub_resource type="Animation" id="Animation_k425g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Right:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.25, 0.2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Left:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.25, 0.2, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0rhfb"]
+resource_name = "marching"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Right:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0.25, 0.2, 0), Vector3(0.25, 0.95, 0), Vector3(0.25, 0.2, 0), Vector3(0.25, 0.2, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Left:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.25, 0.2, 0), Vector3(-0.25, 0.2, 0), Vector3(-0.25, 0.95, 0), Vector3(-0.25, 0.2, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yhhfi"]
+_data = {
+&"Danse_1": SubResource("Animation_yhhfi"),
+&"RESET": SubResource("Animation_k425g"),
+&"marching": SubResource("Animation_0rhfb")
+}
+
+[node name="ShoePair" type="Node3D"]
+script = ExtResource("1_0rhfb")
+
+[node name="Right" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 1, 0.25, 0.2, 0)
+radius = 0.4
+
+[node name="Left" type="CSGSphere3D" parent="."]
+transform = Transform3D(-0.5, 0, 0, 0, 0.5, -8.74228e-08, 0, 4.37114e-08, 1, -0.25, 0.2, 0)
+radius = 0.4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yhhfi")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
