@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://ck333jspb32xv" path="res://art/models/water_plants/plant1.glb" id="3_gq4vk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gq4vk"]
+resource_local_to_scene = true
 albedo_color = Color(0, 1, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6rwh"]
@@ -35,3 +36,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 use_collision = true
 size = Vector3(3, 3, 1)
 material = SubResource("StandardMaterial3D_r6rwh")
+
+[node name="items" type="Node" parent="."]

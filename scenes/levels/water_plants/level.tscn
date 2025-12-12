@@ -116,7 +116,7 @@ size = Vector3(5, 1, 4.9)
 material = SubResource("StandardMaterial3D_aswn4")
 
 [node name="player" parent="." instance=ExtResource("2_1enwu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.46559, 3.95678)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15, 3.957)
 
 [node name="RayCast3D2" type="RayCast3D" parent="player/head/Camera3D" index="0"]
 target_position = Vector3(0, 0, -3)
@@ -244,27 +244,34 @@ material = SubResource("StandardMaterial3D_85ofr")
 
 [node name="Plant1" parent="plants" instance=ExtResource("2_y3sin")]
 transform = Transform3D(0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, -10.833, -3.25, -1.91)
+time_to_activate = 60.0
 
 [node name="Plant2" parent="plants" instance=ExtResource("2_y3sin")]
 transform = Transform3D(0.543174, 0, 0.83962, 0, 1, 0, -0.83962, 0, 0.543174, -9.24, -3.25, -5.968)
+time_to_activate = 40.0
 
 [node name="Plant3" parent="plants" instance=ExtResource("2_y3sin")]
 transform = Transform3D(0.826098, 0, 0.563526, 0, 1, 0, -0.563526, 0, 0.826098, -6.197, -3.25, -9.089)
+time_to_activate = 20.0
 
 [node name="Plant4" parent="plants" instance=ExtResource("2_y3sin")]
 transform = Transform3D(0.980271, 0, 0.197657, 0, 1, 0, -0.197657, 0, 0.980271, -2.18, -3.25, -10.782)
+start_dying_chance = 1.0
 
 [node name="Plant5" parent="plants" instance=ExtResource("2_y3sin")]
 transform = Transform3D(0.980271, 0, -0.197657, 0, 1, 0, 0.197657, 0, 0.980271, 2.18, -3.25, -10.782)
 
 [node name="Plant6" parent="plants" instance=ExtResource("2_y3sin")]
 transform = Transform3D(0.826098, 0, -0.563526, 0, 1, 0, 0.563526, 0, 0.826098, 6.197, -3.25, -9.089)
+time_to_activate = 20.0
 
 [node name="Plant7" parent="plants" instance=ExtResource("2_y3sin")]
 transform = Transform3D(0.543174, 0, -0.83962, 0, 1, 0, 0.83962, 0, 0.543174, 9.24, -3.25, -5.968)
+time_to_activate = 40.0
 
 [node name="Plant8" parent="plants" instance=ExtResource("2_y3sin")]
 transform = Transform3D(0.173648, 0, -0.984808, 0, 1, 0, 0.984808, 0, 0.173648, 10.833, -3.25, -1.91)
+time_to_activate = 60.0
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 4.5, 0.5)

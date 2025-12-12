@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Scary House"
-run/main_scene="uid://cefsh68ong0rg"
+run/main_scene="uid://t47rtwtrhnr6"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -23,6 +23,10 @@ Shoe_Shine_Signals="*res://scripts/levels/shine_shoes/signals.gd"
 [dotnet]
 
 project/assembly_name="Scary House"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/set_editor_position/plugin.cfg")
 
 [global_group]
 

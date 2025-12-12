@@ -14,3 +14,7 @@ metadata/item_type = 0
 
 [node name="water" parent="." instance=ExtResource("1_0oa5i")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.1, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

@@ -15,3 +15,7 @@ metadata/item_type = 3
 
 [node name="fertilizer" parent="." instance=ExtResource("1_ga35b")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true

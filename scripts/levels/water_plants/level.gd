@@ -4,18 +4,26 @@ extends Node3D
 var orig_walk_speed: int
 var orig_run_speed: int
 var speed_effect: float = .2 # higher means holding items affects speed more
+var item_use_timer = 2
 @onready var items: Node = $items
 @onready var plants: Node = $plants
 @onready var ray_cast_3d: RayCast3D = $player/head/Camera3D/RayCast3D
-@onready var finish_timer = 180 # time to end level in seconds
+@onready var finish_timer = 120 # time to end level in seconds
 var finished = false
+var total_level_time = 90 # time for entire level in seconds
+var time_after_completion = 5 # time in seconds to stay in level before returning to menu
+var first_time = true
 
 func _ready() -> void:
 	orig_walk_speed = player.walk_speed
 	orig_run_speed = player.run_speed
 
 func _process(delta: float) -> void:
-	if not finished:
+	if finished:
+		time_after_completion -= delta
+		if time_after_completion <= 0:
+			get_tree().change_scene_to_file("res://scenes/general/main_menu.tscn")
+	else:
 		if finish_timer <= 0:
 			plants.queue_free()
 			finished = true
@@ -33,21 +41,16 @@ func _process(delta: float) -> void:
 				var found = false
 				for i in player.head.get_child(3).get_children(): # for each held item
 					if found:
-						i.position.x += .5 # move down all items above
+						i.position.x += .5 # slide all other items
 					elif collider.get_parent().needs.back() == i.get_meta("item_type"): # if plant top need is an item the player is holding
 						collider.get_parent().remove_need() # remove from player's hand to add to items
 						player.head.get_child(3).remove_child(i)
-						items.add_child(i)
-						match i.get_meta("item_type"): # position to return to
-							0: # water
-								i.position = Vector3(-.9,.8,int(i.name) * .5)
-							1: # flies
-								i.position = Vector3(-.3,.65,int(i.name) * .5)
-							2: # light
-								i.position = Vector3(.3,.79,int(i.name) * .5)
-							3: # fertilizer
-								i.position = Vector3(.9,.7,int(i.name) * .5)
-						i.use_collision = true
+						collider.get_parent().get_child(5).add_child(i)
+						i.position = i.get_parent().get_parent().position + Vector3(0,4,0)
+						i.rotation.x = PI
+						if i.get_meta("item_type") == 2:
+							i.get_child(2).visible = true
+						i.get_child(1).start()
 						found = true
 						player.walk_speed = orig_walk_speed / (player.head.get_child(3).get_children().size() * speed_effect + 1)
 						player.run_speed = orig_run_speed / (player.head.get_child(3).get_children().size() * speed_effect + 1)
